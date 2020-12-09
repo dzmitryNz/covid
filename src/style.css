@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+    transition: all 0.3s;
+    box-sizing: border-box;
+}
+    
+body {
+    cursor: default;
+    font-size: calc(0.3em + 0.5vw + 0.6vh);
+    text-align: center;
+    background: rgb(44, 44, 44);
+    color:lightblue;
+    }
+}
