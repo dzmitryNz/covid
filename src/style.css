@@ -12,4 +12,69 @@ body {
     background: rgb(44, 44, 44);
     color:lightblue;
     }
+
+header {
+    width: 95vw;
+}
+main {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+.left-block {
+    width: 15vw;
+    height: 93vh;
+    border: 1px dotted green;
+    border-radius: 1vw;
+}
+
+.global-cases {
+    width: 15vw;
+    height: 25vh;
+}
+
+.left-table {
+    width: 15vw;
+    height: 60vh;
+}
+
+.last-update {
+    width: 15vw;
+    height: 18vh;
+}
+
+.center-block {
+    width: 50vw;
+    border: 1px dotted green;
+    border-radius: 1vw;
+}
+
+.map {
+    width: 50vw;
+    height: 93vh;
+}
+
+.right-block {
+    width: 25vw;
+    height: 95vh;
+    border: 1px dotted green;
+    border-radius: 1vw;
+}
+
+.right-table {
+    width: 35vw;
+    height: 50vh;
+}
+
+.right-graph {
+    width: 35vw;
+    height: 45vh;
+}
+footer {
+    width: 95vw;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    border: 1px dotted green;
+    border-radius: 1vw;
 }
