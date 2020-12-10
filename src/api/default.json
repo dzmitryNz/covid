@@ -24,16 +24,6 @@
     "Description": "Returns all cases by case type for a country. Country must be the country_slug from /countries. Cases must be one of: confirmed, recovered, deaths",
     "Path": "/country/:country"
   },
-  "countryRoutePremium": {
-    "Name": "Premium Data: Get List Of Cases Per Country By Case Type",
-    "Description": "Returns all cases by case type for a country. Country must be the country_slug from /countries. Cases must be one of: confirmed, recovered, deaths",
-    "Path": "/premium/country/:country"
-  },
-  "countryRoutePremiumData": {
-    "Name": "Premium Data: Get Data Per Country",
-    "Description": "Returns all cases by case type for a country. Country must be the country_slug from /countries. Cases must be one of: confirmed, recovered, deaths",
-    "Path": "/premium/country/data/:country"
-  },
   "countryStatusDayOneLiveRoute": {
     "Name": "Get List Of Cases Per Country Per Province By Case Type From The First Recorded Case, updated with latest live count",
     "Description": "Returns all cases by case type for a country from the first recorded case with the latest record being the live count. Country must be the country_slug from /countries. Cases must be one of: confirmed, recovered, deaths",
@@ -63,16 +53,6 @@
     "Name": "Get List Of Cases Per Country By Case Type",
     "Description": "Returns all cases by case type for a country. Country must be the country_slug from /countries. Cases must be one of: confirmed, recovered, deaths",
     "Path": "/total/country/:country/status/:status"
-  },
-  "countrySummaryRoutePremium": {
-    "Name": "Premium Data: Get Summary Of World Case Data",
-    "Description": "Returns summary of all country data",
-    "Path": "/premium/summary"
-  },
-  "countryTestingPremium": {
-    "Name": "Premium Data: Get Testing Data Per Country",
-    "Description": "Get data around testing",
-    "Path": "/premium/country/testing/:country"
   },
   "countryTotalRoute": {
     "Name": "Get List Of Cases Per Country By Case Type",
@@ -104,14 +84,34 @@
     "Description": "A summary of new and total cases per country",
     "Path": "/summary"
   },
-  "travelAdvicePremium": {
-    "Name": "Premium Data: Travel information for a given country",
-    "Description": "Returns all cases by case type for a country. Country must be the country_slug from /countries. Cases must be one of: confirmed, recovered, deaths",
-    "Path": "/premium/travel/country/:country"
-  },
   "webhookRoute": {
     "Name": "Add a webhook to be notified when new data becomes available",
     "Description": "POST Request must be in JSON format with key URL and the value of the webhook. Response data is the same as returned from /summary",
     "Path": "/webhook"
+  },
+  "countryRoutePremium": {
+    "Name": "Premium Data: Get List Of Cases Per Country By Case Type",
+    "Description": "Returns all cases by case type for a country. Country must be the country_slug from /countries. Cases must be one of: confirmed, recovered, deaths",
+    "Path": "/premium/country/:country"
+  },
+  "countryRoutePremiumData": {
+    "Name": "Premium Data: Get Data Per Country",
+    "Description": "Returns all cases by case type for a country. Country must be the country_slug from /countries. Cases must be one of: confirmed, recovered, deaths",
+    "Path": "/premium/country/data/:country"
+  },
+  "countrySummaryRoutePremium": {
+    "Name": "Premium Data: Get Summary Of World Case Data",
+    "Description": "Returns summary of all country data",
+    "Path": "/premium/summary"
+  },
+  "countryTestingPremium": {
+    "Name": "Premium Data: Get Testing Data Per Country",
+    "Description": "Get data around testing",
+    "Path": "/premium/country/testing/:country"
+  },
+  "travelAdvicePremium": {
+    "Name": "Premium Data: Travel information for a given country",
+    "Description": "Returns all cases by case type for a country. Country must be the country_slug from /countries. Cases must be one of: confirmed, recovered, deaths",
+    "Path": "/premium/travel/country/:country"
   }
 }
