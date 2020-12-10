@@ -7,42 +7,43 @@
     
 body {
     cursor: default;
-    font-size: calc(0.3em + 0.5vw + 0.6vh);
+    font-size: calc(0.4em + 0.5vw + 0.6vh);
     text-align: center;
     background: rgb(44, 44, 44);
     color:lightblue;
-    max-width: 90%;
-    max-height: 90%;
-    }
+}
 
 header {
+    width: 100vw;
+    height: 2vh;
+    border: 1px dotted green;
 }
 main {
-    width: 90vw;
-    max-width: 90vw;
+    width: 100vw;
+    max-width: 100vw;
     display: flex;
     justify-content: center;
 }
 .left-block {
-    width: 15vw;
+    width: 25vw;
     height: 93vh;
     border: 1px dotted green;
     border-radius: 1vw;
 }
 
 .global-cases {
-    width: 15vw;
-    height: 25vh;
+    width: 25vw;
+    height: 17vh;
 }
 
 .left-table {
-    width: 15vw;
+    width: 25vw;
     height: 60vh;
 }
 
 .last-update {
-    width: 15vw;
-    height: 18vh;
+    width: 25vw;
+    height: 13vh;
 }
 
 .center-block {
@@ -58,7 +59,7 @@ main {
 
 .right-block {
     width: 25vw;
-    height: 95vh;
+    height: 93vh;
     border: 1px dotted green;
     border-radius: 1vw;
 }
@@ -70,14 +71,15 @@ main {
 
 .right-graph {
     width: 35vw;
-    height: 45vh;
+    height: 43vh;
 }
 footer {
     color: orange;
-    width: 90vw;
-    max-width: 90vw;
-    height: 4vh;
+    width: 100vw;
+    max-width: 100vw;
+    height: 2vh;
     display: flex;
+    justify-content: center;
     border: 1px dotted green;
     border-radius: 1vw;
 }
