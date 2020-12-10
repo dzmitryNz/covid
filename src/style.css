@@ -73,11 +73,30 @@ main {
     height: 45vh;
 }
 footer {
+    color: orange;
     width: 90vw;
     max-width: 90vw;
-    height: 5vh;
+    height: 4vh;
     display: flex;
-    justify-content: center;
     border: 1px dotted green;
     border-radius: 1vw;
+}
+
+footer a{
+    margin: 0 1vw;
+    color: lightblue;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: snow;
+}
+
+footer img{
+    width: 3vw;
+    height: 2vh;
+}
+
+footer img:hover {
+    box-shadow: 0px 0px 5px grey;
 }
