@@ -428,3 +428,165 @@ template {
 [hidden] {
   display: none;
 }
+
+body {
+  background-color: #0d0f11;
+  padding: 10px;
+}
+
+.grid-wrapper {
+  width: 100%;
+  height: 100%;
+  display: -ms-grid;
+  display: grid;
+  gap: 10px;
+  -ms-grid-columns: 255px 1fr 320px;
+      grid-template-columns: 255px 1fr 320px;
+  -ms-grid-rows: 75px auto auto 75px;
+      grid-template-rows: 75px auto auto 75px;
+      grid-template-areas: "list header table" "list map table" "list map chart" "list footer chart";
+}
+
+.grid-wrapper .header {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: header;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 1px white dashed;
+}
+
+.grid-wrapper .header span {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 31px;
+  letter-spacing: 0.25rem;
+  color: rgba(215, 236, 244, 0.9);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.grid-wrapper .footer {
+  -ms-grid-row: 4;
+  -ms-grid-column: 2;
+  grid-area: footer;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border: 1px white dashed;
+}
+
+.grid-wrapper .footer .footer__school {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.grid-wrapper .footer .footer__developers {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  color: rgba(215, 236, 244, 0.9);
+  text-align: center;
+}
+
+.grid-wrapper .footer .footer__developers .title {
+  margin: 5px 0px 0px 0px;
+  font-size: 14px;
+  letter-spacing: 0.25rem;
+  text-transform: uppercase;
+}
+
+.grid-wrapper .footer .footer__developers ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 10px 0px 0px 0px;
+}
+
+.grid-wrapper .footer .footer__developers ul li {
+  padding: 0px 10px;
+}
+
+.grid-wrapper .footer .footer__developers ul li a {
+  font-size: 16px;
+  color: rgba(215, 236, 244, 0.9);
+}
+
+.grid-wrapper .footer .footer__developers ul li a:hover {
+  text-decoration: underline;
+}
+
+.grid-wrapper .footer .footer__year {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 20px;
+}
+
+.grid-wrapper .footer .footer__year span {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 14px;
+  color: white;
+}
+
+.counties-list {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 4;
+  -ms-grid-column: 1;
+  grid-area: list;
+  border: 1px white dashed;
+}
+
+#map {
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 2;
+  grid-area: map;
+  border: 1px white dashed;
+}
+
+.table {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 3;
+  grid-area: table;
+  border: 1px white dashed;
+}
+
+.chart {
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 3;
+  grid-area: chart;
+  border: 1px white dashed;
+}
