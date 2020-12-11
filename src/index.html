@@ -7,8 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- <link href="./normalize.css" rel="stylesheet"> -->
-    <link href="./style.css" rel="stylesheet">
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
     <title>Covid dashboard</title>
 </head>
 
@@ -16,25 +15,30 @@
     <header>Header</header>
     <main>
         <div class="left-block">
-            <div class="global-cases">Global Cases</div>
-            <div class="left-table">Cases by Country/Region/Sovereignty</div>
-            <div class="last-update">Last Update</div>
+            <div class="global-cases container">Global Cases</div>
+            <div class="country-table container">
+                <span class="country-table__title">Cases by Country/Region/Sovereignty</span>
+                <div class="country-table__country-search">
+                    <span class="material-icons country-search__icon"></span>
+                    <input class="country-search__input" type="text" placeholder="Search country">
+                </div>
+            </div>
+            <div class="last-update container">Last Update</div>
         </div>
-        <div class="center-block">
+        <div class="center-block container">
             <div class="map">Map</div>
         </div>
         <div class="right-block">
-            <div class="right-table">Table</div>
-            <div class="right-graph">Graph</div>
+            <div class="right-table container">Table</div>
+            <div class="right-graph container">Graph</div>
         </div>
     </main>
     <footer>
-      <div><a href="https://rs.school/js/"><img src="rs_school_js.svg" alt="rs school logo"></a></div>
+      <div><a href="https://rs.school/js/"><img src="./images/rs_school_js.svg" alt="rs school logo"></a></div>
       <div>2020</div>
       <div><a href="https://kattitova.github.io/rsschool-cv/">kat.titova</a></div>
       <div><a href="https://urfeen.github.io/rsschool-cv/">urfeen</a></div>
       <div><a href="https://dzmitryNZ.github.io/rsschool-cv/">dzmitryNz</a></div>
     </footer>
-    <script src="js/index.js" type="module"></script>
 </body>
 </html>
