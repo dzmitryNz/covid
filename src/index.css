@@ -591,6 +591,13 @@ body {
   border: 1px white dashed;
 }
 
+.countries-list th:hover{
+  cursor: pointer;
+}
+.countries-list .country-row:hover{
+  cursor: pointer;
+}
+
 .table {
   -ms-grid-row: 1;
   -ms-grid-row-span: 2;
