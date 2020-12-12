@@ -86,13 +86,16 @@ function globalChange(summaryData) {
     let table = create('table', 'countries-table', null, blockCountriesList);
     let thCountry = create('td', null, 'Country');
     let thTotal = create('td', null, 'Total');
-    let tdNew = create('td', null, 'New today');
-    let th = create('th', 'table-header', [thTotal, thCountry], table);
+    let thDeath = create('td', null, 'Deaths');
+    let thRecovered = create('td', null, 'Recovered');
+    // let th = create('th', 'table-header', [thTotal, thDeath, thRecovered, thCountry], table);
     summaryData.Countries.forEach((country, i) => {
         console.log(country.Country, country.NewConfirmed)
         tr[i] = create('tr', 'country-row', null, table);
-        td = create('td', 'total-confirmed', String(country.TotalConfirmed), tr[i] );
         td = create('td', 'country', country.Country, tr[i] );
+        td = create('td', 'total-confirmed', String(country.TotalConfirmed), tr[i] );
+        td = create('td', 'total-deths', String(country.TotalDeaths), tr[i] );
+        td = create('td', 'total-recovered', String(country.TotalRecovered), tr[i] );
         tr[i].addEventListener('click', () => {});
     })
     thCountry.addEventListener('click', () => {});

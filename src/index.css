@@ -595,11 +595,15 @@ body {
   cursor: pointer;
   color: snow;
 }
+
+.countries-list .country-row td{
+width: fit-content;
+}
+
 .countries-list .country-row:hover{
   cursor: pointer;
   color: snow;
 }
-
 .table {
   -ms-grid-row: 1;
   -ms-grid-row-span: 2;
