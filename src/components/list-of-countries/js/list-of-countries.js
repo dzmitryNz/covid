@@ -19,7 +19,7 @@ export default function listOfCountries(summaryData) {
   let thRecovered = create('td', null, 'Recovered');
   // let th = create('th', 'table-header', [thTotal, thDeath, thRecovered, thCountry], table);
   summaryData.Countries.forEach((country, i) => {
-    console.log(country.Country, country.NewConfirmed)
+    // console.log(country.Country, country.NewConfirmed)
     tr[i] = create('tr', 'country-row', null, table);
     td = create('td', 'country', country.Country, tr[i]);
     td = create('td', 'total-confirmed', String(country.TotalConfirmed), tr[i]);
