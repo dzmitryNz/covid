@@ -1,5 +1,9 @@
-@import "common-scss/#reset-css.scss";
-@import "common-scss/#normalize-css.scss";
+@import "#common-scss/#reset-css.scss";
+@import "#common-scss/#normalize-css.scss";
+
+@import "list-of-countries/scss/countries-list.scss";
+@import "table/scss/table.scss";
+@import "chart/scss/chart.scss";
 
 body {
   background-color: #0d0f11;
@@ -106,17 +110,4 @@ body {
   grid-area: map;
   border: 1px white dashed;
   border-radius: 20px;
-}
-//Позже стили снизу будут в отдельных scss файлах, как отдельные компоненты.
-.countries-list {
-  grid-area: list;
-  border: 1px white dashed;
-}
-.table {
-  grid-area: table;
-  border: 1px white dashed;
-}
-.chart {
-  grid-area: chart;
-  border: 1px white dashed;
 }
