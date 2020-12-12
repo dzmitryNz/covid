@@ -432,6 +432,7 @@ template {
 body {
   background-color: #0d0f11;
   padding: 10px;
+  color: rosybrown;
 }
 
 .grid-wrapper {
@@ -444,7 +445,10 @@ body {
       grid-template-columns: 255px 1fr 320px;
   -ms-grid-rows: 75px auto auto 75px;
       grid-template-rows: 75px auto auto 75px;
-      grid-template-areas: "list header table" "list map table" "list map chart" "list footer chart";
+      grid-template-areas: "list header table"
+ "list map table"
+ "list map chart"
+ "list footer chart";
 }
 
 .grid-wrapper .header {

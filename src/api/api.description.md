@@ -1,9 +1,9 @@
 getApi(category, country) 
 
 category - раздел api, если отсутствует загружает summaryRoute
-country - страна, не обязательный, добавляется в к url если есть параметр :country
+country - страна, не обязательный, добавляется в к url если есть параметр :country в Path
 
-если если разница с текущим временем и lastupdate меньше 24 часов возвращаются данные из localStorage
+если разница с текущим временем и lastupdate меньше 24 часов возвращаются данные из localStorage
 
 весь ответ на запрос сохраняется в LocalStorage  по ключу category
 если данные по стране category-country
