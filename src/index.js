@@ -10,8 +10,9 @@ const country = 'belarus';
 const category = countryTotalDay;
 const apis = './api/default.json';
 const summaryUrl  = 'https://api.covid19api.com/summary';
-const blockCountriesList = document.querySelector('.countries-list');
-const blockTable = document.querySelector('.table');
+const UpdatePeriod = 10;
+let blockCountriesList = document.querySelector('.countries-list');
+let blockTable = document.querySelector('.table');
 let url = '';
 let categoryData = {};
 let summaryData = {};
@@ -56,7 +57,7 @@ async function getApi(category, country) {
     if (categoryData) { 
         const LastUpdate = new Date(categoryData.Date);
         const deltaHours = new Date(date - LastUpdate).getHours();
-        if (deltaHours > 10) return categoryData;
+        if (deltaHours > UpdatePeriod) return categoryData;
             else { return getData(category, country) }
     } else { return getData(category, country) }
 }
@@ -81,28 +82,28 @@ function globalChange(summaryData) {
     blockCountriesList.innerText = `${summaryData.Global.TotalConfirmed} ${lastUpdate.toLocaleString()}`;
 }
 
-function countryChange(countrData) {
+function countryChange(countryData) {
     console.log('countryChange')
     countryData = JSON.parse(localStorage.getItem(summary));
     blockTable.innerText = `${countryData}`;
 }
 
 function countriesChange(summaryData) {
-    console.log('countries')
     let tr = {};
     let td = {};
     summaryData = JSON.parse(localStorage.getItem(summary));
     let table = create('table', 'countries-table', null, blockTable);
     let tdCountry = create('td', null, 'Country');
+    let tdTotal = create('td', null, 'Total');
     let tdNew = create('td', null, 'New today');
-    let tdTotal = create('td', null, 'Tootal');
-    let th = create('th', 'table-header', [tdCountry, tdNew, tdTotal], blockTable);
+    let th = create('th', 'table-header', [tdCountry, tdNew, tdTotal], table);
     summaryData.Countries.forEach((country, i) => {
         console.log(country.Country, country.NewConfirmed)
         tr[i] = create('tr', 'country-row', null, table);
         td = create('td', 'country', country.Country, tr[i] );
         td = create('td', 'total-confirmed', String(country.TotalConfirmed), tr[i] );
         td = create('td', 'new-confirmed', String(country.NewConfirmed), tr[i] );
+        tr[i].addEventListener('click', () => {});
     })
 }
 
