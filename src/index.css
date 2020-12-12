@@ -435,20 +435,23 @@ template {
   -ms-grid-column: 1;
   grid-area: list;
   border: 1px white dashed;
+  color: #99991f;
+  max-height: 100%;
+  overflow: auto;
 }
 
-.countries-list th td:hover {
+.countries-list .countries-list th td:hover {
   cursor: pointer;
   color: snow;
 }
 
-.countries-list .country-row td {
+.countries-list .countries-list .country-row td {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
 
-.countries-list .country-row:hover {
+.countries-list .countries-list .country-row:hover {
   cursor: pointer;
   color: snow;
 }
@@ -467,6 +470,21 @@ template {
   -ms-grid-column: 3;
   grid-area: chart;
   border: 1px white dashed;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #edb021c5;
+  border-radius: 9em;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: #825b00;
 }
 
 body {

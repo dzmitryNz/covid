@@ -1,15 +1,18 @@
 .countries-list {
   grid-area: list;
   border: 1px white dashed;
-}
-.countries-list th td:hover {
-  cursor: pointer;
-  color: snow;
-}
-.countries-list .country-row td {
-  width: fit-content;
-}
-.countries-list .country-row:hover {
-  cursor: pointer;
-  color: snow;
+  color: rgb(153, 153, 31);
+  max-height: 100%;
+  overflow: auto;
+  .countries-list th td:hover {
+    cursor: pointer;
+    color: snow;
+  }
+  .countries-list .country-row td {
+    width: fit-content;
+  }
+  .countries-list .country-row:hover {
+    cursor: pointer;
+    color: snow;
+  }
 }
