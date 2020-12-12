@@ -591,11 +591,13 @@ body {
   border: 1px white dashed;
 }
 
-.countries-list th:hover{
+.countries-list th td:hover{
   cursor: pointer;
+  color: snow;
 }
 .countries-list .country-row:hover{
   cursor: pointer;
+  color: snow;
 }
 
 .table {
