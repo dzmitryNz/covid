@@ -440,18 +440,18 @@ template {
   overflow: auto;
 }
 
-.countries-list .countries-list th td:hover {
+.countries-list th td:hover {
   cursor: pointer;
   color: snow;
 }
 
-.countries-list .countries-list .country-row td {
+.countries-list .country-row td {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
 
-.countries-list .countries-list .country-row:hover {
+.countries-list .country-row:hover {
   cursor: pointer;
   color: snow;
 }
