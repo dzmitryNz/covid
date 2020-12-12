@@ -460,7 +460,7 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  border: 1px white solid;
+  border: 1px #d7ecf4 solid;
 }
 
 .grid-wrapper .header span {
@@ -487,7 +487,7 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  border: 1px white solid;
+  border: 1px #d7ecf4 solid;
 }
 
 .grid-wrapper .footer .footer__school {
