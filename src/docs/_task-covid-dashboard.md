@@ -6,7 +6,7 @@
 
 В этом задании создадим приложение для отслеживания распространения COVID-19 в мире и в отдельных странах. Информацию необходимо представить в виде таблицы, списка, графика и интерактивной карты.
 
-![](covid-dashboard.png)
+![](https://raw.githubusercontent.com/rolling-scopes-school/tasks/master/tasks/images/covid-dashboard.png)
 
 [Онлайн-карта распространения Covid-19](https://coronavirus.jhu.edu/map.html). Структуру и внешний вид этого проекта можно использовать в качестве образца.
 
