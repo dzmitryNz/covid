@@ -1,15 +1,15 @@
 // import "./style.css";
 import getData from './components/api.js'
 import listOfCountries from './components/list-of-countries/js/list-of-countries.js'
-// import chart from './chart/js/chart.js'
-// import map from './map/js/map.js'
-// import country-data from './country-data/js/country-data.js'
+// import chart from './components/chart/js/chart.js'
+// import map from './components/map/js/map.js'
+// import country-data from './components/country-data/js/country-data.js'
 
 const summary = 'summaryRoute';
 const countries = 'countriesRoute';
 const countryDay = 'countryDayOneRoute';
 const countryTotalDay = 'countryDayOneTotalRoute';
-const country = 'belarus';
+const country = 'ukraine';
 let Page = {};
 
 export default Page = {
@@ -23,6 +23,7 @@ export default Page = {
 
   init() {
     getData(summary);
+    getData(countryTotalDay, country);
   }
 }
 
