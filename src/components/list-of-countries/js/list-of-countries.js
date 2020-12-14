@@ -26,8 +26,8 @@ export default function listOfCountries(summaryData) {
     tr[i] = create('tr', 'country-row', null, table);
     td = create('td', 'country', country.Country, tr[i]);
     td = create('td', 'total-confirmed', String(country.TotalConfirmed), tr[i]);
-    td = create('td', 'total-deths', String(country.TotalDeaths), tr[i]);
-    td = create('td', 'total-recovered', String(country.TotalRecovered), tr[i]);
+    // td = create('td', 'total-deths', String(country.TotalDeaths), tr[i]);
+    // td = create('td', 'total-recovered', String(country.TotalRecovered), tr[i]);
     tr[i].addEventListener('click', () => { });
   })
   thCountry.addEventListener('click', () => { });
