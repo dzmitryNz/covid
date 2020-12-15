@@ -1,6 +1,7 @@
 // import "./style.css";
 // import getApi from './js/api.js'
 import listOfCountries from './components/list-of-countries/js/list-of-countries.js'
+import { chart } from './components/chart/js/chart.js'
 
 const summary = 'summaryRoute';
 const countries = 'countriesRoute';
@@ -27,12 +28,14 @@ export default Page = {
   },
 
   init() {
+    // getApi('countryRoute', '');
     getApi(summary);
     summaryData = JSON.parse(localStorage.getItem(summary));
+
     listOfCountries(summaryData);
+    chart(summaryData);
   }
 }
-
 async function getApi(category, country) {
   const date = new Date();
   if (category) {
@@ -40,10 +43,10 @@ async function getApi(category, country) {
     let apiPaths = await res.json();
     const baseUrl = apiPaths.baseUrl.Path;
     let catUrl = apiPaths[category].Path;
-
     if (catUrl.match(/:country/) && country) catUrl = catUrl.replace(/:country/, country);
 
     url = baseUrl + catUrl;
+    fetch('https://api.covid19api.com').then(res => res.json()).then(data => console.log(data))
   } else { url = summaryUrl; category = 'summaryRoute' }
 
   if (country) categoryData = JSON.parse(localStorage.getItem(`${category}-${country}`));
@@ -56,7 +59,6 @@ async function getApi(category, country) {
     else { return getData(category, country) }
   } else { return getData(category, country) }
 }
-
 async function getData(category, country) {
   const response = await fetch(url);
   const result = await response.json();
