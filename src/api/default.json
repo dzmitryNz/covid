@@ -1,4 +1,4 @@
-{
+[{
   "baseUrl": {
     "Name": "Get List Of Countries",
     "Description": "Returns all countries and associated provinces. The country_slug variable is used for country specific data",
@@ -114,4 +114,4 @@
     "Description": "Returns all cases by case type for a country. Country must be the country_slug from /countries. Cases must be one of: confirmed, recovered, deaths",
     "Path": "/premium/travel/country/:country"
   }
-}
+}]

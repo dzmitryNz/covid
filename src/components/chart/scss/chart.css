@@ -1,6 +1,6 @@
 .chart {
   grid-area: chart;
-  border: 1px rgb(215, 236, 244) solid;
+  border: 1px #d7ecf4 solid;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,6 +8,8 @@
   display: flex;
   flex-direction: column;
 }
+
 #chartCanvas {
   min-height: 100%;
 }
+/*# sourceMappingURL=chart.css.map */

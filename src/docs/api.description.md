@@ -7,3 +7,5 @@ country - страна, не обязательный, добавляется в
 
 весь ответ на запрос сохраняется в LocalStorage  по ключу category
 если данные по стране category-country
+
+после получения данных вызывается модуль их обрабатывающий, в случае summaryRoute вызывается list of countries, в случае countryRoute table 
