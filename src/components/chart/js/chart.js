@@ -1,33 +1,42 @@
 /** *
  * @param {String} country // if empty, country = Global, else country = country.
- * @param {HTMLElement} signification // death cases or recovered
+ * @param {HTMLElement} signification // Death/Confirmed/Recovered
  */
 
-export function chart(country, signification) {
+export async function chart(country, signification) {
+  const getColor = () => {
+    const colorDeaths = '#D2374A';
+    const colorRecovered = '#5D9700';
+    const colorConfirmed = '#EDB021';
 
-  // console.log(category);
-  // let getAllDates = null;
-  // if (category && country) {
-  //   getAllDates = () => {
+    if (signification === 'Confirmed') return colorConfirmed;
+    else if (signification === 'Deaths') return colorDeaths;
+    else if (signification === 'Recovered') return colorRecovered;
+    else console.error('Wrong signification. Should be Deaths || Confirmed || Recovered')
+  }
 
-  //   };
-  // } else {
-  //   getAllDates = () => {
-  //     console.log('yes');
-  //   };
-  // }
-  // getAllDates();
-
+  const getCountrySignifications = async (sign) => {
+    const arr = [];
+    try {
+      const res = await fetch(`https://api.covid19api.com/country/${country}`);
+      const data = await res.json();
+      data.forEach(e => arr.push(e[sign]));
+    } catch (error) {
+      console.error('Enter correct name of country');
+    }
+    return arr;
+  };
+  const countrySignifications = await getCountrySignifications(signification);
   const container = document.querySelector('.chart');
   container.insertAdjacentHTML('beforeend', `<canvas id="chartCanvas"></canvas>`)
   const ctx = document.querySelector('#chartCanvas').getContext("2d");
   const chart = {
     type: "bar",
     data: {
-      labels: ['1', '2', '3', '4', '5', '6', '7', '8', '1', '2', '3', '4', '5', '6', '7', '8'],
+      labels: countrySignifications,
       datasets: [{
-        data: [5, 5, 4, 1, 0, 2, 1, 3, 5, 5, 4, 1, 0, 2, 1, 3],
-        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        data: countrySignifications,
+        backgroundColor: getColor(),
       }],
     },
     options: {
@@ -37,13 +46,16 @@ export function chart(country, signification) {
             display: false
           },
           gridLines: {
+            display: false,
           },
           stacked: true
         }],
         yAxes: [{
+          ticks: {
+            beginAtZero: true
+          },
           gridLines: {
-            display: false,
-            color: "rgb(215, 236, 244)",
+            color: "rgba(215, 236, 244,0.05)",
           },
           stacked: true
         }]
@@ -52,7 +64,18 @@ export function chart(country, signification) {
         display: false
       },
       tooltips: {
-
+        displayColors: false,
+        bodyFontColor: getColor(),
+        callbacks: {
+          title: function (tooltipItems, data) {
+            const dataLength = data.labels.length;
+            let dateFrom = moment(Date.now() - (dataLength - tooltipItems[0].index - 1) * 24 * 3600 * 1000).format('MMMM Do YYYY');
+            return `Date: ${dateFrom}`;
+          },
+          label: function (tooltipItems) {
+            return `${signification}: ${tooltipItems.yLabel}`;
+          }
+        }
       }
     },
   };

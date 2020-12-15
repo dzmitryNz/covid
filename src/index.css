@@ -502,10 +502,6 @@ template {
           flex-direction: column;
 }
 
-#chartCanvas {
-  min-height: 100%;
-}
-
 body {
   background-color: #0d0f11;
   padding: 10px;
