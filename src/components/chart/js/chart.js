@@ -1,14 +1,25 @@
 /** *
- * @param {String} category 
- * @param {String} country
+ * @param {String} country // if empty, country = Global, else country = country.
  * @param {HTMLElement} signification // death cases or recovered
  */
 
-export function chart(category, country, signification = "cases") {
-  console.log(category);
+export function chart(country, signification) {
+
+  // console.log(category);
+  // let getAllDates = null;
+  // if (category && country) {
+  //   getAllDates = () => {
+
+  //   };
+  // } else {
+  //   getAllDates = () => {
+  //     console.log('yes');
+  //   };
+  // }
+  // getAllDates();
+
   const container = document.querySelector('.chart');
   container.insertAdjacentHTML('beforeend', `<canvas id="chartCanvas"></canvas>`)
-
   const ctx = document.querySelector('#chartCanvas').getContext("2d");
   const chart = {
     type: "bar",
