@@ -18,20 +18,20 @@ export default Page = {
     main: "",
   },
   properties: {
-    summary: {}, 
+    summary: {},
     lastUpdate: "",
   },
 
-init() {
+  init() {
     getData(summary);
   },
 
-set(categoryData, category) {
+  set(categoryData, category) {
     listOfCountries(categoryData);
     chart(categoryData);
     const map = new Map(categoryData);
     map.getMap();
-}
+  },
 };
 
 window.addEventListener("DOMContentLoaded", () => {

@@ -1,5 +1,5 @@
-import * as importedApis from '../api/default.json';
-import Page from "../index.js";
+import * as importedApis from "../api/default.json";
+import Page from "../index";
 import listOfCountries from "./list-of-countries/js/list-of-countries";
 // import chart from './chart/js/chart.js'
 // import map from './map/js/map.js'
@@ -17,26 +17,25 @@ let url = "";
 let categoryData = {};
 
 export default async function getData(category, country) {
-  
   const date = new Date();
   if (category) {
     const baseUrl = apiPaths.baseUrl.Path;
     let catUrl = apiPaths[category].Path;
-    
+
     if (catUrl.match(/:country/) && country) catUrl = catUrl.replace(/:country/, country);
-    
+
     url = baseUrl + catUrl;
   } else { url = summaryUrl; category = "summaryRoute"; }
-  
+
   if (country) categoryData = JSON.parse(localStorage.getItem(`${category}-${country}`));
-  else { categoryData = JSON.parse(localStorage.getItem(category)) }
+  else { categoryData = JSON.parse(localStorage.getItem(category)); }
 
   if (categoryData) {
     const LastUpdate = new Date(categoryData.Date);
     const deltaHours = new Date(date - LastUpdate).getHours();
-    if (deltaHours > UpdatePeriod)  getApi(category, country);
-      else {  getApi(category, country) }      
-  } else { getApi(category, country);}
+    if (deltaHours > UpdatePeriod) getApi(category, country);
+    else { getApi(category, country); }
+  } else { getApi(category, country); }
 }
 
 async function getApi(category, country) {
