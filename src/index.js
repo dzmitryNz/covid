@@ -27,7 +27,6 @@ init() {
   },
 
 set(categoryData, category) {
-  console.log('Page.set')
     listOfCountries(categoryData);
     chart(categoryData);
     const map = new Map(categoryData);
