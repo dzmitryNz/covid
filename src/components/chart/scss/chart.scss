@@ -1,4 +1,13 @@
 .chart {
   grid-area: chart;
-  border: 1px white dashed;
+  border: 1px rgb(215, 236, 244) solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 10px 0px 10px;
+  display: flex;
+  flex-direction: column;
+}
+#chartCanvas {
+  min-height: 100%;
 }
