@@ -34,8 +34,9 @@ export default async function getData(category, country) {
     const LastUpdate = new Date(categoryData.Date);
     const deltaHours = new Date(date - LastUpdate).getHours();
     if (deltaHours > UpdatePeriod)  getApi(category, country);
-    else {Page.set(categoryData, category)}
-  } getApi(category, country);
+    else {
+      getApi(category, country);}
+  } 
 }
 
 async function getApi(category, country) {

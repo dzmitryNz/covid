@@ -1,5 +1,4 @@
 import "./index.css";
-
 import getData from "./components/api";
 import listOfCountries from "./components/list-of-countries/js/list-of-countries";
 import { chart } from "./components/chart/js/chart";
