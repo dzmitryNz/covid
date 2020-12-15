@@ -19,20 +19,21 @@ export default Page = {
     main: "",
   },
   properties: {
-    summary: {},
+    summary: {}, 
     lastUpdate: "",
   },
 
-  init() {
+init() {
     getData(summary);
-    const summaryData = JSON.parse(localStorage.getItem(summary));
-
-    listOfCountries(summaryData);
-    chart(summaryData);
-
-    const map = new Map(summaryData);
-    map.getMap();
   },
+
+set(categoryData, category) {
+  console.log('Page.set')
+    listOfCountries(categoryData);
+    chart(categoryData);
+    const map = new Map(categoryData);
+    map.getMap();
+}
 };
 
 window.addEventListener("DOMContentLoaded", () => {

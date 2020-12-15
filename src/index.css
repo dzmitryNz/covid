@@ -451,8 +451,19 @@ template {
   grid-area: list;
   border: 1px white dashed;
   color: #99991f;
-  max-height: 100%;
-  overflow: auto;
+  /* max-height: 100%; */
+  width: 100%;
+  height: 100%;
+  display: -ms-grid;
+  display: grid;
+  gap: 0px;
+  -ms-grid-columns: 255px;
+    grid-template-columns: 255px;
+  -ms-grid-rows: 75px auto 30px;
+    grid-template-rows: 75px auto 20px;
+    grid-template-areas: "total"
+   "countries-list"
+   "last";
 }
 
 .countries-list th td:hover {
@@ -470,6 +481,96 @@ template {
   cursor: pointer;
   color: snow;
 }
+
+.countries-list .total-cases {
+  grid-area: total;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  font-size: 2em;
+  color: snow;
+  border-radius: 30px;
+  display: -ms-grid;
+  display: grid;
+  gap: 5px;
+  -ms-grid-columns: 40px 175px 40px;
+    grid-template-columns: 40px 175px 40px;
+  -ms-grid-rows: 25px auto;
+    grid-template-rows: 25px auto;
+    grid-template-areas: "totalHeader totalHeader totalHeader"
+    "deaths digits recover";
+}
+
+.countries-list .total-cases .total-header {
+  grid-area: totalHeader;
+  text-align: center;
+}
+
+.countries-list .total-cases .deaths-button {
+  grid-area: deaths;
+  width: 20px;
+  height: 20px;
+  border-radius: 30px;
+  background-color: red;
+  margin: auto 0 auto auto;
+}
+
+.countries-list .total-cases .recover-button {
+  grid-area: recover;
+  width: 20px;
+  height: 20px;
+  border-radius: 30px;
+  background-color: green;
+  margin: auto  auto auto 0;
+}
+
+.countries-list .total-cases .deaths-button:hover,
+.countries-list .total-cases .recover-button:hover { 
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 2px solid silver;
+}
+
+.countries-list .total-cases .deaths-button:active,
+.countries-list .total-cases .recover-button:active { 
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 3px solid silver;
+  filter: grayscale(40%);
+}
+
+.countries-list .total-cases .total {
+  grid-area: digits;
+  display: block;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 30px;
+  background-color: blue;
+  margin: auto;  
+}
+
+.countries-list .last-update {
+  grid-area: last;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 1em;
+  color: snow;  
+}
+
+.countries-list .countries-table {
+  grid-area: countries-list;
+  overflow: scroll;
+  border: 1px white dashed;
+  color: rgb(153, 153, 31);
+  max-height: 100%;
+  display: block;
+  overflow: auto;
+}
+
+
 
 .table {
   -ms-grid-row: 1;
@@ -521,7 +622,10 @@ body {
       grid-template-columns: 255px 1fr 320px;
   -ms-grid-rows: 75px 1fr auto 75px;
       grid-template-rows: 75px 1fr auto 75px;
-      grid-template-areas: "list header table" "list map table" "list map chart" "list footer chart";
+      grid-template-areas: "list header table"
+ "list map table"
+ "list map chart"
+ "list footer chart";
 }
 
 .grid-wrapper .header {

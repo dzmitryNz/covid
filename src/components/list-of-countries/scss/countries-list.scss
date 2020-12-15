@@ -1,18 +1,65 @@
 .countries-list {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 4;
+  -ms-grid-column: 1;
   grid-area: list;
   border: 1px white dashed;
-  color: rgb(153, 153, 31);
+  color: #99991f;
   max-height: 100%;
-  overflow: auto;
+  width: 100%;
+  height: 100%;
+  display: -ms-grid;
+  display: grid;
+  gap: 0px;
+  -ms-grid-columns: 255px;
+    grid-template-columns: 255px;
+  -ms-grid-rows: 75px auto 30px;
+    grid-template-rows: 75px auto 20px;
+    grid-template-areas: "total"
+   "countries-list"
+   "last";
 }
+
 .countries-list th td:hover {
   cursor: pointer;
   color: snow;
 }
+
 .countries-list .country-row td {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
 }
+
 .countries-list .country-row:hover {
   cursor: pointer;
   color: snow;
+}
+
+.countries-list .total-cases {
+  grid-area: total;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 2em;
+  color: snow;
+  border-radius: 30px;
+  border: 1px dashed snow;
+}
+
+.countries-list .last-update {
+  grid-area: last;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 1em;
+  color: snow;  
+}
+
+.countries-list .countries-table {
+  grid-area: countries-list;
+  overflow: auto;
+  border: 1px white dashed;
+  color: rgb(153, 153, 31);
+  max-height: 100%;
 }

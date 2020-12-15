@@ -4,9 +4,9 @@ import create from '../../create.js'
 
 const summary = 'summaryRoute';
 let blockCountriesList = document.querySelector('.countries-list');
-let table = document.querySelector('.countries-table');
-let totalCases = document.querySelector('.total-cases');
-let lastUpdate = document.querySelector('.last-update');
+let tableBlock = document.querySelector('.countries-table');
+let total = document.querySelector('.total-cases');
+let last = document.querySelector('.last-update');
 
 export default function listOfCountries(summaryData) {
   if (!summaryData) summaryData = JSON.parse(localStorage.getItem(summary));
@@ -14,8 +14,13 @@ export default function listOfCountries(summaryData) {
   let tr = {};
   let td = {};
   summaryData = JSON.parse(localStorage.getItem(summary));
-  totalCases.innerText = `TotalCases: ${summaryData.Global.TotalConfirmed}`;
-  lastUpdate.innerText = `Last Update: ${lastUpdateDate.toLocaleString()}}`;
+  let totalHeader = create('div', 'total-header', `TotalCases`, total);
+  const deathsButton = create('div', 'deaths-button', null, total);
+  let totalCases = create('div', 'total', `${summaryData.Global.TotalConfirmed}`, total);
+  const recoverButton = create('div', 'recover-button', null, total);
+  last.innerText = `Last Update: ` ;
+  let lastUpdate = create('div', 'last-update-block', `${lastUpdateDate.toLocaleString().slice(0,17)}`, last);
+  let table = create('table', null, null, tableBlock);
   let thCountry = create('td', null, 'Country', table);
   let thTotal = create('td', null, 'Total', table);
   let thDeath = create('td', null, 'Deaths');
