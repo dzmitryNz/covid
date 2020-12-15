@@ -1,4 +1,3 @@
-// import "./style.css";
 import Page from '../../../index.js'
 import create from '../../create.js'
 
@@ -21,9 +20,10 @@ export default function listOfCountries(summaryData) {
   last.innerText = `Last Update: ` ;
   let lastUpdate = create('div', 'last-update-block', `${lastUpdateDate.toLocaleString().slice(0,17)}`, last);
   let table = create('table', null, null, tableBlock);
-  let thCountry = create('td', null, 'Country', table);
-  let thTotal = create('td', null, 'Total', table);
-  let thDeath = create('td', null, 'Deaths');
+  let trh = create('tr', null, null, table);
+  let thCountry = create('th', 'th-country', 'Country', trh);
+  let thTotal = create('th', 'th-data', 'Total', trh);
+  let thDeath = create('th', null, 'Deaths');
   let thRecovered = create('td', null, 'Recovered');
   // let th = create('th', 'table-header', [thTotal, thDeath, thRecovered, thCountry], table);
   summaryData.Countries.forEach((country, i) => {

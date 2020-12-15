@@ -440,23 +440,32 @@ template {
 }
 
 .countries-list {
+  grid-row: 1;
   -ms-grid-row: 1;
   -ms-grid-row-span: 4;
+  grid-column: 1;
   -ms-grid-column: 1;
   grid-area: list;
   border: 1px white dashed;
   color: #99991f;
-  /* max-height: 100%; */
+  max-height: 100%;
   width: 100%;
   height: 100%;
   display: grid;
   gap: 0px;
   grid-template-columns: 255px;
+  -ms-grid-columns: 255px;
   grid-template-rows: 75px auto 20px;
-  grid-template-areas: "total" "countries-list" "last";
+  grid-template-areas: "total"
+ "countrieslist"
+ "last";
 }
 
-.countries-list th td:hover {
+.countries-list th {
+  position: sticky;
+}
+
+.countries-list tr th:hover {
   cursor: pointer;
   color: snow;
 }
@@ -472,10 +481,6 @@ template {
 
 .countries-list .total-cases {
   grid-area: total;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  text-align: center;
   font-size: 2em;
   color: snow;
   border-radius: 30px;
@@ -483,7 +488,8 @@ template {
   gap: 5px;
   grid-template-columns: 40px 175px 40px;
   grid-template-rows: 25px auto;
-  grid-template-areas: "totalHeader totalHeader totalHeader" "deaths digits recover";
+  grid-template-areas: "totalHeader totalHeader totalHeader"
+ "deaths digits recover";
 }
 
 .countries-list .total-cases .total-header {
@@ -527,11 +533,14 @@ template {
 .countries-list .total-cases .total {
   grid-area: digits;
   display: block;
+  text-align: center;
   width: 100%;
   height: 40px;
+  font-weight: 600;
+  font-size: 28pt;
   line-height: 40px;
   border-radius: 30px;
-  background-color: blue;
+  background-color: gray;
   margin: auto;
 }
 
@@ -545,7 +554,7 @@ template {
 }
 
 .countries-list .countries-table {
-  grid-area: countries-list;
+  grid-area: countrieslist;
   overflow: scroll;
   border: 1px white dashed;
   color: #99991f;
@@ -586,7 +595,10 @@ body {
   gap: 10px;
   grid-template-columns: 255px 1fr 320px;
   grid-template-rows: 75px 1fr auto 75px;
-  grid-template-areas: "list header table" "list map table" "list map chart" "list footer chart";
+  grid-template-areas: "list header table"
+ "list map table"
+ "list map chart"
+ "list footer chart";
 }
 
 .grid-wrapper .header {

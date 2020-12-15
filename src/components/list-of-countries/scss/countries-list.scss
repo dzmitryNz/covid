@@ -1,26 +1,32 @@
 .countries-list {
+  grid-row: 1;
   -ms-grid-row: 1;
   -ms-grid-row-span: 4;
+  grid-column: 1;
   -ms-grid-column: 1;
   grid-area: list;
   border: 1px white dashed;
   color: #99991f;
-  /* max-height: 100%; */
+  max-height: 100%;
   width: 100%;
   height: 100%;
   display: -ms-grid;
   display: grid;
   gap: 0px;
+  grid-template-columns: 255px;
   -ms-grid-columns: 255px;
-    grid-template-columns: 255px;
   -ms-grid-rows: 75px auto 30px;
-    grid-template-rows: 75px auto 20px;
-    grid-template-areas: "total"
-   "countries-list"
-   "last";
+  grid-template-rows: 75px auto 20px;
+  grid-template-areas: "total"
+  "countrieslist"
+  "last";
 }
 
-.countries-list th td:hover {
+.countries-list th {
+  position: sticky;
+}
+
+.countries-list tr th:hover {
   cursor: pointer;
   color: snow;
 }
@@ -38,10 +44,6 @@
 
 .countries-list .total-cases {
   grid-area: total;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  text-align: center;
   font-size: 2em;
   color: snow;
   border-radius: 30px;
@@ -97,12 +99,15 @@
 .countries-list .total-cases .total {
   grid-area: digits;
   display: block;
+  text-align: center;
   width: 100%;
   height: 40px;
+  font-weight: 600;
+  font-size: 28pt;
   line-height: 40px;
   border-radius: 30px;
-  background-color: blue;
-  margin: auto;  
+  background-color: gray;
+  margin: auto;
 }
 
 .countries-list .last-update {
@@ -115,7 +120,7 @@
 }
 
 .countries-list .countries-table {
-  grid-area: countries-list;
+  grid-area: countrieslist;
   overflow: scroll;
   border: 1px white dashed;
   color: rgb(153, 153, 31);
