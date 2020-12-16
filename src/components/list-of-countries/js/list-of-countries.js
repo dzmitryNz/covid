@@ -1,35 +1,54 @@
-// import "./style.css";
-import Page from '../../../index.js'
-import create from '../../create.js'
+/* eslint-disable import/no-cycle */
+/* eslint-disable no-unused-vars */
 
-const summary = 'summaryRoute';
-let blockCountriesList = document.querySelector('.countries-list');
-let table = document.querySelector('.countries-table');
-let totalCases = document.querySelector('.total-cases');
-let lastUpdate = document.querySelector('.last-update');
+// import Page from '../../../index.js'
+import create from "../../create";
+import getData from "../../api";
+import сhart from "../../chart/js/chart";
+import Map from "../../map/js/map";
+
+const summary = "summaryRoute";
+const tableBlock = document.querySelector(".countries-table");
+const total = document.querySelector(".total-cases");
+const last = document.querySelector(".last-update");
+const countryDay = "countryDayOneRoute";
+
+
+function changeCases(e) {
+  console.log(e.path[0].className);
+}
 
 export default function listOfCountries(summaryData) {
-  if (!summaryData) summaryData = JSON.parse(localStorage.getItem(summary));
-  let lastUpdateDate = new Date(summaryData.Date);
-  let tr = {};
+  let dataSummary = summaryData;
+  if (!dataSummary) dataSummary = JSON.parse(localStorage.getItem(summary));
+  const lastUpdateDate = new Date(dataSummary.Date);
+  const tr = {};
   let td = {};
-  summaryData = JSON.parse(localStorage.getItem(summary));
-  totalCases.innerText = `TotalCases: ${summaryData.Global.TotalConfirmed}`;
-  lastUpdate.innerText = `Last Update: ${lastUpdateDate.toLocaleString()}}`;
-  let thCountry = create('td', null, 'Country', table);
-  let thTotal = create('td', null, 'Total', table);
-  let thDeath = create('td', null, 'Deaths');
-  let thRecovered = create('td', null, 'Recovered');
+  dataSummary = JSON.parse(localStorage.getItem(summary));
+  const totalHeader = create("div", "total-header", "TotalCases", total);
+  const deathsButton = create("div", "deaths-button", null, total);
+  const totalCases = create("div", "total", `${dataSummary.Global.TotalConfirmed}`, total);
+  const recoverButton = create("div", "recover-button", null, total);
+  last.innerText = "Last Update: ";
+  const lastUpdate = create("div", "last-update-block", `${lastUpdateDate.toLocaleString().slice(0, 17)}`, last);
+  const table = create("table", null, null, tableBlock);
+  const trh = create("tr", null, null, table);
+  const thCountry = create("th", "th-country", "Country", trh);
+  const thTotal = create("th", "th-data", "Total", trh);
+  const thDeath = create("th", null, "Deaths");
+  const thRecovered = create("td", null, "Recovered");
   // let th = create('th', 'table-header', [thTotal, thDeath, thRecovered, thCountry], table);
-  summaryData.Countries.forEach((country, i) => {
+  dataSummary.Countries.forEach((country, i) => {
     // console.log(country.Country, country.NewConfirmed)
-    tr[i] = create('tr', 'country-row', null, table);
-    td = create('td', 'country', country.Country, tr[i]);
-    td = create('td', 'total-confirmed', String(country.TotalConfirmed), tr[i]);
+    tr[i] = create("tr", `country-row ${country.Slug}`, null, table, ["data", country.Slug]);
+    td = create("td", `country ${country.Slug}`, country.Country, tr[i]);
+    td = create("td", "total-confirmed", String(country.TotalConfirmed), tr[i]);
     // td = create('td', 'total-deths', String(country.TotalDeaths), tr[i]);
     // td = create('td', 'total-recovered', String(country.TotalRecovered), tr[i]);
-    tr[i].addEventListener('click', () => { });
-  })
-  thCountry.addEventListener('click', () => { });
-  thTotal.addEventListener('click', () => { });
+    tr[i].addEventListener("click", (e) => { getData(countryDay, e.path[1].className.slice(12)); });
+  });
+  thCountry.addEventListener("click", () => { });
+  thTotal.addEventListener("click", () => { });
+  recoverButton.addEventListener("click", (e) => { changeCases(e); });
+  deathsButton.addEventListener("click", (e) => { changeCases(e); });
 }

@@ -10,16 +10,12 @@
   max-height: 100%;
   width: 100%;
   height: 100%;
-  display: -ms-grid;
   display: grid;
   gap: 0px;
   grid-template-columns: 255px;
   -ms-grid-columns: 255px;
-  -ms-grid-rows: 75px auto 30px;
   grid-template-rows: 75px auto 20px;
-  grid-template-areas: "total"
-  "countrieslist"
-  "last";
+  grid-template-areas: "total" "countrieslist" "last";
 }
 
 .countries-list th {
@@ -32,8 +28,6 @@
 }
 
 .countries-list .country-row td {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
 }
 
@@ -47,15 +41,11 @@
   font-size: 2em;
   color: snow;
   border-radius: 30px;
-  display: -ms-grid;
   display: grid;
   gap: 5px;
-  -ms-grid-columns: 40px 175px 40px;
-    grid-template-columns: 40px 175px 40px;
-  -ms-grid-rows: 25px auto;
-    grid-template-rows: 25px auto;
-    grid-template-areas: "totalHeader totalHeader totalHeader"
-    "deaths digits recover";
+  grid-template-columns: 40px 175px 40px;
+  grid-template-rows: 25px auto;
+  grid-template-areas: "totalHeader totalHeader totalHeader" "deaths digits recover";
 }
 
 .countries-list .total-cases .total-header {
@@ -82,14 +72,14 @@
 }
 
 .countries-list .total-cases .deaths-button:hover,
-.countries-list .total-cases .recover-button:hover { 
+.countries-list .total-cases .recover-button:hover {
   cursor: pointer;
   transition: all 0.2s;
   border: 2px solid silver;
 }
 
 .countries-list .total-cases .deaths-button:active,
-.countries-list .total-cases .recover-button:active { 
+.countries-list .total-cases .recover-button:active {
   cursor: pointer;
   transition: all 0.2s;
   border: 3px solid silver;
@@ -116,15 +106,16 @@
   justify-content: center;
   text-align: center;
   font-size: 1em;
-  color: snow;  
+  color: snow;
 }
 
 .countries-list .countries-table {
   grid-area: countrieslist;
   overflow: scroll;
   border: 1px white dashed;
-  color: rgb(153, 153, 31);
+  color: #99991f;
   max-height: 100%;
   display: block;
   overflow: auto;
 }
+/*# sourceMappingURL=countries-list.css.map */

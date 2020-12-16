@@ -1,34 +1,49 @@
-import getData from './components/api.js'
-import listOfCountries from './components/list-of-countries/js/list-of-countries.js'
-import { chart } from './components/chart/js/chart.js'
-// import map from './components/map/js/map.js'
-// import country-data from './components/country-data/js/country-data.js'
+/* eslint-disable import/no-cycle */
 
-const summary = 'summaryRoute';
-const countries = 'countriesRoute';
-const countryDay = 'countryDayOneRoute';
-const countryTotalDay = 'countryDayOneTotalRoute';
-const country = 'ukraine';
+import "./components/index.css";
+import getData from "./components/api";
+import listOfCountries from "./components/list-of-countries/js/list-of-countries";
+import { chart } from "./components/chart/js/chart";
+import Map from "./components/map/js/map";
+// import map from './components/map/js/map.js'
+//  import country-data from './components/country-data/js/country-data.js'
+
+const summary = "summaryRoute";
+// const countries = "countriesRoute";
+// const countryDay = "countryDayOneRoute";
+// const countryTotalDay = "countryDayOneTotalRoute";
+// const country = "ukraine";
 let Page = {};
 
 export default Page = {
   elements: {
-    main: '',
+    main: "",
   },
   properties: {
     summary: {},
-    lastUpdate: '',
+    lastUpdate: "",
   },
 
   init() {
     getData(summary);
-    const summaryData = JSON.parse(localStorage.getItem(summary));
+  },
 
-    listOfCountries(summaryData);
-    chart(summaryData);
-  }
-}
+  set(categoryData, category) {
+    const map = new Map(categoryData);
 
-window.addEventListener("DOMContentLoaded", function () {
+    switch (category) {
+      case "countryDayOneRoute":
+        chart(categoryData);
+        map.getMap();
+        break;
+      default:
+        listOfCountries(categoryData, category);
+        chart(categoryData);
+        map.getMap();
+    }
+  },
+};
+
+window.addEventListener("DOMContentLoaded", () => {
   Page.init();
 });
