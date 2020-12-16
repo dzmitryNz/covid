@@ -38,7 +38,7 @@ export default Page = {
         break;
       default:
         listOfCountries(categoryData, category);
-        chart(categoryData);
+        chart('world', 'Confirmed');
         map.getMap();
     }
   },

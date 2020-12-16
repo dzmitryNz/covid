@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,MAAM,CAAC;EACL,SAAS,EAAE,KAAK;EAChB,MAAM,EAAE,GAAG,CAAC,OAAkB,CAAC,KAAK;EACpC,OAAO,EAAE,IAAI;EACb,WAAW,EAAE,MAAM;EACnB,eAAe,EAAE,MAAM;EACvB,OAAO,EAAE,kBAAkB;EAC3B,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;CACvB;;AACD,AAAA,YAAY,CAAC;EACX,UAAU,EAAE,IAAI;CACjB",
-    "sources": [
-        "chart.scss"
-    ],
-    "names": [],
-    "file": "chart.css"
-}

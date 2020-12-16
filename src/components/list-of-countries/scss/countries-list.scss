@@ -1,4 +1,5 @@
 .countries-list {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   grid-row: 1;
   -ms-grid-row: 1;
   -ms-grid-row-span: 4;
@@ -17,9 +18,10 @@
   -ms-grid-columns: 255px;
   -ms-grid-rows: 75px auto 30px;
   grid-template-rows: 75px auto 20px;
-  grid-template-areas: "total"
-  "countrieslist"
-  "last";
+  grid-template-areas:
+    "total"
+    "countrieslist"
+    "last";
 }
 
 .countries-list th {
@@ -49,12 +51,14 @@
   border-radius: 30px;
   display: -ms-grid;
   display: grid;
+  max-width: 100%;
   gap: 5px;
   -ms-grid-columns: 40px 175px 40px;
-    grid-template-columns: 40px 175px 40px;
+  grid-template-columns: 40px 1fr 40px;
   -ms-grid-rows: 25px auto;
-    grid-template-rows: 25px auto;
-    grid-template-areas: "totalHeader totalHeader totalHeader"
+  grid-template-rows: 25px auto;
+  grid-template-areas:
+    "totalHeader totalHeader totalHeader"
     "deaths digits recover";
 }
 
@@ -78,18 +82,18 @@
   height: 20px;
   border-radius: 30px;
   background-color: green;
-  margin: auto  auto auto 0;
+  margin: auto auto auto 0;
 }
 
 .countries-list .total-cases .deaths-button:hover,
-.countries-list .total-cases .recover-button:hover { 
+.countries-list .total-cases .recover-button:hover {
   cursor: pointer;
   transition: all 0.2s;
   border: 2px solid silver;
 }
 
 .countries-list .total-cases .deaths-button:active,
-.countries-list .total-cases .recover-button:active { 
+.countries-list .total-cases .recover-button:active {
   cursor: pointer;
   transition: all 0.2s;
   border: 3px solid silver;
@@ -103,7 +107,7 @@
   width: 100%;
   height: 40px;
   font-weight: 600;
-  font-size: 28pt;
+  font-size: 18pt;
   line-height: 40px;
   border-radius: 30px;
   background-color: gray;
@@ -116,7 +120,7 @@
   justify-content: center;
   text-align: center;
   font-size: 1em;
-  color: snow;  
+  color: snow;
 }
 
 .countries-list .countries-table {
