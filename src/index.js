@@ -29,10 +29,18 @@ export default Page = {
   },
 
   set(categoryData, category) {
-    listOfCountries(categoryData, category);
-    chart(categoryData);
     const map = new Map(categoryData);
-    map.getMap();
+
+    switch (category) {
+      case "countryDayOneRoute":
+        chart(categoryData);
+        map.getMap();
+        break;
+      default:
+        listOfCountries(categoryData, category);
+        chart(categoryData);
+        map.getMap();
+    }
   },
 };
 

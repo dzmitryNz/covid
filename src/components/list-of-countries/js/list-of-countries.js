@@ -1,12 +1,22 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable no-unused-vars */
 
 // import Page from '../../../index.js'
 import create from "../../create";
+import getData from "../../api";
+import сhart from "../../chart/js/chart";
+import Map from "../../map/js/map";
 
 const summary = "summaryRoute";
 const tableBlock = document.querySelector(".countries-table");
 const total = document.querySelector(".total-cases");
 const last = document.querySelector(".last-update");
+const countryDay = "countryDayOneRoute";
+
+
+function changeCases(e) {
+  console.log(e.path[0].className);
+}
 
 export default function listOfCountries(summaryData) {
   let dataSummary = summaryData;
@@ -30,13 +40,15 @@ export default function listOfCountries(summaryData) {
   // let th = create('th', 'table-header', [thTotal, thDeath, thRecovered, thCountry], table);
   dataSummary.Countries.forEach((country, i) => {
     // console.log(country.Country, country.NewConfirmed)
-    tr[i] = create("tr", "country-row", null, table);
-    td = create("td", "country", country.Country, tr[i]);
+    tr[i] = create("tr", `country-row ${country.Slug}`, null, table, ["data", country.Slug]);
+    td = create("td", `country ${country.Slug}`, country.Country, tr[i]);
     td = create("td", "total-confirmed", String(country.TotalConfirmed), tr[i]);
     // td = create('td', 'total-deths', String(country.TotalDeaths), tr[i]);
     // td = create('td', 'total-recovered', String(country.TotalRecovered), tr[i]);
-    tr[i].addEventListener("click", () => { });
+    tr[i].addEventListener("click", (e) => { getData(countryDay, e.path[1].className.slice(12)); });
   });
   thCountry.addEventListener("click", () => { });
   thTotal.addEventListener("click", () => { });
+  recoverButton.addEventListener("click", (e) => { changeCases(e); });
+  deathsButton.addEventListener("click", (e) => { changeCases(e); });
 }
