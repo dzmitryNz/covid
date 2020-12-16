@@ -484,7 +484,6 @@ template {
   -ms-grid-row-span: 2;
   -ms-grid-column: 3;
   grid-area: chart;
-  border: 1px #d7ecf4 solid;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -500,6 +499,86 @@ template {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  position: relative;
+}
+
+.full-screen-but {
+  opacity: 1;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background: url("./images/full-screen-button.svg") center/cover no-repeat;
+  top: 0;
+  right: 0;
+}
+
+.hide-button {
+  display: none;
+}
+
+#pop-chart {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+#pop-chart form {
+  padding: 10px;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+#pop-chart form section {
+  border: 1px #d7ecf4 solid;
+  width: 100%;
+  height: 100%;
+  padding: 20px 15px 5px 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#pop-chart form section canvas {
+  max-height: 100%;
+}
+
+#pop-chart form button {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  background: transparent;
+  top: 15px;
+  right: 15px;
+}
+
+#pop-chart form button::before,
+#pop-chart form button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  height: 1px;
+  width: 100%;
+  background-color: rgba(215, 236, 244, 0.8);
+}
+
+#pop-chart form button::before {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+#pop-chart form button::after {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
 }
 
 body {
@@ -508,6 +587,7 @@ body {
 }
 
 .grid-wrapper {
+  position: relative;
   width: 100%;
   height: 100%;
   display: -ms-grid;
@@ -641,6 +721,13 @@ body {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-size: 14px;
   color: #edb021;
+}
+
+@media screen and (max-width: 1200px) {
+  .footer__year,
+  .footer__school {
+    display: none;
+  }
 }
 
 #map {

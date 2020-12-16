@@ -25,7 +25,7 @@ export default Page = {
     const summaryData = JSON.parse(localStorage.getItem(summary));
 
     listOfCountries(summaryData);
-    chart('Ukraine', 'Recovered');
+    chart('world', 'Confirmed');
   }
 }
 

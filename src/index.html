@@ -13,6 +13,15 @@
 
 <body>
   <div class="grid-wrapper">
+    <dialog id="pop-chart">
+      <form method="dialog">
+        <button id="pop-chart-close" type="reset"></button>
+        <section>
+          <canvas id="chartCanvasBig"></canvas>
+        </section>
+      </form>
+    </dialog>
+
     <section class="countries-list">
       <div class="total-cases"></div>
       <div class="last-update"></div>
@@ -24,7 +33,9 @@
     </header>
     <div id="map"></div>
     <section class="table"></section>
-    <section class="chart"></section>
+    <section class="chart">
+      <button type="button" class="full-screen-but hide-button"></button>
+    </section>
 
     <footer class="footer">
       <div class="footer__year"><span>2020</span></div>
