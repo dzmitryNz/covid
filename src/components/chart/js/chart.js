@@ -6,7 +6,6 @@
 export async function chart(country, signification) {
   const countrySignifications = await getCountrySignifications(signification);
   const container = document.querySelector('.chart');
-  container.insertAdjacentHTML('beforeend', `<canvas id="chartCanvas"></canvas>`)
   const ctx = document.querySelector('#chartCanvas').getContext("2d");
 
   const chart = {

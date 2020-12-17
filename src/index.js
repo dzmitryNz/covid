@@ -33,7 +33,7 @@ export default Page = {
 
     switch (category) {
       case "countryDayOneRoute":
-        chart(categoryData);
+        chart(categoryData[0].CountryCode, 'Confirmed');
         map.getMap();
         break;
       default:

@@ -45,7 +45,10 @@ export default function listOfCountries(summaryData) {
     td = create("td", "total-confirmed", String(country.TotalConfirmed), tr[i]);
     // td = create('td', 'total-deths', String(country.TotalDeaths), tr[i]);
     // td = create('td', 'total-recovered', String(country.TotalRecovered), tr[i]);
-    tr[i].addEventListener("click", (e) => { getData(countryDay, e.path[1].className.slice(12)); });
+    tr[i].addEventListener("click", (e) => {
+      // console.log(e.path[1].className.slice(12));
+      getData(countryDay, e.path[1].className.slice(12));
+    });
   });
   thCountry.addEventListener("click", () => { });
   thTotal.addEventListener("click", () => { });
