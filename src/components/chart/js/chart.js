@@ -1,8 +1,3 @@
-/** *
- * @param {String} country // country || 'world'
- * @param {HTMLElement} signification // Death/Confirmed/Recovered
- */
-
 export async function chart(country, signification) {
   const countrySignifications = await getCountrySignifications(signification);
   const container = document.querySelector('.chart');
@@ -60,7 +55,6 @@ export async function chart(country, signification) {
         caretSize: 8,
         displayColors: false,
         bodyFontColor: getColor(),
-        // backgroundColor: 'rgba(215, 236, 244, 0.1)',
         callbacks: {
           title: function (tooltipItems, data) {
             const dataLength = data.labels.length;
@@ -70,8 +64,6 @@ export async function chart(country, signification) {
           label: function (tooltipItems) {
             return `${signification}: ${Intl.NumberFormat().format(tooltipItems.yLabel)}`;
           },
-          borderColor: 'rgba(0,255,0,1)',
-          borderWidth: 4
         }
       }
     },
@@ -109,14 +101,7 @@ export async function chart(country, signification) {
       data.forEach(e => arr.push(e[`Total${sign}`]));
     } else {
       try {
-        const res = await fetch(`https://api.covid19api.com/country/${country}`);
-        const data = await res.json();
-        if (country === 'china') {
-          const daysOfCovid = await fetch('https://api.covid19api.com/country/ukraine').then(res => res.json()).then(data => data.length);
-          data.slice(-daysOfCovid).forEach(e => arr.push(e[sign]));
-        } else {
-          data.forEach(e => arr.push(e[sign]));
-        }
+        country.forEach(e => arr.push(e[sign]));
       } catch (error) {
         console.error(error);
       }
