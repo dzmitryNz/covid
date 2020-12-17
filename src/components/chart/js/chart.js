@@ -6,7 +6,10 @@
 export async function chart(country, signification) {
   const countrySignifications = await getCountrySignifications(signification);
   const container = document.querySelector('.chart');
-  container.insertAdjacentHTML('beforeend', `<canvas id="chartCanvas"></canvas>`)
+  container.innerHTML = `
+      <button type="button" class="full-screen-but hide-button"></button>
+      <canvas id="chartCanvas"></canvas>
+  `;
   const ctx = document.querySelector('#chartCanvas').getContext("2d");
 
   const chart = {
@@ -35,8 +38,10 @@ export async function chart(country, signification) {
             callback: function (label) {
               if (label >= 1000000) {
                 return label / 1000000 + 'M';
-              } else {
+              } else if (label >= 1000) {
                 return label / 1000 + 'k';
+              } else {
+                return label;
               }
             }
           },
