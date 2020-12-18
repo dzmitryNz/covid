@@ -15,9 +15,10 @@
   gap: 0px;
   grid-template-columns: 255px;
   -ms-grid-columns: 255px;
-  -ms-grid-rows: 75px auto 30px;
-  grid-template-rows: 75px auto 20px;
-  grid-template-areas: "total"
+  -ms-grid-rows:75px 35px auto 20px;
+  grid-template-rows: 75px 35px auto 20px;
+    grid-template-areas: "total"
+  "search"
   "countrieslist"
   "last";
 }
@@ -37,17 +38,17 @@
     "deathsBut digits recoverBut";
 }
 
-.countries-list .deaths-button {
+.countries-list .deaths {
   grid-template-areas: "totalHeader totalHeader totalHeader"
     "totalBut digits recoverBut";
 }
 
-.countries-list .recovered-button {
+.countries-list .recovered {
   grid-template-areas: "totalHeader totalHeader totalHeader"
     "deathsBut digits totalBut";
 }
 
-.countries-list .total-button {
+.countries-list .total {
   grid-template-areas: "totalHeader totalHeader totalHeader"
     "deathsBut digits recoverBut";
 }
@@ -121,6 +122,28 @@
   margin: auto;
 }
 
+.countries-list .total-cases .deaths-button .total { 
+  background-color: hsla(0, 100%, 50%, 0.5);
+}
+
+.countries-list .search{
+  grid-area: search;
+  justify-self: center;
+}
+
+.countries-list .search table {
+  width: 100%;
+}
+
+.countries-list .countries-table {
+  grid-area: countrieslist;
+  overflow: scroll;
+  color: rgb(153, 153, 31);
+  max-height: 100%;
+  display: block;
+  overflow: auto;
+}
+
 .countries-list tr th:hover {
   cursor: pointer;
   color: snow;
@@ -154,14 +177,5 @@
   text-align: center;
   font-size: 1em;
   color: snow;  
-}
-
-.countries-list .countries-table {
-  grid-area: countrieslist;
-  overflow: scroll;
-  border: 1px white dashed;
-  color: rgb(153, 153, 31);
-  max-height: 100%;
-  display: block;
-  overflow: auto;
+  margin-top: 3px;
 }

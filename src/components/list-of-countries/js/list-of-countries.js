@@ -20,15 +20,14 @@ const totalButton = create("div", "total-button-hidden", null, totalCases);
 const totalHeader = create("div", "total-header", null, totalCases);
 last.innerText = "Last Update: ";
 const lastUpdate = create("div", "last-update-block", null, last);
-const searchInput = create("input", null, null, search, ["type", "text"], ["id", "search"], ["placeholder", "Search for a Country"]);
+const searchInput = create("input", null, null, search, ["type", "text"], ["id", "search-counrty"], ["placeholder", "Search for a Country"]);
 const tableHtader = create("table", null, null, search);
 const trh = create("tr", null, null, tableHtader);
 const thCountry = create("th", "th-country", "Country", trh);
 const thTotal = create("th", "th-data", "Total", trh);
-const table = create("table", null, null, tableBlock);
 const total = create("div", "total", null, totalCases);
 
-let searchTerm = "";
+let searchExp = "";
 let cases = 0;
 let dataSummary = {};
 
@@ -53,16 +52,15 @@ function changeCases(e) {
       recoverButton.className = "recovered-button";
       deathsButton.className = "deaths-button";
   }
-  totalCases.className = `total-cases ${requestTotal}`;
-  table.innerHTML = "";
-
+  totalCases.className = `total-cases ${requestTotal.split("-")[0]}`;
   listOfCountries(dataSummary);
 }
 
 export default function listOfCountries(summaryData) {
   dataSummary = summaryData;
+  tableBlock.innerHTML = "";
   const totalData = [`${dataSummary.Global.TotalConfirmed}`, `${dataSummary.Global.TotalDeaths}`, `${dataSummary.Global.TotalRecovered}`];
-  const totalHeaderData = ["Total cases", "Total deaths", "Total recover"];
+  const totalHeaderData = ["Total cases", "Total deaths", "Total recovered"];
   if (!dataSummary) dataSummary = JSON.parse(localStorage.getItem(summary));
   const lastUpdateDate = new Date(dataSummary.Date);
   lastUpdate.innerText = `${lastUpdateDate.toLocaleString().slice(0, 17)}`;
@@ -70,16 +68,17 @@ export default function listOfCountries(summaryData) {
   let td = {};
   totalHeader.innerText = totalHeaderData[cases];
   total.innerText = totalData[cases].toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-  dataSummary.Countries.forEach((country, i) => {
-    const viewCountry = [`${country.TotalConfirmed}`, `${country.TotalDeaths}`, `${country.TotalRecovered}`];
-    tr[i] = create("tr", `country-row ${country.Slug}`, null, table, ["data", country.Slug]);
-    const flagImg = create("img", `country-flag ${country.Slug}`, null, null,
-      ["src", `https://www.countryflags.io/${country.CountryCode}/flat/24.png`], ["alt", `${country.Slug} flag`]);
-    td.Flag = create("td", `flag ${country.Slug}`, [flagImg], tr[i]);
-    td.Country = create("td", `country ${country.Slug}`, country.Country, tr[i]);
-    td.Total = create("td", "total", viewCountry[cases].toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), tr[i]);
-    tr[i].addEventListener("click", (e) => { getData(countryDay, e.path[1].className.slice(12)); });
-  });
+  dataSummary.Countries.filter(a => a.Slug.includes(searchExp.toLowerCase()))
+    .sort((a, b) => b.TotalConfirmed - a.TotalConfirmed).forEach((country, i) => {
+      const viewCountry = [`${country.TotalConfirmed}`, `${country.TotalDeaths}`, `${country.TotalRecovered}`];
+      tr[i] = create("tr", `country-row ${country.Slug}`, null, tableBlock, ["data", country.Slug]);
+      const flagImg = create("img", `country-flag ${country.Slug}`, null, null,
+        ["src", `https://www.countryflags.io/${country.CountryCode}/flat/24.png`], ["alt", `${country.Slug} flag`]);
+      td.Flag = create("td", `flag ${country.Slug}`, [flagImg], tr[i]);
+      td.Country = create("td", `country ${country.Slug}`, country.Country, tr[i]);
+      td.Total = create("td", "total", viewCountry[cases].toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), tr[i]);
+      tr[i].addEventListener("click", (e) => { getData(countryDay, e.path[1].className.slice(12)); });
+    });
 }
 
 
@@ -92,6 +91,6 @@ deathsButton.addEventListener("click", (e) => { changeCases(e); });
 totalButton.addEventListener("click", (e) => { changeCases(e); });
 
 searchInput.addEventListener("input", (e) => {
-  searchTerm = e.target.value;
+  searchExp = e.target.value;
   listOfCountries(dataSummary);
 });
