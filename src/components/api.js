@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable import/no-cycle */
 import * as importedApis from "../api/default.json";
 import Page from "../index";
@@ -23,7 +24,7 @@ async function getApi(category, country) {
   if (country) categorySave = `${category}-${country}`;
   else { categorySave = category; }
   const response = await fetch(url);
-  if (response.status !== 200) { Console.log(response.status); return; }
+  if (response.status !== 200) { console.log(response.status); return; }
   const result = await response.json();
   if (result.Message !== "Caching in progress") {
     localStorage.setItem(categorySave, JSON.stringify(result));
