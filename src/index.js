@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 
-import "./components/index.css";
+// import "./components/index.css";
 import getData from "./components/api";
 import listOfCountries from "./components/list-of-countries/js/list-of-countries";
 import { chart } from "./components/chart/js/chart";
@@ -33,12 +33,20 @@ export default Page = {
 
     switch (category) {
       case "countryDayOneRoute":
-        chart(categoryData, 'Confirmed');
+        chart(categoryData, "Confirmed");
+        map.getMap();
+        break;
+      case "countryTotalDayOneRoute":
+        chart(categoryData, "Confirmed");
+        map.getMap();
+        break;
+      case "summaryRoute":
+        listOfCountries(categoryData, category);
+        chart("world", "Confirmed");
         map.getMap();
         break;
       default:
-        listOfCountries(categoryData, category);
-        chart('world', 'Confirmed');
+        chart(categoryData, "Confirmed");
         map.getMap();
     }
   },
