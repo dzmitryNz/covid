@@ -31,7 +31,9 @@ export async function chart(country, signification) {
           ticks: {
             beginAtZero: true,
             callback: function (label) {
-              if (label >= 1000000) {
+              if (label < 10) {
+                return parseInt(label, 10);
+              } else if (label >= 1000000) {
                 return label / 1000000 + 'M';
               } else if (label >= 1000) {
                 return label / 1000 + 'k';
@@ -100,11 +102,7 @@ export async function chart(country, signification) {
       const data = await res.json();
       data.forEach(e => arr.push(e[`Total${sign}`]));
     } else {
-      try {
-        country.forEach(e => arr.push(e[sign]));
-      } catch (error) {
-        console.error(error);
-      }
+      country.forEach(e => arr.push(e[sign]));
     }
     return arr;
   };

@@ -4,6 +4,7 @@ import "./components/index.css";
 import getData from "./components/api";
 import listOfCountries from "./components/list-of-countries/js/list-of-countries";
 import { chart } from "./components/chart/js/chart";
+import { table } from "./components/table/js/table.js";
 import Map from "./components/map/js/map";
 // import map from './components/map/js/map.js'
 //  import country-data from './components/country-data/js/country-data.js'
@@ -34,11 +35,13 @@ export default Page = {
     switch (category) {
       case "countryDayOneRoute":
         chart(categoryData, 'Confirmed');
+        table(categoryData[0].CountryCode, categoryData);
         map.getMap();
         break;
       default:
         listOfCountries(categoryData, category);
         chart('world', 'Confirmed');
+        table('world', categoryData);
         map.getMap();
     }
   },

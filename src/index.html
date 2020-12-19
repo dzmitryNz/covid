@@ -31,7 +31,34 @@
       <h1>covid dashboard</h1>
     </header>
     <div id="map"></div>
-    <section class="table"></section>
+    <section class="table">
+      <div class="table__body">
+        <div class="table__current-country"><span id="current-country"></span></div>
+        <div class="table__common">
+          <div class="table__title-all"><span>All time</span></div>
+          <div class="table__all-time">
+            <div class="table__significations">
+              <ul>
+                <li><span>Recovered</span><span class="table__recovered"></span></li>
+                <li><span>Confirmed</span><span class="table__confirmed"></span></li>
+                <li><span>Deaths</span><span class="table__deaths"></span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="table__last-day">
+            <div class="table__significations">
+              <ul>
+                <li><span>Recovered</span><span class="table__recovered"></span></li>
+                <li><span>Confirmed</span><span class="table__confirmed"></span></li>
+                <li><span>Deaths</span><span class="table__deaths"></span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="table__title-last"><span>Last day</span></div>
+        </div>
+        <button type="button" class="table__switch-mode"><span>Switch</span></button>
+      </div>
+    </section>
     <section class="chart"></section>
 
     <footer class="footer">
