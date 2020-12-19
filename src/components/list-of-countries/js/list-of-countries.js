@@ -17,6 +17,7 @@ const recoverButton = create("div", "recovered-button", null, totalCases);
 const totalButton = create("div", "total-button-hidden", null, totalCases);
 const searchInput = create("input", null, null, search, ["type", "text"], ["id", "search-counrty"], ["placeholder", "Search for a Country"]);
 const total = create("div", "total", null, totalCases);
+let countryTarget = "";
 
 let searchExp = "";
 let dataSummary = {};
@@ -65,7 +66,7 @@ export default function listOfCountries(summaryData) {
       td.Flag = create("td", `flag ${country.Slug}`, [flagImg], tr[i]);
       td.Country = create("td", `country ${country.Slug}`, country.Country, tr[i]);
       td.Total = create("td", `${totalClass[Properties.cases]}`, `${country[Properties.cases]}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), tr[i]);
-      tr[i].addEventListener("click", (e) => { getData(countryDay, e.path[1].className.slice(12)); });
+      tr[i].addEventListener("click", (e) => { countryTarget = e.path[1].className.slice(12); getData(countryDay, countryTarget); Properties.country = countryTarget; });
     });
 }
 

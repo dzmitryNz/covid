@@ -23,6 +23,7 @@ async function getApi(category, country) {
   if (country) categorySave = `${category}-${country}`;
   else { categorySave = category; }
   const response = await fetch(url);
+  if (response.status !== 200) { Console.log(response.status); return; }
   const result = await response.json();
   if (result.Message !== "Caching in progress") {
     localStorage.setItem(categorySave, JSON.stringify(result));
@@ -35,6 +36,8 @@ export default async function getData(category, country) {
   const date = new Date();
   let categoryApi = category;
   if (categoryApi) {
+    console.log(country, categoryApi, categoryApi === "countryDayOneRoute");
+    if (categoryApi === "countryDayOneRoute" && country === "united-states") categoryApi = "countryDayOneTotalRoute";
     const baseUrl = apiPaths.baseUrl.Path;
     let catUrl = apiPaths[categoryApi].Path;
 
