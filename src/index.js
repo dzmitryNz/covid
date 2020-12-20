@@ -33,12 +33,20 @@ export default Page = {
 
     switch (category) {
       case "countryDayOneRoute":
-        chart(categoryData);
+        chart(categoryData, "Confirmed");
+        map.getMap();
+        break;
+      case "countryTotalDayOneRoute":
+        chart(categoryData, "Confirmed");
+        map.getMap();
+        break;
+      case "summaryRoute":
+        listOfCountries(categoryData, category);
+        chart("world", "Confirmed");
         map.getMap();
         break;
       default:
-        listOfCountries(categoryData, category);
-        chart(categoryData);
+        chart(categoryData, "Confirmed");
         map.getMap();
     }
   },
