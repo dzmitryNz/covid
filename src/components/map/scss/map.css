@@ -76,10 +76,6 @@
           transform: translateX(-50%);
 }
 
-.leaflet-top.leaflet-left {
-  left: 15px;
-}
-
 .map__full-screen-button {
   position: absolute;
   top: 10px;
@@ -116,5 +112,26 @@
   background: #645945;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
+}
+
+#map .map__param-changer {
+  padding: 6px 8px;
+  font: 12px Arial, Helvetica, sans-serif;
+  background: rgba(255, 255, 255, 0.8);
+  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  line-height: 24px;
+  color: #555;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-weight: 600;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 /*# sourceMappingURL=map.css.map */

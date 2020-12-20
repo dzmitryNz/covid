@@ -100,7 +100,8 @@ export default class Map {
       });
     });
 
-    /* Change param buttons */
+
+    // Change param buttons
     const paramChanger = L.control({ position: "bottomleft" });
 
     paramChanger.onAdd = (map) => {
@@ -113,7 +114,7 @@ export default class Map {
 
     paramChanger.addTo(map);
 
-    /* Legend specific */
+    // Legend specific
     const legend = L.control({ position: "bottomleft" });
 
     legend.onAdd = (map) => {
