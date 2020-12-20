@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
+
 import * as importedApis from "../api/default.json";
 import Page from "../index";
-import Properties from "./properties";
 // import listOfCountries from "./list-of-countries/js/list-of-countries";
 // import chart from './chart/js/chart.js'
 // import map from './map/js/map.js'
@@ -16,18 +16,15 @@ const apiPaths = importedApis[0];
 const summaryUrl = "https://api.covid19api.com/summary";
 const UpdatePeriod = 14;
 let url = "";
-let categorySave = "";
 let categoryData = {};
 
 async function getApi(category, country) {
-  if (country) categorySave = `${category}-${country}`;
-  else { categorySave = category; }
   const response = await fetch(url);
   const result = await response.json();
   if (result.Message !== "Caching in progress") {
-    localStorage.setItem(categorySave, JSON.stringify(result));
-    Page.set(result, category, country);
-    Properties.data[categorySave] = result;
+    if (country) localStorage.setItem(`${category}-${country}`, JSON.stringify(result));
+    else { localStorage.setItem(category, JSON.stringify(result)); }
+    Page.set(result, category);
   } else { console.log(result.Message); }
 }
 

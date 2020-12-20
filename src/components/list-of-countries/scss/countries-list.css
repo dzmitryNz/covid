@@ -5,7 +5,8 @@
   grid-column: 1;
   -ms-grid-column: 1;
   grid-area: list;
-  color: #EDB021;
+  border: 1px white dashed;
+  color: #99991f;
   max-height: 100%;
   width: 100%;
   height: 100%;
@@ -14,7 +15,6 @@
   gap: 0px;
   grid-template-columns: 255px;
   -ms-grid-columns: 255px;
-<<<<<<< HEAD
   -ms-grid-rows: 75px auto 30px;
   grid-template-rows: 75px auto 20px;
       grid-template-areas: "total" "countrieslist" "last";
@@ -39,10 +39,6 @@
 .countries-list .country-row:hover {
   cursor: pointer;
   color: snow;
-=======
-  grid-template-rows: 115px 40px auto 30px;
-  grid-template-areas: "total" "search" "countrieslist" "last";
->>>>>>> origin/master
 }
 
 .countries-list .total-cases {
@@ -50,7 +46,6 @@
   -ms-grid-column: 1;
   grid-area: total;
   font-size: 2em;
-<<<<<<< HEAD
   color: snow;
   border-radius: 30px;
   display: -ms-grid;
@@ -91,79 +86,24 @@
   border-radius: 30px;
   background-color: green;
   margin: auto  auto auto 0;
-=======
-  display: grid;
-  gap: 4px;
-  grid-template-columns: 35px 175px 35px;
-  grid-template-rows: 115px;
-  grid-template-areas: "recoverBut digits deathsBut";
 }
 
-.countries-list .deaths {
-  grid-template-areas: "recoverBut digits totalBut";
-  color: #D2374A;
-}
-
-.countries-list .recovered {
-  grid-template-areas: "totalBut digits deathsBut";
-  color: #5D9700;
-}
-
-.countries-list .total-cases .deaths-button {
-  grid-area: deathsBut;
-  width: 25px;
-  height: 25px;
-  margin: auto auto;
-  background: #D2374A;
-  border: 2px solid #D2374A;
-  border-radius: 20px;
-}
-
-.countries-list .total-cases .recovered-button {
-  grid-area: recoverBut;
-  width: 25px;
-  height: 25px;
-  margin: auto auto;
-  background: #5D9700;
-  border: 2px solid #5D9700;
-  border-radius: 20px;
->>>>>>> origin/master
-}
-
-.countries-list .total-cases .total-button {
-  grid-area: totalBut;
-  width: 25px;
-  height: 25px;
-  margin: auto auto;
-  border: 2px solid #EDB021;
-  border-radius: 20px;
-  background-color: #EDB021;
-}
-
-.countries-list .total-cases .total-button:hover,
 .countries-list .total-cases .deaths-button:hover,
-.countries-list .total-cases .recovered-button:hover {
+.countries-list .total-cases .recover-button:hover {
   cursor: pointer;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
   border: 2px solid silver;
 }
 
-.countries-list .total-cases .total-button:active,
 .countries-list .total-cases .deaths-button:active,
-.countries-list .total-cases .recovered-button:active {
+.countries-list .total-cases .recover-button:active {
   cursor: pointer;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
   border: 3px solid silver;
   -webkit-filter: grayscale(40%);
           filter: grayscale(40%);
-}
-
-.countries-list .total-cases .hidden-button {
-  grid-area: none;
-  cursor: none;
-  display: none;
 }
 
 .countries-list .total-cases .total {
@@ -174,18 +114,14 @@
   text-align: center;
   width: 100%;
   height: 40px;
-  background: rgba(237, 176, 33, 0.1);
-  border: 1px solid #EDB021;
-  border-radius: 28px;
-  margin: auto auto;
-  font-family: Open Sans;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 28px;
-  line-height: 38px;
+  font-weight: 600;
+  font-size: 28pt;
+  line-height: 40px;
+  border-radius: 30px;
+  background-color: gray;
+  margin: auto;
 }
 
-<<<<<<< HEAD
 .countries-list .last-update {
   -ms-grid-row: 3;
   -ms-grid-column: 1;
@@ -196,26 +132,9 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-=======
-.countries-list .search {
-  grid-area: search;
-  justify-self: center;
-}
-
-.countries-list .search input {
-  border: 1px solid snow;
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -khtml-border-radius: 3px;
-  background: #0d0f11 !important;
-  outline: none;
-  height: 30px;
-  width: 255px;
-  color: #cccccc;
-  font-size: 20px;
->>>>>>> origin/master
   text-align: center;
+  font-size: 1em;
+  color: snow;
 }
 
 .countries-list .countries-table {
@@ -223,77 +142,10 @@
   -ms-grid-column: 1;
   grid-area: countrieslist;
   overflow: scroll;
+  border: 1px white dashed;
+  color: #99991f;
   max-height: 100%;
   display: block;
   overflow: auto;
-  color: #EDB021;
-  border: 1px solid #EDB021;
-  border-collapse: collapse;
-  font-family: Arima Madurai;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 21px;
-  line-height: 34px;
-}
-
-.countries-list .countries-table .country-row .country {
-  color: #D7ECF4;
-}
-
-.countries-list .countries-table .country-row .total-deaths {
-  color: #D2374A;
-  white-space: nowrap;
-  text-align: right;
-}
-
-.countries-list .countries-table .country-row .total-recovered {
-  color: #5D9700;
-  white-space: nowrap;
-  text-align: right;
-}
-
-.countries-list .countries-table .country-row .total {
-  white-space: nowrap;
-  text-align: right;
-}
-
-.countries-list .country-row {
-  width: 100%;
-}
-
-.countries-list .country-row img {
-  vertical-align: middle;
-}
-
-.countries-list .country-row td {
-  padding: 0 2px;
-}
-
-.countries-list .country-row:nth-child(2n) {
-  background: #212121;
-}
-
-.countries-list .country-row:hover {
-  background: #515151;
-  cursor: pointer;
-}
-
-.countries-list .country-row:active {
-  background: #000;
-  cursor: pointer;
-}
-
-.countries-list .last-update {
-  grid-area: last;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  color: #EDB021;
-  border: 1px solid #EDB021;
-  font-family: Open Sans;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 13pt;
-  line-height: 33px;
 }
 /*# sourceMappingURL=countries-list.css.map */
