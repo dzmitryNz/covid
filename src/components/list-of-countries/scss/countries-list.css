@@ -9,15 +9,21 @@
   max-height: 100%;
   width: 100%;
   height: 100%;
+  display: -ms-grid;
   display: grid;
   gap: 0px;
   grid-template-columns: 255px;
   -ms-grid-columns: 255px;
   grid-template-rows: 115px 40px auto 30px;
-  grid-template-areas: "total" "search" "countrieslist" "last";
+  grid-template-areas: "total"
+ "search"
+ "countrieslist"
+ "last";
 }
 
 .countries-list .total-cases {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
   grid-area: total;
   font-size: 2em;
   display: grid;
@@ -71,6 +77,7 @@
 .countries-list .total-cases .deaths-button:hover,
 .countries-list .total-cases .recovered-button:hover {
   cursor: pointer;
+  -webkit-transition: all 0.2s;
   transition: all 0.2s;
   border: 2px solid silver;
 }
@@ -79,9 +86,17 @@
 .countries-list .total-cases .deaths-button:active,
 .countries-list .total-cases .recovered-button:active {
   cursor: pointer;
+  -webkit-transition: all 0.2s;
   transition: all 0.2s;
   border: 3px solid silver;
-  filter: grayscale(40%);
+  -webkit-filter: grayscale(40%);
+          filter: grayscale(40%);
+}
+
+.countries-list .total-cases .hidden-button {
+  grid-area: none;
+  cursor: none;
+  display: none;
 }
 
 .countries-list .total-cases .hidden-button {
@@ -91,6 +106,8 @@
 }
 
 .countries-list .total-cases .total {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
   grid-area: digits;
   display: block;
   text-align: center;
@@ -128,6 +145,8 @@
 }
 
 .countries-list .countries-table {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
   grid-area: countrieslist;
   overflow: scroll;
   max-height: 100%;
