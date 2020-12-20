@@ -29,10 +29,26 @@ export default Page = {
   },
 
   set(categoryData, category) {
-    listOfCountries(categoryData, category);
-    chart(categoryData);
     const map = new Map(categoryData);
-    map.getMap();
+
+    switch (category) {
+      case "countryDayOneRoute":
+        chart(categoryData, "Confirmed");
+        map.getMap();
+        break;
+      case "countryTotalDayOneRoute":
+        chart(categoryData, "Confirmed");
+        map.getMap();
+        break;
+      case "summaryRoute":
+        listOfCountries(categoryData, category);
+        chart("world", "Confirmed");
+        map.getMap();
+        break;
+      default:
+        chart(categoryData, "Confirmed");
+        map.getMap();
+    }
   },
 };
 

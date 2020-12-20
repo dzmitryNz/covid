@@ -1,42 +1,83 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable no-use-before-define */
+/* eslint-disable prefer-const */
+/* eslint-disable import/no-cycle */
 
-// import Page from '../../../index.js'
+import Properties from "../../properties";
 import create from "../../create";
+import getData from "../../api";
 
 const summary = "summaryRoute";
 const tableBlock = document.querySelector(".countries-table");
-const total = document.querySelector(".total-cases");
-const last = document.querySelector(".last-update");
+const totalCases = document.querySelector(".total-cases");
+const lastUpdate = document.querySelector(".last-update");
+const search = document.querySelector(".search");
+const countryDay = "countryDayOneRoute";
+const deathsButton = create("div", "deaths-button", null, totalCases);
+const recoverButton = create("div", "recovered-button", null, totalCases);
+const totalButton = create("div", "total-button-hidden", null, totalCases);
+const searchInput = create("input", null, null, search, ["type", "text"], ["id", "search-counrty"], ["placeholder", "Search for a Country"]);
+const total = create("div", "total", null, totalCases);
+
+let searchExp = "";
+let dataSummary = {};
+
+function changeCases(e) {
+  let requestTotal = e.path[0].className;
+  switch (requestTotal) {
+    case "recovered-button":
+      Properties.cases = "TotalRecovered";
+      recoverButton.className = "hidden-button";
+      deathsButton.className = "deaths-button";
+      totalButton.className = "total-button";
+      break;
+    case "deaths-button":
+      Properties.cases = "TotalDeaths";
+      recoverButton.className = "recovered-button";
+      deathsButton.className = "hidden-button";
+      totalButton.className = "total-button";
+      break;
+    default:
+      Properties.cases = "TotalConfirmed";
+      totalButton.className = "hidden-button";
+      recoverButton.className = "recovered-button";
+      deathsButton.className = "deaths-button";
+  }
+  totalCases.className = `total-cases ${requestTotal.split("-")[0]}`;
+  listOfCountries(dataSummary);
+}
 
 export default function listOfCountries(summaryData) {
-  let dataSummary = summaryData;
+  dataSummary = summaryData;
+  tableBlock.innerHTML = "";
+  const totalData = { TotalConfirmed: `${dataSummary.Global.TotalConfirmed}`, TotalDeaths: `${dataSummary.Global.TotalDeaths}`, TotalRecovered: `${dataSummary.Global.TotalRecovered}` };
+  const totalClass = { TotalConfirmed: "total", TotalDeaths: "total-deaths", TotalRecovered: "total-recovered" };
   if (!dataSummary) dataSummary = JSON.parse(localStorage.getItem(summary));
   const lastUpdateDate = new Date(dataSummary.Date);
+  lastUpdate.innerText = `Last Update: ${lastUpdateDate.toLocaleString().slice(0, 17)}`;
   const tr = {};
   let td = {};
-  dataSummary = JSON.parse(localStorage.getItem(summary));
-  const totalHeader = create("div", "total-header", "TotalCases", total);
-  const deathsButton = create("div", "deaths-button", null, total);
-  const totalCases = create("div", "total", `${dataSummary.Global.TotalConfirmed}`, total);
-  const recoverButton = create("div", "recover-button", null, total);
-  last.innerText = "Last Update: ";
-  const lastUpdate = create("div", "last-update-block", `${lastUpdateDate.toLocaleString().slice(0, 17)}`, last);
-  const table = create("table", null, null, tableBlock);
-  const trh = create("tr", null, null, table);
-  const thCountry = create("th", "th-country", "Country", trh);
-  const thTotal = create("th", "th-data", "Total", trh);
-  const thDeath = create("th", null, "Deaths");
-  const thRecovered = create("td", null, "Recovered");
-  // let th = create('th', 'table-header', [thTotal, thDeath, thRecovered, thCountry], table);
-  dataSummary.Countries.forEach((country, i) => {
-    // console.log(country.Country, country.NewConfirmed)
-    tr[i] = create("tr", "country-row", null, table);
-    td = create("td", "country", country.Country, tr[i]);
-    td = create("td", "total-confirmed", String(country.TotalConfirmed), tr[i]);
-    // td = create('td', 'total-deths', String(country.TotalDeaths), tr[i]);
-    // td = create('td', 'total-recovered', String(country.TotalRecovered), tr[i]);
-    tr[i].addEventListener("click", () => { });
-  });
-  thCountry.addEventListener("click", () => { });
-  thTotal.addEventListener("click", () => { });
+  total.innerText = totalData[Properties.cases].toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  dataSummary.Countries.filter(a => a.Slug.includes(searchExp.toLowerCase()))
+    .sort((a, b) => sortBy(a, b)).forEach((country, i) => {
+      tr[i] = create("tr", `country-row ${country.Slug}`, null, tableBlock);
+      const flagImg = create("img", `country-flag ${country.Slug}`, null, null,
+        ["src", `https://www.countryflags.io/${country.CountryCode}/flat/24.png`], ["alt", `${country.Slug} flag`]);
+      td.Flag = create("td", `flag ${country.Slug}`, [flagImg], tr[i]);
+      td.Country = create("td", `country ${country.Slug}`, country.Country, tr[i]);
+      td.Total = create("td", `${totalClass[Properties.cases]}`, `${country[Properties.cases]}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), tr[i]);
+      tr[i].addEventListener("click", (e) => { getData(countryDay, e.path[1].className.slice(12)); });
+    });
 }
+
+function sortBy(a, b) {
+  return b[Properties.cases] - a[Properties.cases];
+}
+
+recoverButton.addEventListener("click", (e) => { changeCases(e); });
+deathsButton.addEventListener("click", (e) => { changeCases(e); });
+totalButton.addEventListener("click", (e) => { changeCases(e); });
+
+searchInput.addEventListener("input", (e) => {
+  searchExp = e.target.value;
+  listOfCountries(dataSummary);
+});
