@@ -10,15 +10,18 @@
   max-height: 100%;
   width: 100%;
   height: 100%;
+  display: -ms-grid;
   display: grid;
   gap: 0px;
   grid-template-columns: 255px;
   -ms-grid-columns: 255px;
+  -ms-grid-rows: 75px auto 30px;
   grid-template-rows: 75px auto 20px;
-  grid-template-areas: "total" "countrieslist" "last";
+      grid-template-areas: "total" "countrieslist" "last";
 }
 
 .countries-list th {
+  position: -webkit-sticky;
   position: sticky;
 }
 
@@ -28,6 +31,8 @@
 }
 
 .countries-list .country-row td {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
 }
 
@@ -37,23 +42,33 @@
 }
 
 .countries-list .total-cases {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
   grid-area: total;
   font-size: 2em;
   color: snow;
   border-radius: 30px;
+  display: -ms-grid;
   display: grid;
   gap: 5px;
-  grid-template-columns: 40px 175px 40px;
-  grid-template-rows: 25px auto;
-  grid-template-areas: "totalHeader totalHeader totalHeader" "deaths digits recover";
+  -ms-grid-columns: 40px 175px 40px;
+      grid-template-columns: 40px 175px 40px;
+  -ms-grid-rows: 25px auto;
+      grid-template-rows: 25px auto;
+      grid-template-areas: "totalHeader totalHeader totalHeader" "deaths digits recover";
 }
 
 .countries-list .total-cases .total-header {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
   grid-area: totalHeader;
   text-align: center;
 }
 
 .countries-list .total-cases .deaths-button {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
   grid-area: deaths;
   width: 20px;
   height: 20px;
@@ -63,6 +78,8 @@
 }
 
 .countries-list .total-cases .recover-button {
+  -ms-grid-row: 2;
+  -ms-grid-column: 3;
   grid-area: recover;
   width: 20px;
   height: 20px;
@@ -74,6 +91,7 @@
 .countries-list .total-cases .deaths-button:hover,
 .countries-list .total-cases .recover-button:hover {
   cursor: pointer;
+  -webkit-transition: all 0.2s;
   transition: all 0.2s;
   border: 2px solid silver;
 }
@@ -81,12 +99,16 @@
 .countries-list .total-cases .deaths-button:active,
 .countries-list .total-cases .recover-button:active {
   cursor: pointer;
+  -webkit-transition: all 0.2s;
   transition: all 0.2s;
   border: 3px solid silver;
-  filter: grayscale(40%);
+  -webkit-filter: grayscale(40%);
+          filter: grayscale(40%);
 }
 
 .countries-list .total-cases .total {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
   grid-area: digits;
   display: block;
   text-align: center;
@@ -101,15 +123,23 @@
 }
 
 .countries-list .last-update {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
   grid-area: last;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   text-align: center;
   font-size: 1em;
   color: snow;
 }
 
 .countries-list .countries-table {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
   grid-area: countrieslist;
   overflow: scroll;
   border: 1px white dashed;
