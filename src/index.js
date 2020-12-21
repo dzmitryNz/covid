@@ -38,10 +38,18 @@ export default Page = {
         table(categoryData[0].CountryCode, categoryData);
         map.getMap();
         break;
-      default:
+      case "countryTotalDayOneRoute":
+        chart(categoryData, "Confirmed");
+        map.getMap();
+        break;
+      case "summaryRoute":
         listOfCountries(categoryData, category);
         chart('world', 'Confirmed');
         table('world', categoryData);
+        map.getMap();
+        break;
+      default:
+        chart(categoryData, "Confirmed");
         map.getMap();
     }
   },
