@@ -144,7 +144,7 @@ export default [{
         code: 'KeyM'
     },
     {
-        small: 'Space',
+        small: null,
         shift: null,
         code: 'Space'
     },
