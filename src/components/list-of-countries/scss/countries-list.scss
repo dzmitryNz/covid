@@ -1,212 +1,388 @@
 .countries-list {
-  grid-row: 1;
-  -ms-grid-row: 1;
-  -ms-grid-row-span: 4;
-  grid-column: 1;
-  -ms-grid-column: 1;
-  grid-area: list;
-  color: #EDB021;
-  max-height: 100%;
-  width: 100%;
-  height: 100%;
-  display: -ms-grid;
-  display: grid;
-  gap: 0px;
-  grid-template-columns: 255px;
-  -ms-grid-columns: 255px;
-  -ms-grid-rows:115px 40px auto 30px;
-  grid-template-rows: 115px 40px auto 30px;
-    grid-template-areas: "total"
-  "search"
-  "countrieslist"
-  "last";
+    grid-row: 1;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 4;
+    grid-column: 1;
+    -ms-grid-column: 1;
+    grid-area: list;
+    color: #EDB021;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    display: -ms-grid;
+    display: grid;
+    gap: 0px;
+    grid-template-columns: 255px;
+    -ms-grid-columns: 255px;
+    -ms-grid-rows: 115px 40px auto 30px;
+    grid-template-rows: 115px 40px auto 30px;
+    grid-template-areas: "total" "search" "countrieslist" "last";
 }
 
 .countries-list .total-cases {
-  grid-area: total;
-  font-size: 2em;
-  display: -ms-grid;
-  display: grid;
-  gap: 4px;
-  -ms-grid-columns: 35px 175px 35px;
+    grid-area: total;
+    font-size: 2em;
+    display: -ms-grid;
+    display: grid;
+    gap: 4px;
+    -ms-grid-columns: 35px 175px 35px;
     grid-template-columns: 35px 175px 35px;
-  -ms-grid-rows: 115px;
+    -ms-grid-rows: 115px;
     grid-template-rows: 115px;
     grid-template-areas: "recoverBut digits deathsBut";
 }
 
 .countries-list .deaths {
-  grid-template-areas: "recoverBut digits totalBut";
-  color: #D2374A;
+    grid-template-areas: "recoverBut digits totalBut";
+    color: #D2374A;
 }
 
 .countries-list .recovered {
-  grid-template-areas: "totalBut digits deathsBut";
-  color: #5D9700;
+    grid-template-areas: "totalBut digits deathsBut";
+    color: #5D9700;
 }
 
 .countries-list .total-cases .deaths-button {
-  grid-area: deathsBut;
-  width: 25px;
-  height: 25px;
-  margin: auto auto;
-  background: #D2374A;
-  border: 2px solid #D2374A;
-  border-radius: 20px;
+    grid-area: deathsBut;
+    width: 25px;
+    height: 25px;
+    margin: auto auto;
+    background: #D2374A;
+    border: 2px solid #D2374A;
+    border-radius: 20px;
 }
 
 .countries-list .total-cases .recovered-button {
-  grid-area: recoverBut;
-  width: 25px;
-  height: 25px;
-  margin: auto auto;
+    grid-area: recoverBut;
+    width: 25px;
+    height: 25px;
+    margin: auto auto;
     background: #5D9700;
-  border: 2px solid #5D9700;
-  border-radius: 20px;
+    border: 2px solid #5D9700;
+    border-radius: 20px;
 }
 
 .countries-list .total-cases .total-button {
-  grid-area: totalBut;
-  width: 25px;
-  height: 25px;
-  margin: auto auto;
-  border: 2px solid #EDB021;
-  border-radius: 20px;
-  background-color: #EDB021;
+    grid-area: totalBut;
+    width: 25px;
+    height: 25px;
+    margin: auto auto;
+    border: 2px solid #EDB021;
+    border-radius: 20px;
+    background-color: #EDB021;
 }
 
 .countries-list .total-cases .total-button:hover,
 .countries-list .total-cases .deaths-button:hover,
-.countries-list .total-cases .recovered-button:hover { 
-  cursor: pointer;
-  transition: all 0.2s;
-  border: 2px solid silver;
+.countries-list .total-cases .recovered-button:hover {
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 2px solid silver;
 }
 
 .countries-list .total-cases .total-button:active,
 .countries-list .total-cases .deaths-button:active,
-.countries-list .total-cases .recovered-button:active { 
-  cursor: pointer;
-  transition: all 0.2s;
-  border: 3px solid silver;
-  filter: grayscale(40%);
+.countries-list .total-cases .recovered-button:active {
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 3px solid silver;
+    filter: grayscale(40%);
 }
 
 .countries-list .total-cases .hidden-button {
-  grid-area: none;
-  cursor: none;
-  display: none;
+    grid-area: none;
+    cursor: none;
+    display: none;
 }
 
 .countries-list .total-cases .total {
-  grid-area: digits;
-  display: block;
-  text-align: center;
-  width: 100%;
-  height: 40px;
-  background: rgba(237, 176, 33, 0.1);
-  border: 1px solid #EDB021;
-  border-radius: 28px;
-  margin: auto auto;
-  font-family: Open Sans;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 28px;
-  line-height: 38px;
+    grid-area: digits;
+    display: block;
+    text-align: center;
+    width: 100%;
+    height: 40px;
+    background: rgba(237, 176, 33, 0.1);
+    border: 1px solid #EDB021;
+    border-radius: 28px;
+    margin: auto auto;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 28px;
+    line-height: 38px;
 }
 
-.countries-list .search{
-  grid-area: search;
-  justify-self: center;
+.countries-list .search {
+    grid-area: search;
+    justify-self: center;
 }
 
-.countries-list .search input{
-  border: 1px solid snow;
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -khtml-border-radius: 3px;
-  background: #0d0f11 !important;
-  outline: none;
-  height: 30px;
-  width: 255px;
-  color: #cccccc;
-  font-size: 20px;
-  text-align: center;
+.countries-list .search textarea {
+    border: 1px solid snow;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    background: #0d0f11 !important;
+    outline: none;
+    height: 30px;
+    width: 200px;
+    color: #cccccc;
+    font-size: 20px;
+    text-align: center;
+    resize: none;
+    overflow: hidden;
+}
+
+.countries-list .search .material-icons {
+    color: white;
+}
+
+.countries-list .search .material-icons .keyboard-hide:hover {
+    vertical-align: middle;
+    color: silver;
+    transition: all 0.2s;
 }
 
 .countries-list .countries-table {
-  grid-area: countrieslist;
-  overflow: scroll;
-  max-height: 100%;
-  display: block;
-  overflow: auto;
-  color: #EDB021;
-  border: 1px solid #EDB021;
-  border-collapse: collapse;
-  font-family: Arima Madurai;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 21px;
-  line-height: 34px;
+    grid-area: countrieslist;
+    overflow: scroll;
+    max-height: 100%;
+    display: block;
+    overflow: auto;
+    color: #EDB021;
+    border: 1px solid #EDB021;
+    border-collapse: collapse;
+    font-family: Arima Madurai;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 21px;
+    line-height: 34px;
 }
 
 .countries-list .countries-table .country-row .country {
-  color: #D7ECF4;
+    color: #D7ECF4;
 }
 
 .countries-list .countries-table .country-row .total-deaths {
-  color: #D2374A;
-  white-space: nowrap;
-  text-align: right;
+    color: #D2374A;
+    white-space: nowrap;
+    text-align: right;
 }
 
-.countries-list .countries-table .country-row .total-recovered{
-  color: #5D9700;
-  white-space: nowrap;
-  text-align: right;
+.countries-list .countries-table .country-row .total-recovered {
+    color: #5D9700;
+    white-space: nowrap;
+    text-align: right;
 }
 
-.countries-list .countries-table .country-row .total{
-  white-space: nowrap;
-  text-align: right;
+.countries-list .countries-table .country-row .total {
+    white-space: nowrap;
+    text-align: right;
 }
 
 .countries-list .country-row {
-  width: 100%;
+    width: 100%;
 }
 
 .countries-list .country-row img {
-  vertical-align: middle;
+    vertical-align: middle;
 }
 
 .countries-list .country-row td {
-  padding: 0 2px;
+    padding: 0 2px;
 }
 
 .countries-list .country-row:nth-child(2n) {
-  background: #212121;
+    background: #212121;
 }
 
 .countries-list .country-row:hover {
-  background: #515151;
-  cursor: pointer;
+    background: #515151;
+    cursor: pointer;
 }
+
 .countries-list .country-row:active {
-  background: #000;
-  cursor: pointer;
+    background: #000;
+    cursor: pointer;
 }
 
 .countries-list .last-update {
-  grid-area: last;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  color: #EDB021;
-  border: 1px solid #EDB021;
-  font-family: Open Sans;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 13pt;
-  line-height: 33px;
+    grid-area: last;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: #EDB021;
+    border: 1px solid #EDB021;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13pt;
+    line-height: 33px;
+}
+
+.keyboard-wrapper {
+    position: fixed;
+    left: 0;
+    background-color: rgba(45, 45, 45, 0.5);
+    bottom: 300px;
+    width: fit-content;
+    user-select: none;
+    transition: bottom 0.8s;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    transition: all 0.5s;
+    z-index: 2;
+}
+
+.keyboard {
+    border-radius: 8px;
+    width: 470px;
+    padding: 5px 0;
+    background-color: #0d0f11;
+    border-radius: 30px;
+    border: 1px solid #EDB021;
+    transition: all 0.5s;
+}
+
+.keyboard__row {
+    text-align: center;
+}
+
+.keyboard--hidden {
+    left: -55%;
+}
+
+.keyboard__keys {
+    text-align: center;
+}
+
+.hide-button {
+    height: 2vh;
+    width: 90vw;
+    max-height: 45px;
+    margin: 2px 5vw;
+    border-radius: 7px;
+    border: 1px solid silver;
+    background: rgb(46, 65, 65);
+    color: #EDB021;
+    font-size: 1.05rem;
+    outline: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: top;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+    font-weight: 900;
+}
+
+.hide-button::selection {
+    background: transparent;
+}
+
+.keyboard__key {
+    height: 35px;
+    width: 35px;
+    margin: 2px 3px;
+    border-radius: 8px;
+    border: 1px solid grey;
+    background: rgb(50, 70, 70);
+    color: #EDB021;
+    font-size: 1em;
+    outline: none;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: top;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+    font-weight: 900;
+}
+
+.keyboard__key .sub {
+    color: grey;
+    display: block;
+    align-self: end;
+    padding: 5px 0 5px 0;
+}
+
+[data-code=Minus] .letter,
+[data-code=Semicolon] .letter,
+[data-code=Quote] .letter,
+[data-code=Comma] .letter,
+[data-code=Period] .letter,
+[data-code=Backquote] .letter,
+[data-code=Backslash] .letter,
+[data-code=BracketLeft] .letter,
+[data-code=BracketRight] .letter,
+[data-code=Equal] .letter,
+[data-code=Digit1] .letter,
+[data-code=Digit2] .letter,
+[data-code=Digit3] .letter,
+[data-code=Digit4] .letter,
+[data-code=Digit5] .letter,
+[data-code=Digit6] .letter,
+[data-code=Digit7] .letter,
+[data-code=Digit8] .letter,
+[data-code=Digit9] .letter,
+[data-code=Digit0] .letter {
+    padding: 12px 0 0 8px;
+    text-align: right;
+    font-size: 14pt;
+}
+
+[data-fn=false] .sub-inactive {
+    color: grey;
+    font-size: 12pt;
+}
+
+[data-fn=false] .sub-active {
+    color: black;
+}
+
+[data-fn=true] {
+    background-color: rgb(80, 90, 70);
+}
+
+[data-code=Space] {
+    width: 107px;
+}
+
+[data-code=ShiftLeft] {
+    width: 145px;
+}
+
+[data-code=Sound],
+[data-code=Speach],
+[data-code=AltLeft],
+[data-code=Hide] {
+    width: 45px;
+}
+
+[data-code=Lang] {
+    width: 45px;
+}
+
+.active {
+    opacity: 0.8;
+    font-weight: 100;
+    background-color: rgb(21, 116, 103);
+    border: 1px solid darkslategrey;
+    line-height: 130%;
+    letter-spacing: 1.1pt;
+}
+
+[data-code='ArrowRight'],
+[data-code='ArrowLeft'],
+[data-code='ArrowUp'],
+[data-code='ArrowDown'] {
+    width: 35px;
+    background-color: grey;
 }

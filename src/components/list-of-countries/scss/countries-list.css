@@ -9,35 +9,44 @@
   max-height: 100%;
   width: 100%;
   height: 100%;
+  display: -ms-grid;
   display: grid;
   gap: 0px;
   grid-template-columns: 255px;
   -ms-grid-columns: 255px;
+  -ms-grid-rows: 115px 40px auto 30px;
   grid-template-rows: 115px 40px auto 30px;
-  grid-template-areas: "total" "search" "countrieslist" "last";
+      grid-template-areas: "total" "search" "countrieslist" "last";
 }
 
 .countries-list .total-cases {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
   grid-area: total;
   font-size: 2em;
+  display: -ms-grid;
   display: grid;
   gap: 4px;
-  grid-template-columns: 35px 175px 35px;
-  grid-template-rows: 115px;
-  grid-template-areas: "recoverBut digits deathsBut";
+  -ms-grid-columns: 35px 175px 35px;
+      grid-template-columns: 35px 175px 35px;
+  -ms-grid-rows: 115px;
+      grid-template-rows: 115px;
+      grid-template-areas: "recoverBut digits deathsBut";
 }
 
 .countries-list .deaths {
-  grid-template-areas: "recoverBut digits totalBut";
+      grid-template-areas: "recoverBut digits totalBut";
   color: #D2374A;
 }
 
 .countries-list .recovered {
-  grid-template-areas: "totalBut digits deathsBut";
+      grid-template-areas: "totalBut digits deathsBut";
   color: #5D9700;
 }
 
 .countries-list .total-cases .deaths-button {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
   grid-area: deathsBut;
   width: 25px;
   height: 25px;
@@ -48,6 +57,8 @@
 }
 
 .countries-list .total-cases .recovered-button {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
   grid-area: recoverBut;
   width: 25px;
   height: 25px;
@@ -58,6 +69,8 @@
 }
 
 .countries-list .total-cases .total-button {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
   grid-area: totalBut;
   width: 25px;
   height: 25px;
@@ -71,6 +84,7 @@
 .countries-list .total-cases .deaths-button:hover,
 .countries-list .total-cases .recovered-button:hover {
   cursor: pointer;
+  -webkit-transition: all 0.2s;
   transition: all 0.2s;
   border: 2px solid silver;
 }
@@ -79,9 +93,11 @@
 .countries-list .total-cases .deaths-button:active,
 .countries-list .total-cases .recovered-button:active {
   cursor: pointer;
+  -webkit-transition: all 0.2s;
   transition: all 0.2s;
   border: 3px solid silver;
-  filter: grayscale(40%);
+  -webkit-filter: grayscale(40%);
+          filter: grayscale(40%);
 }
 
 .countries-list .total-cases .hidden-button {
@@ -91,6 +107,8 @@
 }
 
 .countries-list .total-cases .total {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
   grid-area: digits;
   display: block;
   text-align: center;
@@ -108,11 +126,14 @@
 }
 
 .countries-list .search {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
   grid-area: search;
-  justify-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
 }
 
-.countries-list .search input {
+.countries-list .search textarea {
   border: 1px solid snow;
   border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -121,13 +142,28 @@
   background: #0d0f11 !important;
   outline: none;
   height: 30px;
-  width: 255px;
+  width: 200px;
   color: #cccccc;
   font-size: 20px;
   text-align: center;
+  resize: none;
+  overflow: hidden;
+}
+
+.countries-list .search .material-icons {
+  color: white;
+}
+
+.countries-list .search .material-icons .keyboard-hide:hover {
+  vertical-align: middle;
+  color: silver;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
 }
 
 .countries-list .countries-table {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
   grid-area: countrieslist;
   overflow: scroll;
   max-height: 100%;
@@ -191,9 +227,15 @@
 }
 
 .countries-list .last-update {
+  -ms-grid-row: 4;
+  -ms-grid-column: 1;
   grid-area: last;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   text-align: center;
   color: #EDB021;
   border: 1px solid #EDB021;
@@ -202,5 +244,202 @@
   font-weight: normal;
   font-size: 13pt;
   line-height: 33px;
+}
+
+.keyboard-wrapper {
+  position: fixed;
+  left: 0;
+  background-color: rgba(45, 45, 45, 0.5);
+  bottom: 300px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-transition: bottom 0.8s;
+  transition: bottom 0.8s;
+  -webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  z-index: 2;
+}
+
+.keyboard {
+  border-radius: 8px;
+  width: 470px;
+  padding: 5px 0;
+  background-color: #0d0f11;
+  border-radius: 30px;
+  border: 1px solid #EDB021;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.keyboard__row {
+  text-align: center;
+}
+
+.keyboard--hidden {
+  left: -55%;
+}
+
+.keyboard__keys {
+  text-align: center;
+}
+
+.hide-button {
+  height: 2vh;
+  width: 90vw;
+  max-height: 45px;
+  margin: 2px 5vw;
+  border-radius: 7px;
+  border: 1px solid silver;
+  background: #2e4141;
+  color: #EDB021;
+  font-size: 1.05rem;
+  outline: none;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  vertical-align: top;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  font-weight: 900;
+}
+
+.hide-button::-moz-selection {
+  background: transparent;
+}
+
+.hide-button::selection {
+  background: transparent;
+}
+
+.keyboard__key {
+  height: 35px;
+  width: 35px;
+  margin: 2px 3px;
+  border-radius: 8px;
+  border: 1px solid grey;
+  background: #324646;
+  color: #EDB021;
+  font-size: 1em;
+  outline: none;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  vertical-align: top;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  font-weight: 900;
+}
+
+.keyboard__key .sub {
+  color: grey;
+  display: block;
+  -ms-flex-item-align: end;
+      -ms-grid-row-align: end;
+      align-self: end;
+  padding: 5px 0 5px 0;
+}
+
+[data-code=Minus] .letter,
+[data-code=Semicolon] .letter,
+[data-code=Quote] .letter,
+[data-code=Comma] .letter,
+[data-code=Period] .letter,
+[data-code=Backquote] .letter,
+[data-code=Backslash] .letter,
+[data-code=BracketLeft] .letter,
+[data-code=BracketRight] .letter,
+[data-code=Equal] .letter,
+[data-code=Digit1] .letter,
+[data-code=Digit2] .letter,
+[data-code=Digit3] .letter,
+[data-code=Digit4] .letter,
+[data-code=Digit5] .letter,
+[data-code=Digit6] .letter,
+[data-code=Digit7] .letter,
+[data-code=Digit8] .letter,
+[data-code=Digit9] .letter,
+[data-code=Digit0] .letter {
+  padding: 12px 0 0 8px;
+  text-align: right;
+  font-size: 14pt;
+}
+
+[data-fn=false] .sub-inactive {
+  color: grey;
+  font-size: 12pt;
+}
+
+[data-fn=false] .sub-active {
+  color: black;
+}
+
+[data-fn=true] {
+  background-color: #505a46;
+}
+
+[data-code=Space] {
+  width: 107px;
+}
+
+[data-code=ShiftLeft] {
+  width: 145px;
+}
+
+[data-code=Sound],
+[data-code=Speach],
+[data-code=AltLeft],
+[data-code=Hide] {
+  width: 45px;
+}
+
+[data-code=Lang] {
+  width: 45px;
+}
+
+.active {
+  opacity: 0.8;
+  font-weight: 100;
+  background-color: #157467;
+  border: 1px solid darkslategrey;
+  line-height: 130%;
+  letter-spacing: 1.1pt;
+}
+
+[data-code='ArrowRight'],
+[data-code='ArrowLeft'],
+[data-code='ArrowUp'],
+[data-code='ArrowDown'] {
+  width: 35px;
+  background-color: grey;
 }
 /*# sourceMappingURL=countries-list.css.map */
