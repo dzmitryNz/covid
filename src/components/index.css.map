@@ -8,7 +8,8 @@
         "#common-scss/#scroll.scss",
         "list-of-countries/scss/countries-list.scss",
         "table/scss/table.scss",
-        "chart/scss/chart.scss"
+        "chart/scss/chart.scss",
+        "map/scss/map.scss"
     ],
     "names": [],
     "file": "index.css"
