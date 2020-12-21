@@ -605,6 +605,7 @@ template {
 }
 
 .table .table__body {
+  position: relative;
   width: 100%;
   height: 100%;
   display: -webkit-box;
@@ -666,7 +667,7 @@ template {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  height: 35px;
+  height: 40px;
 }
 
 .table .table__body .table__switch-mode span {
@@ -675,13 +676,14 @@ template {
   color: #5d9700;
 }
 
+.table .table__body .table__switch-mode:hover {
+  background: rgba(93, 151, 0, 0.15);
+}
+
 .table .table__body .table__common {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 auto;
-          flex: 1 1 auto;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -690,13 +692,23 @@ template {
       -ms-flex-align: center;
           align-items: center;
   width: 100%;
-  height: auto;
+  height: 100%;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.table .table__body .table__common .table__wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 .table .table__body .table__common .table__title-all,
 .table .table__body .table__common .table__title-last {
-  width: 100%;
-  height: 42px;
+  min-width: 100%;
+  min-height: 35px;
   background: rgba(97, 0, 13, 0.3);
   border: 1px solid #d2374a;
   display: -webkit-box;
@@ -708,6 +720,8 @@ template {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
 }
 
 .table .table__body .table__common .table__title-all span,
@@ -792,6 +806,31 @@ template {
 .table .table__body .table__common .table__significations ul li:nth-child(3) {
   color: #d2374a;
   margin: 0px 0px 0px 0px;
+}
+
+.pop__table {
+  min-width: 100%;
+  min-height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.pop__table .table__title span {
+  text-align: center;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 18px;
+  color: white;
 }
 
 .chart {
