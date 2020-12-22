@@ -18,9 +18,9 @@ const lastUpdate = document.querySelector(".last-update");
 const search = document.querySelector(".search");
 // const countryDay = "countryDayOneRoute";
 const countryDay = "countryDayOneTotalRoute";
-const deathsButton = create("div", "deaths-button", "Deaths", totalCases);
-const recoverButton = create("div", "recovered-button", "Recovered", totalCases);
-const totalButton = create("div", "hidden-button", "Confirmed", totalCases);
+const deathsButton = create("div", "deaths-button", null, totalCases);
+const recoverButton = create("div", "recovered-button", null, totalCases);
+const totalButton = create("div", "hidden-button", null, totalCases);
 const keyboardButton = create("i", "material-icons keyboard", "keyboard", search);
 const searchInput = create("input", "search-input", null, search, ["type", "text"], ["id", "search-counrty"], ["placeholder", "Search for a Country"]);
 // eslint-disable-next-line no-unused-vars
@@ -73,15 +73,6 @@ function changeCases(e) {
 export default function listOfCountries(summaryData) {
   dataSummary = summaryData;
   tableBlock.innerHTML = "";
-  let totalData = {
-    TotalConfirmed: `${dataSummary.Global.TotalConfirmed}`,
-    TotalDeaths: `${dataSummary.Global.TotalDeaths}`,
-    TotalRecovered: `${dataSummary.Global.TotalRecovered}`,
-    NewConfirmed: `${dataSummary.Global.NewConfirmed}`,
-    NewDeaths: `${dataSummary.Global.NewDeaths}`,
-    NewRecovered: `${dataSummary.Global.NewRecovered}`,
-  };
-
   let totalClass = {
     TotalConfirmed: "total",
     TotalDeaths: "total-deaths",
@@ -95,7 +86,8 @@ export default function listOfCountries(summaryData) {
   lastUpdate.innerText = `Last Update: ${lastUpdateDate.toLocaleString().slice(0, 17)}`;
   const tr = {};
   let td = {};
-  totalDigits.innerText = totalData[Properties.cases].toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  if (Properties.cases.match(/Total/)) totalDigits.innerText = Properties.cases.replace(/Total/, "");
+  else { totalDigits.innerText = Properties.cases.replace(/New/, ""); }
   dataSummary.Countries.filter(a => a.Slug.includes(searchExp.toLowerCase()))
     .sort((a, b) => sortBy(a, b)).forEach((country, i) => {
       tr[i] = create("tr", `country-row ${country.Slug}`, null, tableBlock);
