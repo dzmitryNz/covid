@@ -31,7 +31,9 @@ export async function chart(country, signification) {
           ticks: {
             beginAtZero: true,
             callback: function (label) {
-              if (label >= 1000000) {
+              if (label < 10) {
+                return parseInt(label, 10);
+              } else if (label >= 1000000) {
                 return label / 1000000 + 'M';
               } else if (label >= 1000) {
                 return label / 1000 + 'k';
@@ -72,18 +74,19 @@ export async function chart(country, signification) {
   Chart.defaults.global.defaultFontSize = 14;
   new Chart(ctx, chart);
 
+  const fullButton = document.querySelectorAll('.full-screen-but')[1];
   container.addEventListener('mouseover', () => {
-    if (document.querySelector('.full-screen-but').classList.contains('hide-button')) {
-      document.querySelector('.full-screen-but').classList.toggle('hide-button');
+    if (fullButton.classList.contains('hide-button')) {
+      fullButton.classList.toggle('hide-button');
     }
   })
   container.addEventListener('mouseleave', () => {
-    if (!document.querySelector('.full-screen-but').classList.contains('hide-button')) {
-      document.querySelector('.full-screen-but').classList.toggle('hide-button');
+    if (!fullButton.classList.contains('hide-button')) {
+      fullButton.classList.toggle('hide-button');
     }
   })
 
-  document.querySelector('.full-screen-but').addEventListener('mouseup', () => {
+  fullButton.addEventListener('mouseup', () => {
     document.querySelector('.full-screen').showModal();
     document.querySelector('#pop-content').innerHTML = '<canvas id="chartCanvasBig"></canvas>';
     const ctxBig = document.querySelector('#chartCanvasBig').getContext("2d");
@@ -100,11 +103,7 @@ export async function chart(country, signification) {
       const data = await res.json();
       data.forEach(e => arr.push(e[`Total${sign}`]));
     } else {
-      try {
-        country.forEach(e => arr.push(e[sign]));
-      } catch (error) {
-        console.error(error);
-      }
+      country.forEach(e => arr.push(e[sign]));
     }
     return arr;
   };
