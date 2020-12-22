@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable import/no-cycle */
 import * as importedApis from "../api/default.json";
 import Page from "../index";
@@ -14,7 +15,7 @@ const apiPaths = importedApis[0];
 // const countryTotalDay = "countryDayOneTotalRoute";
 // const country = "ukraine";
 const summaryUrl = "https://api.covid19api.com/summary";
-// const UpdatePeriod = 198;
+const UpdatePeriod = 14;
 let url = "";
 let categorySave = "";
 let categoryData = {};
@@ -23,21 +24,20 @@ async function getApi(category, country) {
   if (country) categorySave = `${category}-${country}`;
   else { categorySave = category; }
   const response = await fetch(url);
-  let result = await response.json();
+  if (response.status !== 200) { console.log(response.status); return; }
+  const result = await response.json();
   if (result.Message !== "Caching in progress") {
     localStorage.setItem(categorySave, JSON.stringify(result));
-
+    Page.set(result, category, country);
     Properties.data[categorySave] = result;
-  } else {
-    console.log(result.Message);
-    if (categoryData) result = categoryData; Page.set(result, category, country);
-  }
+  } else { console.log(result.Message); }
 }
 
 export default async function getData(category, country) {
   const date = new Date();
   let categoryApi = category;
   if (categoryApi) {
+    if (categoryApi === "countryDayOneRoute" && country === "united-states") categoryApi = "countryDayOneTotalRoute";
     const baseUrl = apiPaths.baseUrl.Path;
     let catUrl = apiPaths[categoryApi].Path;
 
@@ -51,10 +51,8 @@ export default async function getData(category, country) {
 
   if (categoryData) {
     const LastUpdate = new Date(categoryData.Date);
-    const deltaHours = new Date(date - LastUpdate);
-    console.log(deltaHours);
-    Page.set(categoryData, category, country);
-    // if (deltaHours > UpdatePeriod) getApi(categoryApi, country);
-    // else { getApi(categoryApi, country); }
+    const deltaHours = new Date(date - LastUpdate).getHours();
+    if (deltaHours > UpdatePeriod) getApi(categoryApi, country);
+    else { getApi(categoryApi, country); }
   } else { getApi(categoryApi, country); }
 }

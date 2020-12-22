@@ -7,7 +7,8 @@ import Properties from "../../properties";
 import create from "../../create";
 import getData from "../../api";
 import en from "./en";
-// import Keyboard from "./Keyboard";
+import Map from "../../map/js/map";
+// import { chart } from "../../chart/js/chart";
 
 const summary = "summaryRoute";
 const main = document.querySelector(".grid-wrapper");
@@ -15,15 +16,15 @@ const keyboardWrapper = create("div", "keyboard-wrapper keyboard--hidden", null,
 const tableBlock = document.querySelector(".countries-table");
 const totalCases = document.querySelector(".total-cases");
 const lastUpdate = document.querySelector(".last-update");
-const search = document.querySelector(".search");
+const countriesList = document.querySelector(".countries-list");
+let search = document.querySelector(".search");
 // const countryDay = "countryDayOneRoute";
 const countryDay = "countryDayOneTotalRoute";
-const deathsButton = create("div", "deaths-button", "Deaths", totalCases);
-const recoverButton = create("div", "recovered-button", "Recovered", totalCases);
-const totalButton = create("div", "hidden-button", "Confirmed", totalCases);
+const deathsButton = create("div", "deaths-button", null, totalCases);
+const recoverButton = create("div", "recovered-button", null, totalCases);
+const totalButton = create("div", "hidden-button", null, totalCases);
 const keyboardButton = create("i", "material-icons keyboard", "keyboard", search);
 const searchInput = create("input", "search-input", null, search, ["type", "text"], ["id", "search-counrty"], ["placeholder", "Search for a Country"]);
-// eslint-disable-next-line no-unused-vars
 const fullScreenButton = create("i", "material-icons fullscreen", "fullscreen", search);
 const total = create("div", "total", null, totalCases);
 const totalCaseSwitch = create("div", "switch-total", "Total");
@@ -31,6 +32,7 @@ const switcher = create("div", "switcher", null);
 const newCaseSwitch = create("div", "switch-none", "New");
 const totalSwitch = create("div", "total-switch", [totalCaseSwitch, switcher, newCaseSwitch], total);
 const totalDigits = create("div", "total-digits", null, total);
+const fullScreenBlock = document.querySelector(".full-screen");
 
 let searchExp = "";
 let dataSummary = {};
@@ -68,20 +70,12 @@ function changeCases(e) {
   }
   if (!requestTotal.match(/switcher/)) totalCases.className = `total-cases ${requestTotal.split("-")[0]}`;
   listOfCountries(dataSummary);
+  Map.clickMapButton();
 }
 
 export default function listOfCountries(summaryData) {
   dataSummary = summaryData;
   tableBlock.innerHTML = "";
-  let totalData = {
-    TotalConfirmed: `${dataSummary.Global.TotalConfirmed}`,
-    TotalDeaths: `${dataSummary.Global.TotalDeaths}`,
-    TotalRecovered: `${dataSummary.Global.TotalRecovered}`,
-    NewConfirmed: `${dataSummary.Global.NewConfirmed}`,
-    NewDeaths: `${dataSummary.Global.NewDeaths}`,
-    NewRecovered: `${dataSummary.Global.NewRecovered}`,
-  };
-
   let totalClass = {
     TotalConfirmed: "total",
     TotalDeaths: "total-deaths",
@@ -93,11 +87,12 @@ export default function listOfCountries(summaryData) {
   if (!dataSummary) dataSummary = JSON.parse(localStorage.getItem(summary));
   const lastUpdateDate = new Date(dataSummary.Date);
   lastUpdate.innerText = `Last Update: ${lastUpdateDate.toLocaleString().slice(0, 17)}`;
-  const tr = {};
+  let tr = {};
   let td = {};
-  totalDigits.innerText = totalData[Properties.cases].toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  if (Properties.cases.match(/Total/)) totalDigits.innerText = Properties.cases.replace(/Total/, "");
+  else { totalDigits.innerText = Properties.cases.replace(/New/, ""); }
   dataSummary.Countries.filter(a => a.Slug.includes(searchExp.toLowerCase()))
-    .sort((a, b) => sortBy(a, b)).forEach((country, i) => {
+    .sort((a, b) => b[Properties.cases] - a[Properties.cases]).forEach((country, i) => {
       tr[i] = create("tr", `country-row ${country.Slug}`, null, tableBlock);
       const flagImg = create("img", `country-flag ${country.Slug}`, null, null, ["src", `https://www.countryflags.io/${country.CountryCode}/flat/24.png`], ["alt", `${country.Slug} flag`]);
       td.Flag = create("td", `flag ${country.Slug}`, [flagImg], tr[i]);
@@ -107,15 +102,12 @@ export default function listOfCountries(summaryData) {
     });
 }
 
-function sortBy(a, b) {
-  return b[Properties.cases] - a[Properties.cases];
-}
-
 recoverButton.addEventListener("click", (e) => { changeCases(e); });
 deathsButton.addEventListener("click", (e) => { changeCases(e); });
 totalButton.addEventListener("click", (e) => { changeCases(e); });
 keyboardButton.addEventListener("click", () => { hideKeyboardEvent(); });
 switcher.addEventListener("click", (e) => { switchTotal(e); });
+fullScreenButton.addEventListener("click", () => { fullScreen(); });
 
 document.addEventListener("click", (e) => {
   let targt = e.target;
@@ -149,6 +141,36 @@ function hideKeyboardEvent() {
   } else {
     keyboardWrapper.classList.remove("keyboard--hidden");
   }
+}
+
+function fullScreen() {
+  let tr = {};
+  let td = {};
+  fullScreenBlock.innerHTML = "";
+  fullScreenBlock.innerText = "FullScreen";
+  const closeButton = create("div", "full-screen-but", null, fullScreenBlock);
+  search = create("div", "full-screen-header", [keyboardButton, searchInput, fullScreenButton], fullScreenBlock);
+  let fullScreentableBlock = create("table", "full-screen-table", null, fullScreenBlock);
+
+  dataSummary.Countries.filter(a => a.Slug.includes(searchExp.toLowerCase()))
+    .sort((a, b) => b[Properties.cases] - a[Properties.cases]).forEach((country, i) => {
+      tr[i] = create("tr", `country-row ${country.Slug}`, null, fullScreentableBlock);
+      const flagImg = create("img", `country-flag ${country.Slug}`, null, null, ["src", `https://www.countryflags.io/${country.CountryCode}/flat/32.png`], ["alt", `${country.Slug} flag`]);
+      td.Flag = create("td", `flag ${country.Slug}`, [flagImg], tr[i]);
+      td.Country = create("td", `country ${country.Slug}`, country.Country, tr[i]);
+      td.Total = create("td", "confirmed", `${country[Properties.cases]}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), tr[i]);
+      td.Deaths = create("td", "deaths", `${country[Properties.cases]}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), tr[i]);
+      td.Recover = create("td", "recovered", `${country[Properties.cases]}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), tr[i]);
+    });
+  fullScreenBlock.showModal();
+  closeButton.addEventListener("click", () => { closeFullScreen(); });
+}
+
+function closeFullScreen() {
+  fullScreenBlock.close();
+  search = create("div", "search", [keyboardButton, searchInput, fullScreenButton], countriesList);
+  fullScreenBlock.innerHTML = "";
+  // chart("world", "Confirmed");
 }
 
 // Keyboard block
@@ -244,7 +266,6 @@ class Keyboard {
         if (code.match(/Hide/)) hideKeyboardEvent();
         this.printToOutput(keyObj, keyObj.small);
         searchExp = this.output.value;
-        console.log(this.output.value);
         listOfCountries(dataSummary);
       }
       keyObj.div.classList.add("active");
@@ -260,10 +281,6 @@ class Keyboard {
       const right = this.output.value.slice(cursorPos);
 
       const fnButtonsHandler = {
-        Tab: () => {
-          this.output.value = `${left}\t${right}`;
-          cursorPos += 1;
-        },
         ArrowLeft: () => {
           cursorPos = cursorPos - 1 >= 0 ? cursorPos - 1 : 0;
         },
@@ -273,12 +290,6 @@ class Keyboard {
         Backspace: () => {
           this.output.value = `${left.slice(0, -1)}${right}`;
           cursorPos -= 1;
-        },
-        Hide: () => {
-          this.output.value = `${left}${right}`;
-        },
-        Speach: () => {
-          this.output.value = `${left}${right}`;
         },
         Space: () => {
           this.output.value = `${left} ${right}`;

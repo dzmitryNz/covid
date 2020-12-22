@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 import * as coordinatesApis from "../../../api/coordinats.json";
+import Properties from "../../properties";
 
 export default class Map {
   constructor(summaryData) {
@@ -11,18 +12,21 @@ export default class Map {
     this.coordinates = [];
     this.x = 0;
     this.y = 0;
+    this.map = null;
+    this.tooltip = null;
+    this.country = {};
   }
 
   getMap() {
     this.getMouseCoordinate();
-    Map.addFullSrceenButton();
+    this.addFullSrceenButton();
     // console.log(this.summaryData.Countries);
-    const tooltip = document.createElement("div");
-    tooltip.classList.add("map__tooltip", "map__tooltip--hide");
-    document.querySelector(".grid-wrapper").appendChild(tooltip);
+    this.tooltip = document.createElement("div");
+    this.tooltip.classList.add("map__tooltip", "map__tooltip--hide");
+    document.querySelector(".grid-wrapper").appendChild(this.tooltip);
 
     this.getCountryCoordinates();
-    const param = "TotalConfirmed";
+    const param = Properties.cases;
 
     // Creating map options
     const mapOptions = {
@@ -32,8 +36,8 @@ export default class Map {
 
     // Creating a map object
     // eslint-disable-next-line new-cap
-    const map = new L.map("map", mapOptions);
-    map.setView([10, 10], 2);
+    this.map = new L.map("map", mapOptions);
+    this.map.setView([10, 10], 2);
 
     // Creating a Layer object
     const layer = new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -45,8 +49,30 @@ export default class Map {
     });
 
     // Adding layer to the map
-    map.addLayer(layer);
+    this.map.addLayer(layer);
 
+    this.addCircles(param);
+
+    this.addParamChanger(param);
+
+    // Legend specific
+    const legend = L.control({ position: "bottomleft" });
+
+    legend.onAdd = (map) => {
+      const div = L.DomUtil.create("div", "map__legend");
+      div.innerHTML += "<i style=\"background: green\"></i><span><1000</span><br>";
+      div.innerHTML += "<i style=\"background: yellow\"></i><span><100000</span><br>";
+      div.innerHTML += "<i style=\"background: orange\"></i><span><250000</span><br>";
+      div.innerHTML += "<i style=\"background: red\"></i><span><500000</span><br>";
+      div.innerHTML += "<i style=\"background: darkred\"></i><span>>500000</span><br>";
+      return div;
+    };
+
+    legend.addTo(this.map);
+  }
+
+  // add country circles
+  addCircles(param) {
     this.coordinates.forEach((item) => {
       // Center of the circle
       const circleCenter = [item.latitude, item.longitude];
@@ -79,58 +105,122 @@ export default class Map {
       });
       circle.setStyle({ color: circleColor });
       // Adding circle to the map
-      circle.addTo(map);
+      circle.addTo(this.map);
 
       // L.DomUtil.addClass(circle._path, item.country_code);
 
       circle.addEventListener("mouseover", (e) => {
-        // console.log(e.target.getLatLng(), e.target.options.id, e.target.options.val);
-        tooltip.style.top = `${this.y + 20}px`;
-        tooltip.style.left = `${this.x + 10}px`;
-        tooltip.classList.remove("map__tooltip--hide");
-        tooltip.innerHTML = `${item.name}<br>${value}`;
+        this.tooltip.style.top = `${this.y + 20}px`;
+        this.tooltip.style.left = `${this.x + 10}px`;
+        this.tooltip.classList.remove("map__tooltip--hide");
+        this.tooltip.innerHTML = `${item.name}<br>${param}<br>${value}`;
       });
 
       circle.addEventListener("mouseout", () => {
-        tooltip.classList.add("map__tooltip--hide");
+        this.tooltip.classList.add("map__tooltip--hide");
       });
 
       circle.addEventListener("click", (e) => {
-        console.log(e.target.getLatLng(), e.target.options.id, e.target.options.val);
+        // console.log(e.target.getLatLng(), e.target.options.id, e.target.options.val);
+        document.querySelector(`tr.country-row.${this.country[e.target.options.id]}`).click();
       });
     });
+  }
 
-
+  // add changing parametr buttons
+  addParamChanger(param) {
     // Change param buttons
-    const paramChanger = L.control({ position: "bottomleft" });
+    const paramChanger = L.control({ position: "topleft" });
 
     paramChanger.onAdd = (map) => {
       const div = L.DomUtil.create("div", "map__param-changer");
-      div.innerHTML += "<button><span class=\"material-icons\">arrow_left</span></button>";
-      div.innerHTML += `<span class="map__param">${param}</span>`;
-      div.innerHTML += "<button><span class=\"material-icons\">arrow_right</span></button>";
+      div.innerHTML += "<button data-id = \"confirmed\" class=\"param-changer__button param-changer__button--confirmed param-changer__button--active\"><span class=\"material-icons\">stop_circle</span></button>";
+      div.innerHTML += "<button data-id = \"deaths\" class=\"param-changer__button param-changer__button--deaths\"><span class=\"material-icons\">stop_circle</span></button>";
+      // div.innerHTML += `<span class="map__param">${param}</span>`;
+      div.innerHTML += "<button data-id = \"recovered\" class=\"param-changer__button param-changer__button--recovered\"><span class=\"material-icons\">stop_circle</span></button>";
+
       return div;
     };
 
-    paramChanger.addTo(map);
+    paramChanger.addTo(this.map);
 
-    // Legend specific
-    const legend = L.control({ position: "bottomleft" });
+    const title = document.createElement("div");
+    title.classList.add("param-changer__param-title", "param-changer__param-title--hide");
+    const titleItem = document.createElement("span");
+    titleItem.classList.add("param-title__text");
+    title.appendChild(titleItem);
+    document.querySelector(".map__param-changer").appendChild(title);
 
-    legend.onAdd = (map) => {
-      const div = L.DomUtil.create("div", "map__legend");
-      div.innerHTML += "<i style=\"background: green\"></i><span><1000</span><br>";
-      div.innerHTML += "<i style=\"background: yellow\"></i><span><100000</span><br>";
-      div.innerHTML += "<i style=\"background: orange\"></i><span><250000</span><br>";
-      div.innerHTML += "<i style=\"background: red\"></i><span><500000</span><br>";
-      div.innerHTML += "<i style=\"background: darkred\"></i><span>>500000</span><br>";
-      return div;
-    };
+    const paramButtons = document.querySelectorAll(".param-changer__button");
+    const mapParam = document.querySelector(".map__param");
+    paramButtons.forEach((button) => {
+      const type = button.getAttribute("data-id");
 
-    legend.addTo(map);
+      button.addEventListener("mouseover", () => {
+        titleItem.textContent = type;
+        switch (type) {
+          case "confirmed": title.style.top = "6px"; break;
+          case "deaths": title.style.top = "36px"; break;
+          case "recovered": title.style.top = "66px"; break;
+          default: break;
+        }
+        title.style.left = "26px";
+        title.classList.remove("param-changer__param-title--hide");
+      });
 
-    // Adding pop-up to the marker
-    // marker.bindPopup("Hi Welcome to Tutorialspoint").openPopup();
+      button.addEventListener("mouseout", () => {
+        title.classList.add("param-changer__param-title--hide");
+      });
+
+      button.addEventListener("click", () => {
+        // delete all circles
+        const circles = document.querySelectorAll("g");
+        circles.forEach((g) => {
+          g.remove();
+        });
+        const tempCases = Properties.cases;
+        // add new param circles
+        switch (type) {
+          case "confirmed":
+            if (tempCases.match(/Total/)) Properties.cases = "TotalConfirmed";
+            if (tempCases.match(/New/)) Properties.cases = "NewConfirmed";
+            if (document.querySelector(".total-button") !== null) {
+              document.querySelector(".total-button").click();
+            }
+            break;
+          case "deaths":
+            if (tempCases.match(/Total/)) Properties.cases = "TotalDeaths";
+            if (tempCases.match(/New/)) Properties.cases = "NewDeaths";
+            if (document.querySelector(".deaths-button") !== null) {
+              document.querySelector(".deaths-button").click();
+            }
+            break;
+          case "recovered":
+            if (tempCases.match(/Total/)) Properties.cases = "TotalRecovered";
+            if (tempCases.match(/New/)) Properties.cases = "NewRecovered";
+            if (document.querySelector(".recovered-button") !== null) {
+              document.querySelector(".recovered-button").click();
+            }
+            break;
+          default: break;
+        }
+        this.addCircles(Properties.cases);
+
+        paramButtons.forEach((item) => {
+          item.classList.remove("param-changer__button--active");
+        });
+        button.classList.add("param-changer__button--active");
+      });
+    });
+  }
+
+  static clickMapButton() {
+    let param = Properties.cases;
+    param = param.replace("Total", "");
+    param = param.replace("New", "");
+    param = param.toLowerCase();
+    const button = document.querySelector(`.param-changer__button[data-id="${param}"]`);
+    button.click();
   }
 
   // getting country coordinates
@@ -151,8 +241,8 @@ export default class Map {
 
   // getting country codes to select coordinates
   getCountryCodes() {
-    console.log(this.summaryData);
     Object.keys(this.summaryData.Countries).forEach((i) => {
+      this.country[this.summaryData.Countries[i].CountryCode] = this.summaryData.Countries[i].Slug;
       Object.keys(this.summaryData.Countries[i]).forEach((item) => {
         if (item === "CountryCode") {
           this.arrCountryCodes.push(this.summaryData.Countries[i][item]);
@@ -187,20 +277,21 @@ export default class Map {
     document.querySelector("#map").addEventListener("mousemove", (e) => {
       this.x = e.pageX;
       this.y = e.pageY;
-      // console.log(`Position: (${e.clientX}, ${e.clientY})`);
     }, false);
   }
 
-  static addFullSrceenButton() {
-    const map = document.querySelector("#map");
+  addFullSrceenButton() {
+    const mapp = document.querySelector("#map");
     const fullScreenButton = document.createElement("button");
     fullScreenButton.classList.add("map__full-screen-button");
     fullScreenButton.setAttribute("title", "Full Screen");
     fullScreenButton.innerHTML = "<span class=\"material-icons\">fullscreen</span>";
-    map.appendChild(fullScreenButton);
+    mapp.appendChild(fullScreenButton);
 
     fullScreenButton.addEventListener("click", () => {
-      map.classList.toggle("map--fullscreen");
+      mapp.classList.toggle("map--fullscreen");
+      // console.log(this.map);
+      this.map.invalidateSize();
     });
   }
 }

@@ -8,7 +8,6 @@ import Map from "./components/map/js/map";
 // import map from './components/map/js/map.js'
 //  import country-data from './components/country-data/js/country-data.js'
 
-const summary = "summaryRoute";
 // const countries = "countriesRoute";
 // const countryDay = "countryDayOneRoute";
 // const countryTotalDay = "countryDayOneTotalRoute";
@@ -25,7 +24,7 @@ export default Page = {
   },
 
   init() {
-    getData(summary);
+    getData("summaryRoute");
   },
 
   set(categoryData, category) {
