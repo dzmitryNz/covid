@@ -1,19 +1,33 @@
-.full-screen {
+.full-screen-block {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
     color: #EDB021;
+    z-index: 1000;
 }
 
-.full-screen .full-screen-but:hover {
+.full-screen-block-hidden {
+    z-index: 0;
+}
+
+.full-screen-block .close-full-screen:hover {
+    cursor: pointer;
+    color: snow;
+}
+
+.full-screen-block .full-screen-but:hover {
     cursor: pointer;
     color: lavender;
 }
 
-.full-screen .full-screen-header {
+.full-screen-block .full-screen-header {
     width: 60%;
     max-height: 10%;
     margin: 10px auto 0 auto;
 }
 
-.full-screen .full-screen-table {
+.full-screen-block .full-screen-table {
     width: 60%;
     max-height: 90%;
     overflow: scroll;
@@ -29,8 +43,6 @@
     line-height: 34px;
     margin: 10px auto 0 auto;
 }
-
-
 
 .countries-list {
     grid-row: 1;

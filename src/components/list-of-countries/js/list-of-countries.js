@@ -32,9 +32,10 @@ const switcher = create("div", "switcher", null);
 const newCaseSwitch = create("div", "switch-none", "New");
 const totalSwitch = create("div", "total-switch", [totalCaseSwitch, switcher, newCaseSwitch], total);
 const totalDigits = create("div", "total-digits", null, total);
-const fullScreenBlock = document.querySelector(".full-screen");
+const fullScreenBlock = create("div", "full-screen-block-hidden", null, main);
 
 let searchExp = "";
+let fullScreenOn = false;
 let dataSummary = {};
 
 function changeCases(e) {
@@ -144,12 +145,13 @@ function hideKeyboardEvent() {
 }
 
 function fullScreen() {
+  fullScreenBlock.innerHTML = "";
   let tr = {};
   let td = {};
-  fullScreenBlock.innerHTML = "";
-  fullScreenBlock.innerText = "FullScreen";
-  const closeButton = create("div", "full-screen-but", null, fullScreenBlock);
-  search = create("div", "full-screen-header", [keyboardButton, searchInput, fullScreenButton], fullScreenBlock);
+  fullScreenOn = true;
+  fullScreenBlock.className = "full-screen-block";
+  const closeButton = create("i", "material-icons close-full-screen", "close");
+  search = create("div", "full-screen-header", [keyboardButton, searchInput, closeButton], fullScreenBlock);
   let fullScreentableBlock = create("table", "full-screen-table", null, fullScreenBlock);
 
   dataSummary.Countries.filter(a => a.Slug.includes(searchExp.toLowerCase()))
@@ -162,12 +164,12 @@ function fullScreen() {
       td.Deaths = create("td", "deaths", `${country[Properties.cases]}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), tr[i]);
       td.Recover = create("td", "recovered", `${country[Properties.cases]}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), tr[i]);
     });
-  fullScreenBlock.showModal();
   closeButton.addEventListener("click", () => { closeFullScreen(); });
 }
 
 function closeFullScreen() {
-  fullScreenBlock.close();
+  fullScreenOn = false;
+  fullScreenBlock.className = "full-screen-hidden";
   search = create("div", "search", [keyboardButton, searchInput, fullScreenButton], countriesList);
   fullScreenBlock.innerHTML = "";
   // chart("world", "Confirmed");
@@ -266,7 +268,10 @@ class Keyboard {
         if (code.match(/Hide/)) hideKeyboardEvent();
         this.printToOutput(keyObj, keyObj.small);
         searchExp = this.output.value;
-        listOfCountries(dataSummary);
+        if (!fullScreenOn) listOfCountries(dataSummary);
+        else { fullScreen(); 
+          listOfCountries(dataSummary);
+        }
       }
       keyObj.div.classList.add("active");
       // remove 'active' classes
