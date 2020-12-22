@@ -37,7 +37,6 @@ export default async function getData(category, country) {
   const date = new Date();
   let categoryApi = category;
   if (categoryApi) {
-    console.log(country, categoryApi, categoryApi === "countryDayOneRoute");
     if (categoryApi === "countryDayOneRoute" && country === "united-states") categoryApi = "countryDayOneTotalRoute";
     const baseUrl = apiPaths.baseUrl.Path;
     let catUrl = apiPaths[categoryApi].Path;

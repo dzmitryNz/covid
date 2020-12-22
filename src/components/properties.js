@@ -1,8 +1,8 @@
 const Properties = {
-  data: {},
   cases: "TotalConfirmed",
-  country: "unated-states",
+  country: "ukraine",
   properties: {},
+  data: {},
 };
 
 export default Properties;
