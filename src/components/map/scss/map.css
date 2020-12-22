@@ -59,6 +59,10 @@
   outline: none;
 }
 
+.map__full-screen-button:hover {
+  background: #e0e0e0;
+}
+
 #map {
   background: #645945;
   -webkit-transition: all 0.5s;

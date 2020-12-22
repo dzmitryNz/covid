@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 import * as coordinatesApis from "../../../api/coordinats.json";
+import Properties from "../../properties";
 
 export default class Map {
   constructor(summaryData) {
@@ -25,7 +26,7 @@ export default class Map {
     document.querySelector(".grid-wrapper").appendChild(this.tooltip);
 
     this.getCountryCoordinates();
-    const param = "TotalConfirmed";
+    const param = Properties.cases;
 
     // Creating map options
     const mapOptions = {
@@ -150,10 +151,8 @@ export default class Map {
     title.appendChild(titleItem);
     document.querySelector(".map__param-changer").appendChild(title);
 
-    const arrParam = ["TotalConfirmed", "TotalDeaths", "TotalRecovered"];
     const paramButtons = document.querySelectorAll(".param-changer__button");
     const mapParam = document.querySelector(".map__param");
-    let ind;
     paramButtons.forEach((button) => {
       const type = button.getAttribute("data-id");
 
@@ -179,24 +178,33 @@ export default class Map {
         circles.forEach((g) => {
           g.remove();
         });
-
+        const tempCases = Properties.cases;
         // add new param circles
         switch (type) {
           case "confirmed":
-            ind = 0;
-            document.querySelector(".total-button").click();
+            if (tempCases.match(/Total/)) Properties.cases = "TotalConfirmed";
+            if (tempCases.match(/New/)) Properties.cases = "NewConfirmed";
+            if (document.querySelector(".total-button") !== null) {
+              document.querySelector(".total-button").click();
+            }
             break;
           case "deaths":
-            ind = 1;
-            document.querySelector(".deaths-button").click();
+            if (tempCases.match(/Total/)) Properties.cases = "TotalDeaths";
+            if (tempCases.match(/New/)) Properties.cases = "NewDeaths";
+            if (document.querySelector(".deaths-button") !== null) {
+              document.querySelector(".deaths-button").click();
+            }
             break;
           case "recovered":
-            ind = 2;
-            document.querySelector(".recovered-button").click();
+            if (tempCases.match(/Total/)) Properties.cases = "TotalRecovered";
+            if (tempCases.match(/New/)) Properties.cases = "NewRecovered";
+            if (document.querySelector(".recovered-button") !== null) {
+              document.querySelector(".recovered-button").click();
+            }
             break;
           default: break;
         }
-        this.addCircles(arrParam[ind]);
+        this.addCircles(Properties.cases);
 
         paramButtons.forEach((item) => {
           item.classList.remove("param-changer__button--active");
@@ -204,6 +212,15 @@ export default class Map {
         button.classList.add("param-changer__button--active");
       });
     });
+  }
+
+  static clickMapButton() {
+    let param = Properties.cases;
+    param = param.replace("Total", "");
+    param = param.replace("New", "");
+    param = param.toLowerCase();
+    const button = document.querySelector(`.param-changer__button[data-id="${param}"]`);
+    button.click();
   }
 
   // getting country coordinates

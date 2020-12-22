@@ -471,8 +471,8 @@ template {
   display: -ms-grid;
   display: grid;
   gap: 4px;
-  -ms-grid-columns: 35px 175px 35px;
-      grid-template-columns: 35px 175px 35px;
+  -ms-grid-columns: 25px 195px 25px;
+      grid-template-columns: 25px 195px 25px;
   -ms-grid-rows: 115px;
       grid-template-rows: 115px;
       grid-template-areas: "recoverBut digits deathsBut";
@@ -488,48 +488,68 @@ template {
   color: #5D9700;
 }
 
+.countries-list .total-cases .total-button,
+.countries-list .total-cases .recovered-button,
 .countries-list .total-cases .deaths-button {
+  width: 105px;
+  height: 25px;
+  border-radius: 25px;
+  border-radius: 20px;
+  line-height: 20px;
+  font-size: 20px;
+  text-align: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  -webkit-transition: border 0.2s filter 0.1s;
+  transition: border 0.2s filter 0.1s;
+  color: white;
+}
+
+.countries-list .deaths-button {
   -ms-grid-row: 1;
   -ms-grid-column: 3;
   grid-area: deathsBut;
-  width: 25px;
-  height: 25px;
-  margin: auto auto;
   background: #D2374A;
   border: 2px solid #D2374A;
-  border-radius: 20px;
+  -webkit-transform: rotateZ(-90deg);
+          transform: rotateZ(-90deg);
+  color: #D2374A;
 }
 
-.countries-list .total-cases .recovered-button {
+.countries-list .recovered-button {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
   grid-area: recoverBut;
-  width: 25px;
-  height: 25px;
-  margin: auto auto;
   background: #5D9700;
   border: 2px solid #5D9700;
-  border-radius: 20px;
+  -webkit-transform: rotateZ(90deg);
+          transform: rotateZ(90deg);
+  color: #5D9700;
 }
 
-.countries-list .total-cases .total-button {
+.countries-list .total-button {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
   grid-area: totalBut;
-  width: 25px;
-  height: 25px;
-  margin: auto auto;
   border: 2px solid #EDB021;
-  border-radius: 20px;
   background-color: #EDB021;
+  -webkit-transform: rotateZ(90deg);
+          transform: rotateZ(90deg);
+  color: #EDB021;
+}
+
+.countries-list .deaths .total-button {
+  -webkit-transform: rotateZ(-90deg);
+          transform: rotateZ(-90deg);
 }
 
 .countries-list .total-cases .total-button:hover,
 .countries-list .total-cases .deaths-button:hover,
 .countries-list .total-cases .recovered-button:hover {
   cursor: pointer;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
   border: 2px solid silver;
 }
 
@@ -537,26 +557,34 @@ template {
 .countries-list .total-cases .deaths-button:active,
 .countries-list .total-cases .recovered-button:active {
   cursor: pointer;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
   border: 3px solid silver;
   -webkit-filter: grayscale(40%);
           filter: grayscale(40%);
-}
-
-.countries-list .total-cases .hidden-button {
-  grid-area: none;
-  cursor: none;
-  display: none;
 }
 
 .countries-list .total-cases .total {
   -ms-grid-row: 1;
   -ms-grid-column: 2;
   grid-area: digits;
-  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   text-align: center;
-  width: 100%;
+  margin: auto auto;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.countries-list .total-cases .total .total-digits {
+  width: 185px;
   height: 40px;
   background: rgba(237, 176, 33, 0.1);
   border: 1px solid #EDB021;
@@ -565,8 +593,112 @@ template {
   font-family: Open Sans;
   font-style: normal;
   font-weight: normal;
-  font-size: 28px;
+  font-size: 28pt;
   line-height: 38px;
+  margin-top: 15px;
+}
+
+.countries-list .total-cases .hidden-button {
+  grid-area: none;
+  cursor: none;
+  display: none;
+  z-index: 0;
+}
+
+.countries-list .total-cases .total .total-switch {
+  border: 1px solid snow;
+  border-radius: 15px;
+  font-size: 18px;
+  line-height: 28px;
+  width: 100px;
+  -ms-flex-item-align: center;
+      align-self: center;
+  justify-self: center;
+  margin-top: 3px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 30px;
+}
+
+.countries-list .total-cases .total .total-switch-new {
+  border: 1px solid snow;
+  border-radius: 15px;
+  font-size: 18px;
+  line-height: 28px;
+  width: 100px;
+  -ms-flex-item-align: center;
+      align-self: center;
+  justify-self: center;
+  margin-top: 3px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 30px;
+}
+
+.countries-list .total-cases .total .total-switch .switch-total {
+  font-size: 14px;
+  line-height: 30px;
+  color: white;
+  text-transform: uppercase;
+  top: 12px;
+  margin-left: 10px;
+}
+
+.countries-list .total-cases .total .total-switch-new .switch-new {
+  font-size: 14px;
+  line-height: 30px;
+  color: white;
+  text-transform: uppercase;
+  top: 12px;
+  margin-left: 10px;
+}
+
+.countries-list .total-cases .total .total-switch .switch-none,
+.countries-list .total-cases .total .total-switch-new .switch-none {
+  display: none;
+}
+
+.countries-list .total-cases .total .total-switch .switcher {
+  display: block;
+  z-index: 1;
+  top: 2px;
+  left: 17px;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  background: #EDB021;
+  border-radius: 50%;
+  border: 1px solid #F6F5FA;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.38);
+          box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.38);
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.countries-list .total-cases .total .total-switch-new .switcher-new {
+  display: block;
+  z-index: 1;
+  top: 2px;
+  left: 3px;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  background: #EDB021;
+  border-radius: 50%;
+  border: 1px solid #F6F5FA;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.38);
+          box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.38);
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  margin-right: 15px;
 }
 
 .countries-list .search {
@@ -586,10 +718,28 @@ template {
   background: #0d0f11 !important;
   outline: none;
   height: 30px;
-  width: 255px;
+  width: 195px;
   color: #cccccc;
   font-size: 20px;
   text-align: center;
+  resize: none;
+  overflow: hidden;
+}
+
+.countries-list .search .material-icons {
+  color: white;
+  vertical-align: middle;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  width: 30px;
+  text-align: center;
+}
+
+.countries-list .search .keyboard:hover,
+.countries-list .search .fullscreen:hover {
+  color: silver;
+  cursor: pointer;
+  font-size: 28px;
 }
 
 .countries-list .countries-table {
@@ -675,6 +825,96 @@ template {
   font-weight: normal;
   font-size: 13pt;
   line-height: 33px;
+}
+
+.grid-wrapper .keyboard-wrapper {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-transition: bottom 0.8s;
+  transition: bottom 0.8s;
+  -webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  z-index: 1002;
+  background-color: rgba(45, 45, 45, 0.85);
+  border-radius: 30px;
+  border: 1px solid #EDB021;
+}
+
+.grid-wrapper .keyboard-wrapper .keyboard {
+  border-radius: 8px;
+  width: 430px;
+  padding: 2px 0;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.grid-wrapper .keyboard-wrapper .keyboard .keyboard__row {
+  text-align: center;
+}
+
+.grid-wrapper .keyboard--hidden {
+  left: -55%;
+}
+
+.grid-wrapper .keyboard-wrapper .keyboard .keyboard__row .keyboard__keys {
+  text-align: center;
+}
+
+.grid-wrapper .keyboard-wrapper .keyboard .keyboard__row .keyboard__key {
+  height: 35px;
+  width: 35px;
+  margin: 2px 3px;
+  border-radius: 8px;
+  border: 1px solid grey;
+  background: #324646;
+  color: #EDB021;
+  font-size: 1em;
+  outline: none;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  vertical-align: top;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  font-weight: 900;
+}
+
+.grid-wrapper .keyboard-wrapper .keyboard .keyboard__row .keyboard__key .sub {
+  color: grey;
+  display: block;
+  -ms-flex-item-align: end;
+      -ms-grid-row-align: end;
+      align-self: end;
+  padding: 5px 0 5px 0;
+}
+
+.grid-wrapper .keyboard-wrapper .keyboard .keyboard__row [data-fn=true] {
+  background-color: grey;
 }
 
 .table {
@@ -775,6 +1015,10 @@ template {
       -ms-flex-align: center;
           align-items: center;
   outline: none;
+}
+
+.map__full-screen-button:hover {
+  background: #e0e0e0;
 }
 
 #map {
