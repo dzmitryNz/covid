@@ -998,6 +998,17 @@ template {
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 0.05fr 1fr;
+      grid-template-columns: 0.05fr 1fr;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+  width: 100%;
+  padding: 0 10px;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: end;
 }
 
 .map__full-screen-button {
@@ -1054,7 +1065,8 @@ template {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin-left: 10px;
+  margin-left: 0;
+  width: 26px;
 }
 
 #map .map__param-changer .param-changer__button--confirmed {
@@ -1144,8 +1156,10 @@ template {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 100%;
-  margin-left: 0 !important;
+  justify-self: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-left: 10px;
 }
 
 #map .map__legend span {
