@@ -1382,12 +1382,20 @@ template {
 
 body {
   background-color: #0d0f11;
+<<<<<<< HEAD
   padding: 10px;
+=======
+  padding: 10px 10px 0px 10px;
+>>>>>>> 3d07937aee21eb025845cef0361d4db68473206c
 }
 
 .grid-wrapper {
   width: 100%;
   height: 100%;
+<<<<<<< HEAD
+=======
+  display: -ms-grid;
+>>>>>>> 3d07937aee21eb025845cef0361d4db68473206c
   display: grid;
   gap: 10px;
   grid-template-columns: 255px 1fr 320px;
