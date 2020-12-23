@@ -51,6 +51,7 @@ export default Page = {
         break;
       default:
         chart(categoryData, "Confirmed");
+        table(categoryData[0].Country, categoryData);
         map.getMap();
     }
   },

@@ -29,7 +29,6 @@ export async function table(country, data) {
   </div>
   <button type="button" class="table__switch-mode"><span>Switch mode</span></button>
   </div>`;
-  console.log('hi');
   const fullButton = document.querySelectorAll('.full-screen-but')[0];
   document.querySelector('.table__body').addEventListener('mouseover', () => {
     if (fullButton.classList.contains('hide-button')) {

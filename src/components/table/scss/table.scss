@@ -140,11 +140,21 @@
   align-items: center;
   justify-content: space-between;
   .table__title {
+    max-width: 30%;
+    padding: 0px 7px;
+    background: rgba(237, 176, 33, 0.1);
+    border: 1px solid #edb021;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
     span {
-      text-align: center;
+      max-height: 100%;
+      max-width: 100%;
       font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-      font-size: 18px;
-      color: white;
+      font-size: 24px;
+      line-height: 33px;
+      color: #edb021;
     }
   }
 }

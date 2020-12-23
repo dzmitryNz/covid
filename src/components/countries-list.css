@@ -9,22 +9,29 @@
   max-height: 100%;
   width: 100%;
   height: 100%;
+  display: -ms-grid;
   display: grid;
   gap: 0px;
   grid-template-columns: 255px;
   -ms-grid-columns: 255px;
+  -ms-grid-rows: 115px 40px auto 30px;
   grid-template-rows: 115px 40px auto 30px;
-  grid-template-areas: "total" "search" "countrieslist" "last";
+      grid-template-areas: "total" "search" "countrieslist" "last";
 }
 
 .countries-list .total-cases {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
   grid-area: total;
   font-size: 2em;
+  display: -ms-grid;
   display: grid;
   gap: 4px;
-  grid-template-columns: 25px 195px 25px;
-  grid-template-rows: 115px;
-  grid-template-areas: "recoverBut digits deathsBut";
+  -ms-grid-columns: 25px 195px 25px;
+      grid-template-columns: 25px 195px 25px;
+  -ms-grid-rows: 115px;
+      grid-template-rows: 115px;
+      grid-template-areas: "recoverBut digits deathsBut";
 }
 
 .countries-list .total-cases .total .total-digits {
@@ -44,12 +51,12 @@
 }
 
 .countries-list .deaths {
-  grid-template-areas: "recoverBut digits totalBut";
+      grid-template-areas: "recoverBut digits totalBut";
   color: #D2374A;
 }
 
 .countries-list .recovered {
-  grid-template-areas: "totalBut digits deathsBut";
+      grid-template-areas: "totalBut digits deathsBut";
   color: #5D9700;
 }
 
@@ -69,37 +76,51 @@
   width: 25px;
   height: 25px;
   border-radius: 25px;
-  align-self: center;
-  justify-self: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  -webkit-transition: border 0.2s filter 0.1s;
   transition: border 0.2s filter 0.1s;
 }
 
 .countries-list .deaths-button {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
   grid-area: deathsBut;
   background: #D2374A;
   border: 2px solid #D2374A;
-  transform: rotateZ(-90deg);
+  -webkit-transform: rotateZ(-90deg);
+          transform: rotateZ(-90deg);
   color: #D2374A;
 }
 
 .countries-list .recovered-button {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
   grid-area: recoverBut;
   background: #5D9700;
   border: 2px solid #5D9700;
-  transform: rotateZ(90deg);
+  -webkit-transform: rotateZ(90deg);
+          transform: rotateZ(90deg);
   color: #5D9700;
 }
 
 .countries-list .total-button {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
   grid-area: totalBut;
   border: 2px solid #EDB021;
   background-color: #EDB021;
-  transform: rotateZ(90deg);
+  -webkit-transform: rotateZ(90deg);
+          transform: rotateZ(90deg);
   color: #EDB021;
 }
 
 .countries-list .deaths .total-button {
-  transform: rotateZ(-90deg);
+  -webkit-transform: rotateZ(-90deg);
+          transform: rotateZ(-90deg);
 }
 
 .countries-list .total-cases .total-button:hover,
@@ -114,17 +135,29 @@
 .countries-list .total-cases .recovered-button:active {
   cursor: pointer;
   border: 3px solid silver;
-  filter: grayscale(40%);
+  -webkit-filter: grayscale(40%);
+          filter: grayscale(40%);
 }
 
 .countries-list .total-cases .total {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
   grid-area: digits;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   text-align: center;
   margin: auto auto;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .countries-list .total-cases .hidden-button {
@@ -141,9 +174,12 @@
   font-size: 18px;
   line-height: 28px;
   width: 100px;
-  align-self: center;
+  -ms-flex-item-align: center;
+      align-self: center;
   justify-self: center;
   margin-top: 3px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   height: 30px;
 }
@@ -155,9 +191,12 @@
   font-size: 18px;
   line-height: 28px;
   width: 100px;
-  align-self: center;
+  -ms-flex-item-align: center;
+      align-self: center;
   justify-self: center;
   margin-top: 3px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   height: 30px;
 }
@@ -196,8 +235,11 @@
   background: #EDB021;
   border-radius: 50%;
   border: 1px solid #F6F5FA;
-  box-sizing: border-box;
-  box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.38);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.38);
+          box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.38);
+  -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
   cursor: pointer;
 }
@@ -213,16 +255,22 @@
   background: #EDB021;
   border-radius: 50%;
   border: 1px solid #F6F5FA;
-  box-sizing: border-box;
-  box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.38);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.38);
+          box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.38);
+  -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
   cursor: pointer;
   margin-right: 15px;
 }
 
 .countries-list .search {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
   grid-area: search;
-  justify-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
 }
 
 .countries-list .search input {
@@ -246,6 +294,7 @@
 .countries-list .search .material-icons {
   color: white;
   vertical-align: middle;
+  -webkit-transition: all 0.2s;
   transition: all 0.2s;
   width: 30px;
   text-align: center;
@@ -259,6 +308,8 @@
 }
 
 .countries-list .countries-table {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
   grid-area: countrieslist;
   overflow: scroll;
   max-height: 100%;
@@ -330,9 +381,15 @@
 }
 
 .countries-list .last-update {
+  -ms-grid-row: 4;
+  -ms-grid-column: 1;
   grid-area: last;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   text-align: center;
   color: #EDB021;
   border: 1px solid #EDB021;
@@ -347,12 +404,24 @@
   position: fixed;
   left: 0px;
   top: 0px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-transition: bottom 0.8s;
   transition: bottom 0.8s;
-  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: all 0.5s;
   transition: all 0.5s;
   z-index: 1002;
   background-color: rgba(45, 45, 45, 0.85);
@@ -364,6 +433,7 @@
   border-radius: 8px;
   width: 430px;
   padding: 2px 0;
+  -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
 
@@ -391,9 +461,15 @@
   outline: none;
   font-family: Arial, Helvetica, sans-serif;
   cursor: pointer;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   vertical-align: top;
   padding: 0;
   -webkit-tap-highlight-color: transparent;
@@ -404,11 +480,12 @@
 .grid-wrapper .keyboard-wrapper .keyboard .keyboard__row .keyboard__key .sub {
   color: grey;
   display: block;
-  align-self: end;
+  -ms-flex-item-align: end;
+      -ms-grid-row-align: end;
+      align-self: end;
   padding: 5px 0 5px 0;
 }
 
 .grid-wrapper .keyboard-wrapper .keyboard .keyboard__row [data-fn=true] {
   background-color: grey;
 }
-/*# sourceMappingURL=countries-list.css.map */
