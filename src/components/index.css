@@ -1274,9 +1274,6 @@ template {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
 }
 
 .pop__table .table__title {
@@ -1303,6 +1300,28 @@ template {
   font-size: 24px;
   line-height: 33px;
   color: #edb021;
+}
+
+.pop__table .table__body {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  height: 100%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.pop__table .table__body .table__all-last {
+  width: 400px;
+}
+
+.pop__table .table__body .table__absolute {
+  width: 400px;
 }
 
 .chart {

@@ -105,7 +105,6 @@ export default function listOfCountries(summaryData) {
       td.Country = create("td", `country ${country.Slug}`, country.Country, tr[i]);
       td.Total = create("td", `${totalClass[Properties.cases]}`, `${country[Properties.cases]}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), tr[i]);
       tr[i].addEventListener("click", (e) => {
-        // changeCases();
         if (e.path.length === 10) targetCountry = e.path[2].className.slice(12);
         else { targetCountry = e.path[1].className.slice(12); }
         getData(countryDay, targetCountry);

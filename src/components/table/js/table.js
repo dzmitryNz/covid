@@ -54,8 +54,22 @@ export async function table(country, data) {
                 <li><span>Deaths</span><span class="table__deaths"></span></li>
               </ul>
             </div>
+            <div class="table__significations">
+              <ul>
+                <li><span>Recovered</span><span class="table__recovered"></span></li>
+                <li><span>Confirmed</span><span class="table__confirmed"></span></li>
+                <li><span>Deaths</span><span class="table__deaths"></span></li>
+              </ul>
+            </div>
           </div>
           <div class="table__absolute">
+            <div class="table__significations">
+              <ul>
+                <li><span>Recovered</span><span class="table__recovered"></span></li>
+                <li><span>Confirmed</span><span class="table__confirmed"></span></li>
+                <li><span>Deaths</span><span class="table__deaths"></span></li>
+              </ul>
+            </div>
             <div class="table__significations">
               <ul>
                 <li><span>Recovered</span><span class="table__recovered"></span></li>

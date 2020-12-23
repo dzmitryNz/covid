@@ -1,18 +1,11 @@
 import { isNull } from "lodash";
 
 export async function chart(country, signification) {
-  if (!isNull(country)) {
-    localStorage.setItem('currentCountryChart', JSON.stringify(country));
-  } else {
-    country = JSON.parse(localStorage.getItem('currentCountryChart'));
-  }
-  if (!isNull(signification)) {
-    localStorage.setItem('currentSignChart', signification);
-  } else {
-    signification = localStorage.getItem('currentSignChart');
-  }
+  if (!isNull(country)) localStorage.setItem('currentCountryChart', JSON.stringify(country));
+  else country = JSON.parse(localStorage.getItem('currentCountryChart'));
+  if (!isNull(signification)) localStorage.setItem('currentSignChart', signification);
+  else signification = localStorage.getItem('currentSignChart');
 
-  console.log(country);
   const countrySignifications = await getCountrySignifications(signification);
   const container = document.querySelector('.chart');
   container.innerHTML = `
