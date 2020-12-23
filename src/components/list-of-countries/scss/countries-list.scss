@@ -2,8 +2,8 @@
     position: fixed;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.93);
-    color: #edb021;
+    background: rgba(0, 0, 0, 0.8);
+    color: #EDB021;
     z-index: 1000;
 }
 
@@ -28,15 +28,15 @@
     margin: 10px auto 0 auto;
 }
 
-.full-screen-block .full-screen-header .full-screen-last-update {
-    margin: auto;
-    font-size: 20px;
+.full-screen-block .full-screen-header .full-screen-last-update{
+margin: auto;
+font-size: 20px;
 }
 
 .full-screen-block .full-screen-table-header {
     width: 935px;
     display: block;
-    border: 1px solid #edb021;
+    border: 1px solid #EDB021;
     border-collapse: collapse;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     font-size: 22px;
@@ -47,12 +47,12 @@
 
 .full-screen-block .full-screen-table {
     width: 935px;
-    max-height: 87%;
+    max-height: 80%;
     overflow: scroll;
     display: block;
     overflow: auto;
-    color: #edb021;
-    border: 1px solid #edb021;
+    color: #EDB021;
+    border: 1px solid #EDB021;
     border-collapse: collapse;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     font-style: normal;
@@ -63,7 +63,7 @@
 }
 
 .full-screen-block .country {
-    color: #d7ecf4;
+    color: #D7ECF4;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -89,11 +89,11 @@
 }
 
 .full-screen-block .recovered {
-    color: #5d9700;
+    color: #5D9700;
 }
 
 .full-screen-block .deaths {
-    color: #d2374a;
+    color: #D2374A;
 }
 
 .countries-list {
@@ -103,7 +103,7 @@
     grid-column: 1;
     -ms-grid-column: 1;
     grid-area: list;
-    color: #edb021;
+    color: #EDB021;
     max-height: 100%;
     width: 100%;
     height: 100%;
@@ -134,7 +134,7 @@
     width: 115px;
     height: 30px;
     background: rgba(237, 176, 33, 0.1);
-    border: 1px solid #edb021;
+    border: 1px solid #EDB021;
     border-radius: 28px;
     margin: auto auto;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
@@ -148,57 +148,60 @@
 
 .countries-list .deaths {
     grid-template-areas: "recoverBut digits totalBut";
-    color: #d2374a;
+    color: #D2374A;
 }
 
 .countries-list .recovered {
     grid-template-areas: "totalBut digits deathsBut";
-    color: #5d9700;
+    color: #5D9700;
 }
 
-.countries-list .recovered .total .total-digits {
+.countries-list .recovered .total .total-digits{
     background: rgba(93, 151, 0, 0.1);
-    border: 1px solid #5d9700;
+    border: 1px solid #5D9700;
 }
 
-.countries-list .deaths .total .total-digits {
-    background: rgba(97, 0, 13, 0.3);
-    border: 1px solid #d2374a;
+.countries-list .deaths .total .total-digits{
+    background: rgba(97, 0, 13, 0.3);;
+    border: 1px solid #D2374A;
 }
 
-.countries-list .total-cases .total-button,
-.countries-list .total-cases .recovered-button,
-.countries-list .total-cases .deaths-button {
-    width: 25px;
+.countries-list .total-cases .total-button, .countries-list .total-cases .recovered-button, .countries-list .total-cases .deaths-button {
+    width: 100px;
     height: 25px;
     border-radius: 25px;
     align-self: center;
     justify-self: center;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     transition: border 0.2s filter 0.1s;
+    color: white;
+    font-size: 18px;
+    line-height: 20px;
+    text-align: center;
 }
 
 .countries-list .deaths-button {
     grid-area: deathsBut;
-    background: #d2374a;
-    border: 2px solid #d2374a;
+    background: #D2374A;
+    border: 2px solid #D2374A;
     transform: rotateZ(-90deg);
-    color: #d2374a;
+    color: #D2374A;
 }
 
 .countries-list .recovered-button {
     grid-area: recoverBut;
-    background: #5d9700;
-    border: 2px solid #5d9700;
+    background: #5D9700;
+    border: 2px solid #5D9700;
     transform: rotateZ(90deg);
-    color: #5d9700;
+    color:  #5D9700;
 }
 
 .countries-list .total-button {
     grid-area: totalBut;
-    border: 2px solid #edb021;
-    background-color: #edb021;
+    border: 2px solid #EDB021;
+    background-color: #EDB021;
     transform: rotateZ(90deg);
-    color: #edb021;
+    color:  #EDB021;
 }
 
 .countries-list .deaths .total-button {
@@ -275,18 +278,19 @@
 }
 
 .countries-list .total-cases .total .total-switch-new .switch-new {
-    font-size: 14px;
-    line-height: 30px;
-    color: white;
-    text-transform: uppercase;
-    top: 12px;
-    margin-left: 10px;
+font-size: 14px;
+line-height: 30px;
+color: white;
+text-transform: uppercase;
+top: 12px;
+margin-left: 10px;
 }
 
 .countries-list .total-cases .total .total-switch .switch-none,
 .countries-list .total-cases .total .total-switch-new .switch-none {
-    display: none;
+display: none;
 }
+
 
 .countries-list .total-cases .total .total-switch .switcher {
     display: block;
@@ -296,9 +300,9 @@
     position: relative;
     width: 24px;
     height: 24px;
-    background: #edb021;
+    background: #D7ECF4;
     border-radius: 50%;
-    border: 1px solid #f6f5fa;
+    border: 1px solid #F6F5FA;
     box-sizing: border-box;
     box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.38);
     transition: all 0.2s ease;
@@ -313,9 +317,9 @@
     position: relative;
     width: 24px;
     height: 24px;
-    background: #edb021;
+    background: #D7ECF4;
     border-radius: 50%;
-    border: 1px solid #f6f5fa;
+    border: 1px solid #F6F5FA;
     box-sizing: border-box;
     box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.38);
     transition: all 0.2s ease;
@@ -363,10 +367,6 @@
     cursor: pointer;
     font-size: 28px;
 }
-.keyboard:hover {
-    cursor: pointer;
-    color: silver;
-}
 
 .countries-list .countries-table {
     grid-area: countrieslist;
@@ -374,8 +374,8 @@
     max-height: 100%;
     display: block;
     overflow: auto;
-    color: #edb021;
-    border: 1px solid #edb021;
+    color: #EDB021;
+    border: 1px solid #EDB021;
     border-collapse: collapse;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     font-style: normal;
@@ -394,7 +394,7 @@
 }
 
 .countries-list .countries-table .country-row .country {
-    color: #d7ecf4;
+    color: #D7ECF4;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -404,7 +404,7 @@
 
 .full-screen-block .full-screen-table .country-row .total-deaths,
 .countries-list .countries-table .country-row .total-deaths {
-    color: #d2374a;
+    color: #D2374A;
     white-space: nowrap;
     text-align: right;
     min-width: 100px;
@@ -412,7 +412,7 @@
 
 .full-screen-block .full-screen-table .country-row .total-recovered,
 .countries-list .countries-table .country-row .total-recovered {
-    color: #5d9700;
+    color: #5D9700;
     white-space: nowrap;
     text-align: right;
     min-width: 100px;
@@ -445,8 +445,8 @@
     display: flex;
     justify-content: center;
     text-align: center;
-    color: #edb021;
-    border: 1px solid #edb021;
+    color: #EDB021;
+    border: 1px solid #EDB021;
     font-family: Open Sans;
     font-style: normal;
     font-weight: normal;
@@ -468,7 +468,7 @@
     z-index: 1002;
     background-color: rgba(45, 45, 45, 0.85);
     border-radius: 30px;
-    border: 1px solid #edb021;
+    border: 1px solid #EDB021;
 }
 
 .grid-wrapper .keyboard-wrapper .keyboard {
@@ -483,7 +483,7 @@
 }
 
 .grid-wrapper .keyboard--hidden {
-    left: -55%;
+    left: -100%;
 }
 
 .grid-wrapper .keyboard-wrapper .keyboard .keyboard__row .keyboard__keys {
@@ -497,7 +497,7 @@
     border-radius: 8px;
     border: 1px solid grey;
     background: rgb(50, 70, 70);
-    color: #edb021;
+    color: #EDB021;
     font-size: 1em;
     outline: none;
     font-family: Arial, Helvetica, sans-serif;
@@ -519,10 +519,84 @@
     padding: 5px 0 5px 0;
 }
 
-.grid-wrapper .keyboard-wrapper .keyboard .keyboard__row [data-fn="true"] {
+.grid-wrapper .keyboard-wrapper .keyboard .keyboard__row [data-fn=true] {
     background-color: grey;
 }
 
 .full-screen-block .full-screen-table .country-row:hover {
     background: rgb(14, 34, 34);
 }
+
+@media screen and (max-width: 1000px) {
+ 
+    .full-screen-block .full-screen-table-header {
+        width: 650px;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .full-screen-block .full-screen-table-header .country {
+        min-width: 141px;
+    }
+
+    .full-screen-block .full-screen-table {
+        width: 650px;
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    .full-screen-block .deaths, .full-screen-block .recovered, .full-screen-block .confirmed {
+        text-align: center;
+        min-width: 83px;
+    }
+
+
+    .full-screen-block .country {    
+        max-width: 105px;
+        min-width: 105px;
+        line-height: 60px;
+    }
+
+} 
+
+@media screen and (max-width: 700px) {
+ 
+    .full-screen-block .full-screen-header {
+        width: 450px;
+    }
+
+    .full-screen-block .full-screen-header .full-screen-last-update {
+        font-size: 15px;
+    }
+
+    .full-screen-block .full-screen-table-header {
+        width: 500px;
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .full-screen-block .full-screen-table {
+        width: 500px;
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .full-screen-block .country {    
+        line-height: 18px;
+    }
+
+     .full-screen-block .deaths, .full-screen-block .recovered, .full-screen-block .confirmed {
+        text-align: center;
+        min-width: 56px;
+    }
+
+    .grid-wrapper .keyboard-wrapper .keyboard {
+        width: 278px;
+    }
+    .grid-wrapper .keyboard-wrapper .keyboard .keyboard__row .keyboard__key {
+        height: 27px;
+        width: 20px;
+    }
+
+} 
+

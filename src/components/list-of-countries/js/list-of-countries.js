@@ -8,8 +8,7 @@ import create from "../../create";
 import getData from "../../api";
 import en from "./en";
 import Map from "../../map/js/map";
-import { chart } from "../../chart/js/chart.js";
-// import { chart } from "../../chart/js/chart";
+import { chart } from "../../chart/js/chart";
 
 const summary = "summaryRoute";
 const main = document.querySelector(".grid-wrapper");
@@ -21,9 +20,9 @@ const countriesList = document.querySelector(".countries-list");
 let search = document.querySelector(".search");
 // const countryDay = "countryDayOneRoute";
 const countryDay = "countryDayOneTotalRoute";
-const deathsButton = create("div", "deaths-button", null, totalCases);
-const recoverButton = create("div", "recovered-button", null, totalCases);
-const totalButton = create("div", "hidden-button", null, totalCases);
+const deathsButton = create("div", "deaths-button", "Deaths", totalCases);
+const recoverButton = create("div", "recovered-button", "Recovered", totalCases);
+const totalButton = create("div", "hidden-button", "Confirmed", totalCases);
 const keyboardButton = create("i", "material-icons keyboard", "keyboard", search);
 const searchInput = create("input", "search-input", null, search, ["type", "text"], ["id", "search-counrty"], ["placeholder", "Search for a Country"]);
 const fullScreenButton = create("i", "material-icons fullscreen", "fullscreen", search);
@@ -39,7 +38,6 @@ let searchExp = "";
 let fullScreenOn = false;
 let dataSummary = {};
 let targetCountry = "";
-
 function changeCases(e) {
   let tempCases = Properties.cases;
   let requestTotal = e.path[0].className;
@@ -106,6 +104,7 @@ export default function listOfCountries(summaryData) {
       td.Total = create("td", `${totalClass[Properties.cases]}`, `${country[Properties.cases]}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), tr[i]);
       tr[i].addEventListener("click", (e) => {
         if (e.path.length === 10) targetCountry = e.path[2].className.slice(12);
+        else if (e.path.length === 8) targetCountry = e.path[0].className.slice(12);
         else { targetCountry = e.path[1].className.slice(12); }
         getData(countryDay, targetCountry);
       });
