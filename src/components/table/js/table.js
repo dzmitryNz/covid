@@ -46,8 +46,24 @@ export async function table(country, data) {
       <div class="pop__table">
         <div class="table__title"><span>${country === 'world' ? 'Global' : data[0].Country}</span></div>
         <div class="table__body">
-          <div class="table__all-last"></div>
-          <div class="table__absolute"></div>
+          <div class="table__all-last">
+            <div class="table__significations">
+              <ul>
+                <li><span>Recovered</span><span class="table__recovered"></span></li>
+                <li><span>Confirmed</span><span class="table__confirmed"></span></li>
+                <li><span>Deaths</span><span class="table__deaths"></span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="table__absolute">
+            <div class="table__significations">
+              <ul>
+                <li><span>Recovered</span><span class="table__recovered"></span></li>
+                <li><span>Confirmed</span><span class="table__confirmed"></span></li>
+                <li><span>Deaths</span><span class="table__deaths"></span></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     `;
