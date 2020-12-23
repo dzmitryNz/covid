@@ -81,7 +81,7 @@ export async function chart(country, signification) {
   Chart.defaults.global.defaultFontSize = 14;
   new Chart(ctx, chart);
 
-  const fullButton = document.querySelectorAll('.full-screen-but')[1];
+  const fullButton = document.querySelector('.full-screen-but');
   container.addEventListener('mouseover', () => {
     if (fullButton.classList.contains('hide-button')) {
       fullButton.classList.toggle('hide-button');
