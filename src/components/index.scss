@@ -10,6 +10,7 @@
 body {
   background-color: #0d0f11;
   padding: 10px;
+  height: auto;
 }
 
 .grid-wrapper {
@@ -164,17 +165,11 @@ body {
     }
   }
 }
-// @media screen and (max-width: 1200px) {
-//   .footer__school,
-//   .footer__year {
-//     display: none;
-//   }
-// }
 
 @media screen and (max-width: 940px) {
   .grid-wrapper {
     max-width: 605px;
-    height: 100%;
+    height: auto;
     display: grid;
     gap: 10px;
     grid-template-columns: 1fr 1fr;
@@ -188,5 +183,27 @@ body {
   }
   #map .map__legend {
     flex-wrap: nowrap;
+  }
+}
+@media screen and (max-width: 600px) {
+  .grid-wrapper {
+    max-width: 450px;
+    margin: 0px auto;
+    height: auto;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 450px;
+    grid-template-rows: 75px 300px 360px 360px auto 75px;
+    grid-template-areas:
+      "header"
+      "map"
+      "list"
+      "table"
+      "chart"
+      "footer";
+  }
+  .footer__school,
+  .footer__year {
+    display: none;
   }
 }
