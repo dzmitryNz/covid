@@ -225,10 +225,4 @@
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
-
-#map.map--fullscreen .leaflet-map-pane {
-  /* left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%); */
-}
 /*# sourceMappingURL=map.css.map */

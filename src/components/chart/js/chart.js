@@ -1,18 +1,11 @@
 import { isNull } from "lodash";
 
 export async function chart(country, signification) {
-  if (!isNull(country)) {
-    localStorage.setItem('currentCountryChart', JSON.stringify(country));
-  } else {
-    country = JSON.parse(localStorage.getItem('currentCountryChart'));
-  }
-  if (!isNull(signification)) {
-    localStorage.setItem('currentSignChart', signification);
-  } else {
-    signification = localStorage.getItem('currentSignChart');
-  }
+  if (!isNull(country)) localStorage.setItem('currentCountryChart', JSON.stringify(country));
+  else country = JSON.parse(localStorage.getItem('currentCountryChart'));
+  if (!isNull(signification)) localStorage.setItem('currentSignChart', signification);
+  else signification = localStorage.getItem('currentSignChart');
 
-  console.log(country);
   const countrySignifications = await getCountrySignifications(signification);
   const container = document.querySelector('.chart');
   container.innerHTML = `
@@ -88,7 +81,7 @@ export async function chart(country, signification) {
   Chart.defaults.global.defaultFontSize = 14;
   new Chart(ctx, chart);
 
-  const fullButton = document.querySelectorAll('.full-screen-but')[1];
+  const fullButton = document.querySelector('.full-screen-but');
   container.addEventListener('mouseover', () => {
     if (fullButton.classList.contains('hide-button')) {
       fullButton.classList.toggle('hide-button');

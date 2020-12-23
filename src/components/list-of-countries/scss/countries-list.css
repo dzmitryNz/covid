@@ -205,8 +205,8 @@
   grid-area: recoverBut;
   background: #5D9700;
   border: 2px solid #5D9700;
-  -webkit-transform: rotateZ(90deg);
-          transform: rotateZ(90deg);
+  -webkit-transform: rotateZ(-90deg);
+          transform: rotateZ(-90deg);
   color: #5D9700;
 }
 
@@ -216,8 +216,8 @@
   grid-area: totalBut;
   border: 2px solid #EDB021;
   background-color: #EDB021;
-  -webkit-transform: rotateZ(90deg);
-          transform: rotateZ(90deg);
+  -webkit-transform: rotateZ(-90deg);
+          transform: rotateZ(-90deg);
   color: #EDB021;
 }
 

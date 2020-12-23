@@ -121,8 +121,6 @@ export default class Map {
       });
 
       circle.addEventListener("click", (e) => {
-        // console.log(e.target.getLatLng(), e.target.options.id, e.target.options.val);
-        console.log(document.querySelector(`tr.country-row.${this.country[e.target.options.id]}`));
         document.querySelector(`tr.country-row.${this.country[e.target.options.id]}`).click();
       });
     });

@@ -4,17 +4,18 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const webpack = require("webpack");
 const CopyPlugin = require("copy-webpack-plugin");
+require("babel-polyfill");
 
 module.exports = {
-  mode: "production",
+  mode: "development",
 
-  entry: {
-    main: path.resolve(__dirname, "./src/index.js"),
-  },
-
-  output: {
-    path: path.resolve(__dirname, "./public"),
-    filename: "bundle.js",
+  devServer: {
+    historyApiFallback: true,
+    contentBase: path.resolve(__dirname, "./public"),
+    open: true,
+    compress: true,
+    hot: true,
+    port: 8080,
   },
 
   plugins: [

@@ -1,7 +1,7 @@
 .table {
   grid-area: table;
   max-height: 400px;
-  padding: 0px 10px;
+  padding: 0px 7px;
 }
 
 .table .table__body {
@@ -206,49 +206,5 @@
 .table .table__body .table__common .table__significations ul li:nth-child(3) {
   color: #d2374a;
   margin: 0px 0px 0px 0px;
-}
-
-.pop__table {
-  min-width: 100%;
-  min-height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-.pop__table .table__title {
-  min-width: 30%;
-  padding: 0px 7px;
-  background: rgba(237, 176, 33, 0.1);
-  border: 1px solid #edb021;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  height: 35px;
-}
-
-.pop__table .table__title span {
-  max-height: 100%;
-  max-width: 100%;
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  font-size: 24px;
-  line-height: 33px;
-  color: #edb021;
 }
 /*# sourceMappingURL=table.css.map */
