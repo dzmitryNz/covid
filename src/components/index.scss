@@ -9,11 +9,7 @@
 
 body {
   background-color: #0d0f11;
-<<<<<<< HEAD
   padding: 10px;
-=======
-  padding: 10px 10px 0px 10px;
->>>>>>> 3d07937aee21eb025845cef0361d4db68473206c
 }
 
 .grid-wrapper {
@@ -168,29 +164,29 @@ body {
     }
   }
 }
-@media screen and (max-width: 1200px) {
-  .footer__school,
-  .footer__year {
-    display: none;
-  }
-}
+// @media screen and (max-width: 1200px) {
+//   .footer__school,
+//   .footer__year {
+//     display: none;
+//   }
+// }
 
 @media screen and (max-width: 940px) {
-   .grid-wrapper {
-    width: 100%;
+  .grid-wrapper {
+    max-width: 605px;
     height: 100%;
     display: grid;
     gap: 10px;
-    grid-template-columns: 255px 1fr;
-    grid-template-rows: 75px 1fr auto 75px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 75px 300px 360px 350px 75px;
     grid-template-areas:
-      "list header"
-      "list map"
-      "list map"
-      "list map"
-      "chart map"
-      "chart map"
-      "table map"
-      "table footer";
-    }
-} 
+      "header header"
+      "map map"
+      "list table"
+      "chart chart"
+      "footer footer";
+  }
+  #map .map__legend {
+    flex-wrap: nowrap;
+  }
+}
