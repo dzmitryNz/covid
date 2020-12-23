@@ -1,5 +1,7 @@
 .chart {
   grid-area: chart;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   align-items: center;
   justify-content: center;

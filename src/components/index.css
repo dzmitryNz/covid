@@ -551,7 +551,6 @@ template {
   display: grid;
   gap: 0px;
   grid-template-columns: 255px;
-  -ms-grid-columns: 255px;
   grid-template-rows: 115px 40px auto 30px;
   grid-template-areas: "total" "search" "countrieslist" "last";
 }
@@ -559,6 +558,7 @@ template {
 .countries-list .total-cases {
   grid-area: total;
   font-size: 2em;
+  display: -ms-grid;
   display: grid;
   gap: 4px;
   grid-template-columns: 25px 195px 25px;
@@ -583,12 +583,12 @@ template {
 }
 
 .countries-list .deaths {
-  grid-template-areas: "recoverBut digits totalBut";
+      grid-template-areas: "recoverBut digits totalBut";
   color: #D2374A;
 }
 
 .countries-list .recovered {
-  grid-template-areas: "totalBut digits deathsBut";
+      grid-template-areas: "totalBut digits deathsBut";
   color: #5D9700;
 }
 
@@ -667,6 +667,27 @@ template {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.countries-list .total-cases .total {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: digits;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  margin: auto auto;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .countries-list .total-cases .hidden-button {
@@ -763,8 +784,11 @@ template {
 }
 
 .countries-list .search {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
   grid-area: search;
-  justify-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
 }
 
 .full-screen-block .full-screen-header input,
@@ -865,29 +889,40 @@ template {
   background: #212121;
 }
 
-.countries-list .country-row:hover {
-  background: #515151;
-  cursor: pointer;
+.table .table__body .table__common .table__significations ul li:nth-child(3) {
+  color: #d2374a;
+  margin: 0px 0px 0px 0px;
 }
 
-.countries-list .country-row:active {
-  background: #000;
-  cursor: pointer;
+.pop__table {
+  min-width: 100%;
+  min-height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .full-screen-block .last-update,
 .countries-list .last-update {
   grid-area: last;
   display: flex;
-  justify-content: center;
-  text-align: center;
-  color: #EDB021;
-  border: 1px solid #EDB021;
-  font-family: Open Sans;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 13pt;
-  line-height: 33px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 35px;
 }
 
 .grid-wrapper .keyboard-wrapper {
@@ -1204,6 +1239,8 @@ template {
 
 .chart {
   grid-area: chart;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1248,13 +1285,137 @@ template {
 }
 
 .leaflet-tile-pane {
-  filter: invert(1) saturate(9) sepia(1) !important;
+  -webkit-filter: invert(1) saturate(9) sepia(1) !important;
+          filter: invert(1) saturate(9) sepia(1) !important;
 }
 
 .leaflet-bottom.leaflet-right {
   display: none;
 }
 
+.leaflet-bottom.leaflet-left {
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 0.05fr 1fr;
+      grid-template-columns: 0.05fr 1fr;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+  width: 100%;
+  padding: 0 10px;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: end;
+}
+
+.map__full-screen-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: black;
+  z-index: 10;
+  border-radius: 4px;
+  background: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  outline: none;
+}
+
+.map__full-screen-button:hover {
+  background: #e0e0e0;
+}
+
+#map {
+  background: #645945;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+#map .map__param-changer {
+  padding: 6px 0;
+  font: 12px Arial, Helvetica, sans-serif;
+  background: white;
+  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  line-height: 24px;
+  color: #555;
+  border-radius: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-weight: 600;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-left: 0;
+  width: 26px;
+}
+
+#map .map__param-changer .param-changer__button--confirmed {
+  color: #edb021;
+}
+
+#map .map__param-changer .param-changer__button--deaths {
+  color: #d2374a;
+}
+
+#map .map__param-changer .param-changer__button--recovered {
+  color: #5d9700;
+}
+
+#map .map__param-changer .param-changer__button--active {
+  background: #532f0b;
+}
+
+#map .map__param-changer button {
+  background: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 3px 1px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 2;
+}
+
+#map .map__param-changer button:hover {
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+#map .map__param-changer button span {
+  font-size: 24px;
+}
+
+#map .map__param-changer .param-changer__param-title {
+  position: absolute;
+  background: #fff;
+  text-transform: uppercase;
+  padding: 3px 5px;
+  width: 90px;
+  -webkit-transition: all 0.5s;
+=======
 .leaflet-bottom.leaflet-left {
   left: 50%;
   transform: translateX(-50%);
@@ -1280,66 +1441,6 @@ template {
 #map {
   background: #645945;
   transition: all 0.5s;
-}
-
-#map .map__param-changer {
-  padding: 6px 0;
-  font: 12px Arial, Helvetica, sans-serif;
-  background: white;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  line-height: 24px;
-  color: #555;
-  border-radius: 4px;
-  display: flex;
-  font-weight: 600;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  margin-left: 10px;
-}
-
-#map .map__param-changer .param-changer__button--confirmed {
-  color: #edb021;
-}
-
-#map .map__param-changer .param-changer__button--deaths {
-  color: #d2374a;
-}
-
-#map .map__param-changer .param-changer__button--recovered {
-  color: #5d9700;
-}
-
-#map .map__param-changer .param-changer__button--active {
-  background: #532f0b;
-}
-
-#map .map__param-changer button {
-  background: none;
-  display: flex;
-  padding: 3px 1px;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-}
-
-#map .map__param-changer button:hover {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-#map .map__param-changer button span {
-  font-size: 24px;
-}
-
-#map .map__param-changer .param-changer__param-title {
-  position: absolute;
-  background: #fff;
-  text-transform: uppercase;
-  padding: 3px 5px;
-  width: 90px;
-  transition: all 0.5s;
   color: #645945;
   pointer-events: none;
   border-top-right-radius: 4px;
@@ -1349,6 +1450,7 @@ template {
 #map .map__param-changer .param-changer__param-title--hide {
   width: 0;
   left: 0 !important;
+  -webkit-transition: all 0.5s;
   transition: all 0.5s;
   z-index: 1;
 }
@@ -1368,10 +1470,16 @@ template {
   border-radius: 10px;
   display: flex;
   font-weight: 600;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-left: 0 !important;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-self: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-left: 10px;
 }
 
 #map .map__legend span {
@@ -1392,6 +1500,7 @@ template {
   height: calc(100vh - 20px);
   position: absolute !important;
   z-index: 4;
+  -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
 
@@ -1413,7 +1522,10 @@ body {
   gap: 10px;
   grid-template-columns: 255px 1fr 320px;
   grid-template-rows: 75px 1fr auto 75px;
-  grid-template-areas: "list header table" "list map table" "list map chart" "list footer chart";
+  grid-template-areas: "list header table"
+ "list map table"
+ "list map chart"
+ "list footer chart";
 }
 
 .grid-wrapper .header {
@@ -1539,8 +1651,12 @@ body {
   width: 100%;
   height: 100%;
   padding: 20px 15px 5px 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .full-screen form section canvas {
@@ -1562,18 +1678,21 @@ body {
   position: absolute;
   top: 50%;
   left: 0;
-  transform: translate(0, -50%);
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
   height: 1px;
   width: 100%;
   background-color: rgba(215, 236, 244, 0.8);
 }
 
 .full-screen form button::before {
-  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
 }
 
 .full-screen form button::after {
-  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
 }
 
 @media screen and (max-width: 1200px) {

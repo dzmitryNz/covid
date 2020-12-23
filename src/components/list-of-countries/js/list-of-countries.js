@@ -102,6 +102,7 @@ export default function listOfCountries(summaryData) {
       td.Total = create("td", `${totalClass[Properties.cases]}`, `${country[Properties.cases]}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), tr[i]);
       tr[i].addEventListener("click", (e) => {
         if (e.path.length === 10) targetCountry = e.path[2].className.slice(12);
+        else if (e.path.length === 8) targetCountry = e.path[0].className.slice(12);
         else { targetCountry = e.path[1].className.slice(12); }
         getData(countryDay, targetCountry);
       });
