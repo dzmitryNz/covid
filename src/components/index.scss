@@ -204,6 +204,7 @@ body {
     gap: 10px;
     grid-template-columns: 450px;
     grid-template-rows: 75px 300px 360px 360px auto 75px;
+    justify-content: center;
     grid-template-areas:
       "header"
       "map"
