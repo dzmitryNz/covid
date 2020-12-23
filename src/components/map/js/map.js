@@ -67,7 +67,7 @@ export default class Map {
     };
 
     legend.addTo(this.map);
-
+    
     this.addParamChanger(param);
   }
 
@@ -122,7 +122,6 @@ export default class Map {
 
       circle.addEventListener("click", (e) => {
         // console.log(e.target.getLatLng(), e.target.options.id, e.target.options.val);
-        console.log(document.querySelector(`tr.country-row.${this.country[e.target.options.id]}`));
         document.querySelector(`tr.country-row.${this.country[e.target.options.id]}`).click();
       });
     });
@@ -131,7 +130,7 @@ export default class Map {
   // add changing parametr buttons
   addParamChanger(param) {
     // Change param buttons
-    const paramChanger = L.control({ position: "bottomleft" });
+    const paramChanger = L.control({ position: "topleft" });
 
     paramChanger.onAdd = (map) => {
       const div = L.DomUtil.create("div", "map__param-changer");
@@ -206,7 +205,7 @@ export default class Map {
           default: break;
         }
         this.addCircles(Properties.cases);
-
+        
         paramButtons.forEach((item) => {
           item.classList.remove("param-changer__button--active");
         });

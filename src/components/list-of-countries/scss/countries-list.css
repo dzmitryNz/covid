@@ -22,8 +22,6 @@
 }
 
 .full-screen-block .full-screen-header {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 540px;
   max-height: 30px;
@@ -109,29 +107,24 @@
   max-height: 100%;
   width: 100%;
   height: 100%;
-  display: -ms-grid;
   display: grid;
   gap: 0px;
   grid-template-columns: 255px;
   -ms-grid-columns: 255px;
   -ms-grid-rows: 115px 40px auto 30px;
   grid-template-rows: 115px 40px auto 30px;
-      grid-template-areas: "total" "search" "countrieslist" "last";
+  grid-template-areas: "total" "search" "countrieslist" "last";
 }
 
 .countries-list .total-cases {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
   grid-area: total;
   font-size: 2em;
   display: -ms-grid;
   display: grid;
   gap: 4px;
-  -ms-grid-columns: 25px 195px 25px;
-      grid-template-columns: 25px 195px 25px;
-  -ms-grid-rows: 115px;
-      grid-template-rows: 115px;
-      grid-template-areas: "recoverBut digits deathsBut";
+  grid-template-columns: 25px 195px 25px;
+  grid-template-rows: 115px;
+  grid-template-areas: "recoverBut digits deathsBut";
 }
 
 .countries-list .total-cases .total .total-digits {
@@ -174,13 +167,9 @@
   width: 100px;
   height: 25px;
   border-radius: 25px;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-  -ms-grid-column-align: center;
-      justify-self: center;
+  align-self: center;
+  justify-self: center;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  -webkit-transition: border 0.2s filter 0.1s;
   transition: border 0.2s filter 0.1s;
   color: white;
   font-size: 18px;
@@ -189,41 +178,31 @@
 }
 
 .countries-list .deaths-button {
-  -ms-grid-row: 1;
-  -ms-grid-column: 3;
   grid-area: deathsBut;
   background: #D2374A;
   border: 2px solid #D2374A;
-  -webkit-transform: rotateZ(-90deg);
-          transform: rotateZ(-90deg);
+  transform: rotateZ(-90deg);
   color: #D2374A;
 }
 
 .countries-list .recovered-button {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
   grid-area: recoverBut;
   background: #5D9700;
   border: 2px solid #5D9700;
-  -webkit-transform: rotateZ(90deg);
-          transform: rotateZ(90deg);
+  transform: rotateZ(90deg);
   color: #5D9700;
 }
 
 .countries-list .total-button {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
   grid-area: totalBut;
   border: 2px solid #EDB021;
   background-color: #EDB021;
-  -webkit-transform: rotateZ(90deg);
-          transform: rotateZ(90deg);
+  transform: rotateZ(90deg);
   color: #EDB021;
 }
 
 .countries-list .deaths .total-button {
-  -webkit-transform: rotateZ(-90deg);
-          transform: rotateZ(-90deg);
+  transform: rotateZ(-90deg);
 }
 
 .countries-list .total-cases .total-button:hover,
@@ -238,8 +217,17 @@
 .countries-list .total-cases .recovered-button:active {
   cursor: pointer;
   border: 3px solid silver;
-  -webkit-filter: grayscale(40%);
-          filter: grayscale(40%);
+  filter: grayscale(40%);
+}
+
+.countries-list .total-cases .total {
+  grid-area: digits;
+  display: flex;
+  text-align: center;
+  margin: auto auto;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .countries-list .total-cases .total {
@@ -277,12 +265,9 @@
   font-size: 18px;
   line-height: 28px;
   width: 100px;
-  -ms-flex-item-align: center;
-      align-self: center;
+  align-self: center;
   justify-self: center;
   margin-top: 3px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   height: 30px;
 }
@@ -294,12 +279,9 @@
   font-size: 18px;
   line-height: 28px;
   width: 100px;
-  -ms-flex-item-align: center;
-      align-self: center;
+  align-self: center;
   justify-self: center;
   margin-top: 3px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   height: 30px;
 }
@@ -338,11 +320,8 @@
   background: #D7ECF4;
   border-radius: 50%;
   border: 1px solid #F6F5FA;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  -webkit-box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.38);
-          box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.38);
-  -webkit-transition: all 0.2s ease;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.38);
   transition: all 0.2s ease;
   cursor: pointer;
 }
@@ -358,11 +337,8 @@
   background: #D7ECF4;
   border-radius: 50%;
   border: 1px solid #F6F5FA;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  -webkit-box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.38);
-          box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.38);
-  -webkit-transition: all 0.2s ease;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.38);
   transition: all 0.2s ease;
   cursor: pointer;
   margin-right: 15px;
@@ -399,7 +375,6 @@
 .countries-list .search .material-icons {
   color: white;
   vertical-align: middle;
-  -webkit-transition: all 0.2s;
   transition: all 0.2s;
   width: 30px;
   text-align: center;
@@ -414,8 +389,6 @@
 }
 
 .countries-list .countries-table {
-  -ms-grid-row: 3;
-  -ms-grid-column: 1;
   grid-area: countrieslist;
   overflow: scroll;
   max-height: 100%;
@@ -512,24 +485,12 @@
   position: fixed;
   left: 0px;
   top: 0px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  -webkit-transition: bottom 0.8s;
+  user-select: none;
   transition: bottom 0.8s;
-  -webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
-          box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
-  display: -webkit-box;
-  display: -ms-flexbox;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-transition: all 0.5s;
+  justify-content: center;
   transition: all 0.5s;
   z-index: 1002;
   background-color: rgba(45, 45, 45, 0.85);
@@ -541,7 +502,6 @@
   border-radius: 8px;
   width: 430px;
   padding: 2px 0;
-  -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
 
@@ -569,15 +529,9 @@
   outline: none;
   font-family: Arial, Helvetica, sans-serif;
   cursor: pointer;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   vertical-align: top;
   padding: 0;
   -webkit-tap-highlight-color: transparent;
@@ -588,9 +542,7 @@
 .grid-wrapper .keyboard-wrapper .keyboard .keyboard__row .keyboard__key .sub {
   color: grey;
   display: block;
-  -ms-flex-item-align: end;
-      -ms-grid-row-align: end;
-      align-self: end;
+  align-self: end;
   padding: 5px 0 5px 0;
 }
 
