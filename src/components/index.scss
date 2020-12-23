@@ -164,7 +164,12 @@ body {
     }
   }
 }
-
+@media screen and (max-width: 1200px) {
+  .footer__school,
+  .footer__year {
+    display: none;
+  }
+}
 @media screen and (max-width: 940px) {
   .grid-wrapper {
     max-width: 605px;
