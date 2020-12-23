@@ -37,6 +37,7 @@ const fullScreenBlock = create("div", "full-screen-block-hidden", null, main);
 let searchExp = "";
 let fullScreenOn = false;
 let dataSummary = {};
+let targetCountry = "";
 
 function changeCases(e) {
   let tempCases = Properties.cases;
@@ -99,7 +100,11 @@ export default function listOfCountries(summaryData) {
       td.Flag = create("td", `flag ${country.Slug}`, [flagImg], tr[i]);
       td.Country = create("td", `country ${country.Slug}`, country.Country, tr[i]);
       td.Total = create("td", `${totalClass[Properties.cases]}`, `${country[Properties.cases]}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), tr[i]);
-      tr[i].addEventListener("click", (e) => { getData(countryDay, e.path[1].className.slice(12)); });
+      tr[i].addEventListener("click", (e) => {
+        if (e.path.length === 10) targetCountry = e.path[2].className.slice(12);
+        else { targetCountry = e.path[1].className.slice(12); }
+        getData(countryDay, targetCountry);
+      });
     });
 }
 
@@ -149,9 +154,20 @@ function fullScreen() {
   let tr = {};
   let td = {};
   fullScreenOn = true;
+  const lastUpdateDate = new Date(dataSummary.Date);
   fullScreenBlock.className = "full-screen-block";
+  const fsLastUpdate = create("div", "full-screen-last-update", `Last Update: ${lastUpdateDate.toLocaleString().slice(0, 17)}`);
   const closeButton = create("i", "material-icons close-full-screen", "close");
-  search = create("div", "full-screen-header", [keyboardButton, searchInput, closeButton], fullScreenBlock);
+  search = create("div", "full-screen-header", [fsLastUpdate, keyboardButton, searchInput, closeButton], fullScreenBlock);
+  let fullScreenTableHeader = create("table", "full-screen-table-header", null, fullScreenBlock);
+  let thf = create("th", null, null, fullScreenTableHeader);
+  const td1 = create("td", "country", "Country", thf);
+  const td2 = create("td", "confirmed", "Total confirmed", thf);
+  const td3 = create("td", "deaths", "Total deaths", thf);
+  const td4 = create("td", "recovered", "Total recovered", thf);
+  const td5 = create("td", "confirmed", "New confirmed", thf);
+  const td6 = create("td", "deaths", "New deaths", thf);
+  const td7 = create("td", "recovered", "New recovered", thf);
   let fullScreentableBlock = create("table", "full-screen-table", null, fullScreenBlock);
 
   dataSummary.Countries.filter(a => a.Slug.includes(searchExp.toLowerCase()))
@@ -160,9 +176,12 @@ function fullScreen() {
       const flagImg = create("img", `country-flag ${country.Slug}`, null, null, ["src", `https://www.countryflags.io/${country.CountryCode}/flat/32.png`], ["alt", `${country.Slug} flag`]);
       td.Flag = create("td", `flag ${country.Slug}`, [flagImg], tr[i]);
       td.Country = create("td", `country ${country.Slug}`, country.Country, tr[i]);
-      td.Total = create("td", "confirmed", `${country[Properties.cases]}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), tr[i]);
-      td.Deaths = create("td", "deaths", `${country[Properties.cases]}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), tr[i]);
-      td.Recover = create("td", "recovered", `${country[Properties.cases]}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), tr[i]);
+      td.Total = create("td", "confirmed", `${country.TotalConfirmed}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), tr[i]);
+      td.Deaths = create("td", "deaths", `${country.TotalDeaths}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), tr[i]);
+      td.Recover = create("td", "recovered", `${country.TotalRecovered}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), tr[i]);
+      td.Total = create("td", "confirmed", `${country.NewConfirmed}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), tr[i]);
+      td.Deaths = create("td", "deaths", `${country.NewDeaths}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), tr[i]);
+      td.Recover = create("td", "recovered", `${country.NewRecovered}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), tr[i]);
     });
   closeButton.addEventListener("click", () => { closeFullScreen(); });
 }
@@ -269,7 +288,8 @@ class Keyboard {
         this.printToOutput(keyObj, keyObj.small);
         searchExp = this.output.value;
         if (!fullScreenOn) listOfCountries(dataSummary);
-        else { fullScreen(); 
+        else {
+          fullScreen();
           listOfCountries(dataSummary);
         }
       }
