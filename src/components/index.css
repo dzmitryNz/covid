@@ -561,6 +561,9 @@ template {
   grid-template-columns: 255px;
   grid-template-rows: 115px 40px auto 30px;
       grid-template-areas: "total" "search" "countrieslist" "last";
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .countries-list .total-cases {
@@ -1408,7 +1411,7 @@ template {
   top: 10px;
   right: 10px;
   color: black;
-  z-index: 10;
+  z-index: 1000;
   border-radius: 4px;
   background: white;
   display: -webkit-box;
@@ -1576,15 +1579,15 @@ template {
   transition: all 0.5s;
 }
 
-#map.map--fullscreen .leaflet-map-pane {
-  /* left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%); */
-}
-
 body {
   background-color: #0d0f11;
   padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .grid-wrapper {
@@ -1597,7 +1600,10 @@ body {
       grid-template-columns: 255px 1fr 320px;
   -ms-grid-rows: 75px 1fr auto 75px;
       grid-template-rows: 75px 1fr auto 75px;
-      grid-template-areas: "list header table" "list map table" "list map chart" "list footer chart";
+      grid-template-areas: "list header table"
+ "list map table"
+ "list map chart"
+ "list footer chart";
 }
 
 .grid-wrapper .header {
@@ -1808,7 +1814,11 @@ body {
         grid-template-columns: 1fr 1fr;
     -ms-grid-rows: 75px 300px 360px 350px 75px;
         grid-template-rows: 75px 300px 360px 350px 75px;
-        grid-template-areas: "header header" "map map" "list table" "chart chart" "footer footer";
+        grid-template-areas: "header header"
+ "map map"
+ "list table"
+ "chart chart"
+ "footer footer";
   }
   #map .map__legend {
     -ms-flex-wrap: nowrap;
@@ -1828,10 +1838,71 @@ body {
         grid-template-columns: 450px;
     -ms-grid-rows: 75px 300px 360px 360px auto 75px;
         grid-template-rows: 75px 300px 360px 360px auto 75px;
-        grid-template-areas: "header" "map" "list" "table" "chart" "footer";
+        grid-template-areas: "header"
+ "map"
+ "list"
+ "table"
+ "chart"
+ "footer";
   }
   .footer__school,
   .footer__year {
     display: none;
   }
 }
+
+@media screen and (max-width: 940px) {
+  .grid-wrapper {
+    max-width: 605px;
+    margin: 0px auto;
+    height: auto;
+    display: -ms-grid;
+    display: grid;
+    gap: 10px;
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    -ms-grid-rows: 75px 300px 360px 350px 75px;
+        grid-template-rows: 75px 300px 360px 350px 75px;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+        grid-template-areas: "header header" "map map" "list table" "chart chart" "footer footer";
+  }
+  #map .map__legend {
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .grid-wrapper {
+    max-width: 450px;
+    margin: 0px auto;
+    height: auto;
+    display: -ms-grid;
+    display: grid;
+    gap: 10px;
+    -ms-grid-columns: 450px;
+        grid-template-columns: 450px;
+    -ms-grid-rows: 75px 300px 360px 360px auto 75px;
+        grid-template-rows: 75px 300px 360px 360px auto 75px;
+        grid-template-areas: "header" "map" "list" "table" "chart" "footer";
+  }
+  .footer__school,
+  .footer__year {
+    display: none;
+  }
+  .countries-list {
+    -ms-grid-column-align: center;
+        justify-self: center;
+    max-width: 255px;
+  }
+  .fullscreen {
+    display: none;
+  }
+}
+
+.keyboard:hover {
+  cursor: pointer;
+}
+/*# sourceMappingURL=index.css.map */

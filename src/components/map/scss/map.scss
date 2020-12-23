@@ -45,7 +45,7 @@
   top: 10px;
   right: 10px;
   color: black;
-  z-index: 10;
+  z-index: 1000;
   border-radius: 4px;
   background: white;
   display: flex;
@@ -175,10 +175,4 @@
   position: absolute !important;
   z-index: 4;
   transition: all 0.5s;
-
-  .leaflet-map-pane {
-    /* left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%); */
-  }
 }

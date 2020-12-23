@@ -113,6 +113,9 @@
   -ms-grid-columns: 255px;
   grid-template-rows: 115px 40px auto 30px;
   grid-template-areas: "total" "search" "countrieslist" "last";
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 .countries-list .total-cases {
