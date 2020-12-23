@@ -156,7 +156,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
 }
 
 .pop__table .table__title {
@@ -177,5 +176,21 @@
   font-size: 24px;
   line-height: 33px;
   color: #edb021;
+}
+
+.pop__table .table__body {
+  flex: 1 1 auto;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.pop__table .table__body .table__all-last {
+  width: 400px;
+}
+
+.pop__table .table__body .table__absolute {
+  width: 400px;
 }
 /*# sourceMappingURL=table.css.map */
