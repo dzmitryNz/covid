@@ -8,7 +8,7 @@ import create from "../../create";
 import getData from "../../api";
 import en from "./en";
 import Map from "../../map/js/map";
-// import { chart } from "../../chart/js/chart";
+import { chart } from "../../chart/js/chart";
 
 const summary = "summaryRoute";
 const main = document.querySelector(".grid-wrapper");
@@ -20,9 +20,9 @@ const countriesList = document.querySelector(".countries-list");
 let search = document.querySelector(".search");
 // const countryDay = "countryDayOneRoute";
 const countryDay = "countryDayOneTotalRoute";
-const deathsButton = create("div", "deaths-button", null, totalCases);
-const recoverButton = create("div", "recovered-button", null, totalCases);
-const totalButton = create("div", "hidden-button", null, totalCases);
+const deathsButton = create("div", "deaths-button", "Deaths", totalCases);
+const recoverButton = create("div", "recovered-button", "Recovered", totalCases);
+const totalButton = create("div", "hidden-button", "Confirmed", totalCases);
 const keyboardButton = create("i", "material-icons keyboard", "keyboard", search);
 const searchInput = create("input", "search-input", null, search, ["type", "text"], ["id", "search-counrty"], ["placeholder", "Search for a Country"]);
 const fullScreenButton = create("i", "material-icons fullscreen", "fullscreen", search);
@@ -38,7 +38,6 @@ let searchExp = "";
 let fullScreenOn = false;
 let dataSummary = {};
 let targetCountry = "";
-
 function changeCases(e) {
   let tempCases = Properties.cases;
   let requestTotal = e.path[0].className;
@@ -46,6 +45,7 @@ function changeCases(e) {
     case "recovered-button":
       if (tempCases.match(/Total/)) Properties.cases = "TotalRecovered";
       if (tempCases.match(/New/)) Properties.cases = "NewRecovered";
+      chart(null, 'Recovered');
       recoverButton.className = "hidden-button";
       deathsButton.className = "deaths-button";
       totalButton.className = "total-button";
@@ -53,6 +53,7 @@ function changeCases(e) {
     case "deaths-button":
       if (tempCases.match(/Total/)) Properties.cases = "TotalDeaths";
       if (tempCases.match(/New/)) Properties.cases = "NewDeaths";
+      chart(null, 'Deaths');
       recoverButton.className = "recovered-button";
       deathsButton.className = "hidden-button";
       totalButton.className = "total-button";
@@ -66,6 +67,7 @@ function changeCases(e) {
     default:
       if (tempCases.match(/Total/)) Properties.cases = "TotalConfirmed";
       if (tempCases.match(/New/)) Properties.cases = "NewConfirmed";
+      chart(null, 'Confirmed');
       totalButton.className = "hidden-button";
       recoverButton.className = "recovered-button";
       deathsButton.className = "deaths-button";
@@ -102,6 +104,7 @@ export default function listOfCountries(summaryData) {
       td.Total = create("td", `${totalClass[Properties.cases]}`, `${country[Properties.cases]}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), tr[i]);
       tr[i].addEventListener("click", (e) => {
         if (e.path.length === 10) targetCountry = e.path[2].className.slice(12);
+        else if (e.path.length === 8) targetCountry = e.path[0].className.slice(12);
         else { targetCountry = e.path[1].className.slice(12); }
         getData(countryDay, targetCountry);
       });
@@ -260,76 +263,76 @@ class Keyboard {
     this.container.onmouseup = this.preHandleEvent;
   }
 
-    preHandleEvent = (e) => {
-      e.stopPropagation();
-      const keyDiv = e.target.closest(".keyboard__key");
-      if (!keyDiv) return;
-      const { dataset: { code } } = keyDiv;
-      keyDiv.addEventListener("mouseleave", this.resetButtonState);
-      this.handleEvent({ code, type: e.type });
+  preHandleEvent = (e) => {
+    e.stopPropagation();
+    const keyDiv = e.target.closest(".keyboard__key");
+    if (!keyDiv) return;
+    const { dataset: { code } } = keyDiv;
+    keyDiv.addEventListener("mouseleave", this.resetButtonState);
+    this.handleEvent({ code, type: e.type });
+  };
+
+  resetButtonState = ({ target: { dataset: { code } } }) => {
+    const keyObj = this.keyButtons.find(key => key.code === code);
+    keyObj.div.classList.remove("active");
+    keyObj.div.removeEventListener("mouseleave", this.resetButtonState);
+  }
+
+  handleEvent = (e) => {
+    if (e.stopPropagation) e.stopPropagation();
+    const { code, type } = e;
+    const keyObj = this.keyButtons.find(key => key.code === code);
+    if (!keyObj) return;
+    this.output.focus();
+    // On key pressed
+    if (type.match(/keydown|mousedown/)) {
+      if (type.match(/key/)) e.preventDefault();
+      if (code.match(/Hide/)) hideKeyboardEvent();
+      this.printToOutput(keyObj, keyObj.small);
+      searchExp = this.output.value;
+      if (!fullScreenOn) listOfCountries(dataSummary);
+      else {
+        fullScreen();
+        listOfCountries(dataSummary);
+      }
+    }
+    keyObj.div.classList.add("active");
+    // remove 'active' classes
+    if (!code.match(/Speach/)) {
+      keyObj.div.classList.remove("active");
+    }
+  }
+
+  printToOutput(keyObj, symbol) {
+    let cursorPos = this.output.selectionStart;
+    const left = this.output.value.slice(0, cursorPos);
+    const right = this.output.value.slice(cursorPos);
+
+    const fnButtonsHandler = {
+      ArrowLeft: () => {
+        cursorPos = cursorPos - 1 >= 0 ? cursorPos - 1 : 0;
+      },
+      ArrowRight: () => {
+        cursorPos += 1;
+      },
+      Backspace: () => {
+        this.output.value = `${left.slice(0, -1)}${right}`;
+        cursorPos -= 1;
+      },
+      Space: () => {
+        this.output.value = `${left} ${right}`;
+        cursorPos += 1;
+      },
     };
 
-    resetButtonState = ({ target: { dataset: { code } } }) => {
-      const keyObj = this.keyButtons.find(key => key.code === code);
-      keyObj.div.classList.remove("active");
-      keyObj.div.removeEventListener("mouseleave", this.resetButtonState);
+    if (fnButtonsHandler[keyObj.code]) {
+      fnButtonsHandler[keyObj.code]();
+    } else if (!keyObj.isFnKey) {
+      cursorPos += 1;
+      this.output.value = `${left}${symbol || ""}${right}`;
     }
-
-    handleEvent = (e) => {
-      if (e.stopPropagation) e.stopPropagation();
-      const { code, type } = e;
-      const keyObj = this.keyButtons.find(key => key.code === code);
-      if (!keyObj) return;
-      this.output.focus();
-      // On key pressed
-      if (type.match(/keydown|mousedown/)) {
-        if (type.match(/key/)) e.preventDefault();
-        if (code.match(/Hide/)) hideKeyboardEvent();
-        this.printToOutput(keyObj, keyObj.small);
-        searchExp = this.output.value;
-        if (!fullScreenOn) listOfCountries(dataSummary);
-        else {
-          fullScreen();
-          listOfCountries(dataSummary);
-        }
-      }
-      keyObj.div.classList.add("active");
-      // remove 'active' classes
-      if (!code.match(/Speach/)) {
-        keyObj.div.classList.remove("active");
-      }
-    }
-
-    printToOutput(keyObj, symbol) {
-      let cursorPos = this.output.selectionStart;
-      const left = this.output.value.slice(0, cursorPos);
-      const right = this.output.value.slice(cursorPos);
-
-      const fnButtonsHandler = {
-        ArrowLeft: () => {
-          cursorPos = cursorPos - 1 >= 0 ? cursorPos - 1 : 0;
-        },
-        ArrowRight: () => {
-          cursorPos += 1;
-        },
-        Backspace: () => {
-          this.output.value = `${left.slice(0, -1)}${right}`;
-          cursorPos -= 1;
-        },
-        Space: () => {
-          this.output.value = `${left} ${right}`;
-          cursorPos += 1;
-        },
-      };
-
-      if (fnButtonsHandler[keyObj.code]) {
-        fnButtonsHandler[keyObj.code]();
-      } else if (!keyObj.isFnKey) {
-        cursorPos += 1;
-        this.output.value = `${left}${symbol || ""}${right}`;
-      }
-      this.output.setSelectionRange(cursorPos, cursorPos);
-    }
+    this.output.setSelectionRange(cursorPos, cursorPos);
+  }
 }
 
 new Keyboard(rowsOrder).init().generateLayout();

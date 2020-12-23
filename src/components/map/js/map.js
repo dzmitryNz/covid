@@ -53,22 +53,22 @@ export default class Map {
 
     this.addCircles(param);
 
-    this.addParamChanger(param);
-
     // Legend specific
     const legend = L.control({ position: "bottomleft" });
 
     legend.onAdd = (map) => {
       const div = L.DomUtil.create("div", "map__legend");
-      div.innerHTML += "<i style=\"background: green\"></i><span><1000</span><br>";
-      div.innerHTML += "<i style=\"background: yellow\"></i><span><100000</span><br>";
-      div.innerHTML += "<i style=\"background: orange\"></i><span><250000</span><br>";
-      div.innerHTML += "<i style=\"background: red\"></i><span><500000</span><br>";
-      div.innerHTML += "<i style=\"background: darkred\"></i><span>>500000</span><br>";
+      div.innerHTML += "<div><i style=\"background: green\"></i><span><1000</span></div>";
+      div.innerHTML += "<div><i style=\"background: yellow\"></i><span><100000</span></div>";
+      div.innerHTML += "<div><i style=\"background: orange\"></i><span><250000</span></div>";
+      div.innerHTML += "<div><i style=\"background: red\"></i><span><500000</span></div>";
+      div.innerHTML += "<div><i style=\"background: darkred\"></i><span>>500000</span></div>";
       return div;
     };
 
     legend.addTo(this.map);
+    
+    this.addParamChanger(param);
   }
 
   // add country circles
@@ -205,7 +205,7 @@ export default class Map {
           default: break;
         }
         this.addCircles(Properties.cases);
-
+        
         paramButtons.forEach((item) => {
           item.classList.remove("param-changer__button--active");
         });
