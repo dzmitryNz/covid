@@ -192,7 +192,7 @@ font-size: 20px;
     grid-area: recoverBut;
     background: #5D9700;
     border: 2px solid #5D9700;
-    transform: rotateZ(90deg);
+    transform: rotateZ(-90deg);
     color:  #5D9700;
 }
 
@@ -200,7 +200,7 @@ font-size: 20px;
     grid-area: totalBut;
     border: 2px solid #EDB021;
     background-color: #EDB021;
-    transform: rotateZ(90deg);
+    transform: rotateZ(-90deg);
     color:  #EDB021;
 }
 

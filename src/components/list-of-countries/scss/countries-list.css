@@ -111,7 +111,6 @@
   gap: 0px;
   grid-template-columns: 255px;
   -ms-grid-columns: 255px;
-  -ms-grid-rows: 115px 40px auto 30px;
   grid-template-rows: 115px 40px auto 30px;
   grid-template-areas: "total" "search" "countrieslist" "last";
 }
@@ -119,7 +118,6 @@
 .countries-list .total-cases {
   grid-area: total;
   font-size: 2em;
-  display: -ms-grid;
   display: grid;
   gap: 4px;
   grid-template-columns: 25px 195px 25px;
@@ -144,12 +142,12 @@
 }
 
 .countries-list .deaths {
-      grid-template-areas: "recoverBut digits totalBut";
+  grid-template-areas: "recoverBut digits totalBut";
   color: #D2374A;
 }
 
 .countries-list .recovered {
-      grid-template-areas: "totalBut digits deathsBut";
+  grid-template-areas: "totalBut digits deathsBut";
   color: #5D9700;
 }
 
@@ -189,7 +187,7 @@
   grid-area: recoverBut;
   background: #5D9700;
   border: 2px solid #5D9700;
-  transform: rotateZ(90deg);
+  transform: rotateZ(-90deg);
   color: #5D9700;
 }
 
@@ -197,7 +195,7 @@
   grid-area: totalBut;
   border: 2px solid #EDB021;
   background-color: #EDB021;
-  transform: rotateZ(90deg);
+  transform: rotateZ(-90deg);
   color: #EDB021;
 }
 
@@ -228,27 +226,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-}
-
-.countries-list .total-cases .total {
-  -ms-grid-row: 1;
-  -ms-grid-column: 2;
-  grid-area: digits;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  text-align: center;
-  margin: auto auto;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
 }
 
 .countries-list .total-cases .hidden-button {
@@ -345,11 +322,8 @@
 }
 
 .countries-list .search {
-  -ms-grid-row: 2;
-  -ms-grid-column: 1;
   grid-area: search;
-  -ms-grid-column-align: center;
-      justify-self: center;
+  justify-self: center;
 }
 
 .full-screen-block .full-screen-header input,
@@ -462,15 +436,9 @@
 
 .full-screen-block .last-update,
 .countries-list .last-update {
-  -ms-grid-row: 4;
-  -ms-grid-column: 1;
   grid-area: last;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
   text-align: center;
   color: #EDB021;
   border: 1px solid #EDB021;
