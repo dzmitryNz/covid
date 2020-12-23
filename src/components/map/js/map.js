@@ -173,7 +173,7 @@ export default class Map {
 
       button.addEventListener("click", () => {
         // delete all circles
-        const circles = document.querySelectorAll("g");
+        const circles = document.querySelectorAll("path");
         circles.forEach((g) => {
           g.remove();
         });
