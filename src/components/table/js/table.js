@@ -1,7 +1,6 @@
 export async function table(country, data) {
   document.querySelector('.table').innerHTML = `
   <div class="table__body">
-  <button type="button" class="full-screen-but hide-button"></button>
   <div class="table__current-country"><span id="current-country"></span></div>
   <div class="table__common">
     <div class="table__title-all"><span>All time</span></div>
@@ -29,62 +28,6 @@ export async function table(country, data) {
   </div>
   <button type="button" class="table__switch-mode"><span>Switch mode</span></button>
   </div>`;
-  const fullButton = document.querySelectorAll('.full-screen-but')[0];
-  document.querySelector('.table__body').addEventListener('mouseover', () => {
-    if (fullButton.classList.contains('hide-button')) {
-      fullButton.classList.toggle('hide-button');
-    }
-  })
-  document.querySelector('.table__body').addEventListener('mouseleave', () => {
-    if (!fullButton.classList.contains('hide-button')) {
-      fullButton.classList.toggle('hide-button');
-    }
-  })
-  fullButton.addEventListener('mouseup', () => {
-    document.querySelector('.full-screen').showModal();
-    document.querySelector('#pop-content').innerHTML = `
-      <div class="pop__table">
-        <div class="table__title"><span>${country === 'world' ? 'Global' : data[0].Country}</span></div>
-        <div class="table__body">
-          <div class="table__all-last">
-            <div class="table__significations">
-              <ul>
-                <li><span>Recovered</span><span class="table__recovered"></span></li>
-                <li><span>Confirmed</span><span class="table__confirmed"></span></li>
-                <li><span>Deaths</span><span class="table__deaths"></span></li>
-              </ul>
-            </div>
-            <div class="table__significations">
-              <ul>
-                <li><span>Recovered</span><span class="table__recovered"></span></li>
-                <li><span>Confirmed</span><span class="table__confirmed"></span></li>
-                <li><span>Deaths</span><span class="table__deaths"></span></li>
-              </ul>
-            </div>
-          </div>
-          <div class="table__absolute">
-            <div class="table__significations">
-              <ul>
-                <li><span>Recovered</span><span class="table__recovered"></span></li>
-                <li><span>Confirmed</span><span class="table__confirmed"></span></li>
-                <li><span>Deaths</span><span class="table__deaths"></span></li>
-              </ul>
-            </div>
-            <div class="table__significations">
-              <ul>
-                <li><span>Recovered</span><span class="table__recovered"></span></li>
-                <li><span>Confirmed</span><span class="table__confirmed"></span></li>
-                <li><span>Deaths</span><span class="table__deaths"></span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-  });
-  document.querySelector('#pop-close').addEventListener('click', function () {
-    document.querySelector('.full-screen').close();
-  });
 
   const table__recovered = document.querySelectorAll('.table__recovered');
   const table__confirmed = document.querySelectorAll('.table__confirmed');

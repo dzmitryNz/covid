@@ -115,6 +115,7 @@ font-size: 20px;
     -ms-grid-rows: 115px 40px auto 30px;
     grid-template-rows: 115px 40px auto 30px;
     grid-template-areas: "total" "search" "countrieslist" "last";
+    justify-content: center;
 }
 
 .countries-list .total-cases {

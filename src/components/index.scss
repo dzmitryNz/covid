@@ -10,7 +10,10 @@
 body {
   background-color: #0d0f11;
   padding: 10px;
+  display: flex;
+  justify-content: center;
 }
+
 .grid-wrapper {
   width: 100%;
   height: 100%;
@@ -28,6 +31,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     h1 {
       font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
       font-size: 31px;
@@ -35,6 +39,31 @@ body {
       color: rgb(215, 236, 244);
       text-transform: uppercase;
       text-align: center;
+      margin-block-end: 0.15em;
+      margin-block-start: 0.3em;
+    }
+    .your-location {
+      display: flex;
+      align-items: center;
+    justify-content: center;
+      color: white;
+      .location-country{
+        margin: 0 5px;
+        font-weight: 600;
+        font-size: 18px;
+      }
+      .location-confirmed{
+        color: orange;
+        margin: 0 5px;
+      }
+      .location-recovered{
+        color: green;
+        margin: 0 5px;
+      }
+      .location-deaths{
+        color: red;
+        margin: 0 5px;
+      }
     }
 
     border: 1px rgb(215, 236, 244) solid;
@@ -163,9 +192,65 @@ body {
     }
   }
 }
+
 @media screen and (max-width: 1200px) {
   .footer__school,
   .footer__year {
     display: none;
   }
+}
+
+@media screen and (max-width: 940px) {
+  .grid-wrapper {
+    max-width: 605px;
+    margin: 0px auto;
+    height: auto;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 75px 300px 360px 350px 75px;
+    justify-content: center;
+    grid-template-areas:
+      "header header"
+      "map map"
+      "list table"
+      "chart chart"
+      "footer footer";
+  }
+  #map .map__legend {
+    flex-wrap: nowrap;
+  }
+}
+@media screen and (max-width: 600px) {
+  .grid-wrapper {
+    max-width: 450px;
+    margin: 0px auto;
+    height: auto;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 450px;
+    grid-template-rows: 75px 300px 360px 360px auto 75px;
+    justify-content: center;
+    grid-template-areas:
+      "header"
+      "map"
+      "list"
+      "table"
+      "chart"
+      "footer";
+  }
+  .footer__school,
+  .footer__year {
+    display: none;
+  }
+  .countries-list {
+    justify-self: center;
+    max-width: 255px;
+  }
+  .fullscreen {
+    display: none;
+  }
+}
+.keyboard:hover {
+  cursor: pointer;
 }
