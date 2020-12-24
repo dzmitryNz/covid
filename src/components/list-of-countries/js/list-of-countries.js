@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 /* eslint-disable no-use-before-define */
 /* eslint-disable prefer-const */
@@ -26,6 +27,7 @@ const totalButton = create("div", "hidden-button", "Confirmed", totalCases);
 const keyboardButton = create("i", "material-icons keyboard", "keyboard", search);
 const searchInput = create("input", "search-input", null, search, ["type", "text"], ["id", "search-counrty"], ["placeholder", "Search for a Country"]);
 const fullScreenButton = create("i", "material-icons fullscreen", "fullscreen", search);
+const locationCountry = create("div", "table-location", null, search);
 const total = create("div", "total", null, totalCases);
 const totalCaseSwitch = create("div", "switch-total", "Total");
 const switcher = create("div", "switcher", null);
@@ -45,7 +47,7 @@ function changeCases(e) {
     case "recovered-button":
       if (tempCases.match(/Total/)) Properties.cases = "TotalRecovered";
       if (tempCases.match(/New/)) Properties.cases = "NewRecovered";
-      chart(null, 'Recovered');
+      chart(null, "Recovered");
       recoverButton.className = "hidden-button";
       deathsButton.className = "deaths-button";
       totalButton.className = "total-button";
@@ -53,7 +55,7 @@ function changeCases(e) {
     case "deaths-button":
       if (tempCases.match(/Total/)) Properties.cases = "TotalDeaths";
       if (tempCases.match(/New/)) Properties.cases = "NewDeaths";
-      chart(null, 'Deaths');
+      chart(null, "Deaths");
       recoverButton.className = "recovered-button";
       deathsButton.className = "hidden-button";
       totalButton.className = "total-button";
@@ -67,7 +69,7 @@ function changeCases(e) {
     default:
       if (tempCases.match(/Total/)) Properties.cases = "TotalConfirmed";
       if (tempCases.match(/New/)) Properties.cases = "NewConfirmed";
-      chart(null, 'Confirmed');
+      chart(null, "Confirmed");
       totalButton.className = "hidden-button";
       recoverButton.className = "recovered-button";
       deathsButton.className = "deaths-button";
@@ -80,6 +82,7 @@ function changeCases(e) {
 export default function listOfCountries(summaryData) {
   dataSummary = summaryData;
   tableBlock.innerHTML = "";
+  locationCountry.innerHTML = "";
   let totalClass = {
     TotalConfirmed: "total",
     TotalDeaths: "total-deaths",
@@ -88,11 +91,21 @@ export default function listOfCountries(summaryData) {
     NewDeaths: "total-deaths",
     NewRecovered: "total-recovered",
   };
+  const location = localStorage.getItem("location");
   if (!dataSummary) dataSummary = JSON.parse(localStorage.getItem(summary));
   const lastUpdateDate = new Date(dataSummary.Date);
   lastUpdate.innerText = `Last Update: ${lastUpdateDate.toLocaleString().slice(0, 17)}`;
   let tr = {};
   let td = {};
+  if (location) {
+    const locationLower = location.toLowerCase();
+    let countryData = dataSummary.Countries.filter(a => a.Slug.includes(locationLower))[0];
+    const locationIcon = create("i", "material-icons location", "my_location", locationCountry);
+    const flagImgLoc = create("img", `country-flag ${countryData.Slug}`, null, null, ["src", `https://www.countryflags.io/${countryData.CountryCode}/flat/24.png`], ["alt", `${countryData.Slug} flag`]);
+    td.Flag = create("div", `flag ${countryData.Slug}`, [flagImgLoc], locationCountry);
+    td.Country = create("div", `country ${countryData.Slug}`, countryData.Country, locationCountry);
+    td.Total = create("div", `${totalClass[Properties.cases]}`, `${countryData[Properties.cases]}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), locationCountry);
+  } else { const noLocal = create("div", "no-location", "Here may data on you location country", locationCountry); }
   if (Properties.cases.match(/Total/)) totalDigits.innerText = Properties.cases.replace(/Total/, "");
   else { totalDigits.innerText = Properties.cases.replace(/New/, ""); }
   dataSummary.Countries.filter(a => a.Slug.includes(searchExp.toLowerCase()))

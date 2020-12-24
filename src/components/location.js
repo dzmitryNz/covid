@@ -2,9 +2,9 @@
 import create from "./create";
 
 function setHeaderLocation(country, summaryData) {
-  console.log("Country: ", country, country.toLowerCase());
+  // console.log("Country: ", country, country.toLowerCase());
   const countryData = summaryData.Countries.filter(a => a.Slug.includes(country.toLowerCase()))[0];
-  console.log(countryData);
+  // console.log(countryData);
   const headerYourLocation = document.querySelector(".your-location");
   const locationIcon = create("i", "material-icons location", "my_location", headerYourLocation);
   const locationCountry = create("div", "location-country", `${country}`, headerYourLocation);
@@ -23,6 +23,7 @@ async function getLocation(summaryData) {
     .then(res => res.json())
     .then((response) => {
       setHeaderLocation(response.country, summaryData);
+      localStorage.setItem("location", response.country);
     })
     .catch((data, status) => {
       console.log("Request failed", status, data);

@@ -552,7 +552,7 @@ template {
   gap: 0px;
   grid-template-columns: 255px;
   -ms-grid-columns: 255px;
-  grid-template-rows: 115px 40px auto 30px;
+  grid-template-rows: 115px 60px auto 30px;
   grid-template-areas: "total" "search" "countrieslist" "last";
   justify-content: center;
 }
@@ -798,10 +798,60 @@ template {
 }
 
 .full-screen-block .full-screen-header .keyboard:hover,
+.full-screen-block .full-screen-header .close-full-screen:hover,
+.countries-list .search .keyboard:hover,
 .countries-list .search .fullscreen:hover {
   color: silver;
   cursor: pointer;
   font-size: 28px;
+}
+
+.countries-list .search .table-location {
+  cursor: default;
+  display: flex;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  color: #EDB021;
+  margin-top: 3px;
+}
+
+.countries-list .search .table-location .location {
+  font-size: 18px;
+  width: 18px;
+}
+
+.countries-list .search .table-location .country-flag {
+  vertical-align: middle;
+  margin: 0 2px;
+}
+
+.countries-list .search .table-location .country {
+  color: #D7ECF4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 115px;
+  line-height: 25px;
+}
+
+.countries-list .search .table-location .total {
+  line-height: 25px;
+}
+
+.countries-list .search .table-location .total-deaths {
+  color: #D2374A;
+  white-space: nowrap;
+  text-align: right;
+  line-height: 25px;
+}
+
+.countries-list .search .table-location .total-recovered {
+  color: #5D9700;
+  white-space: nowrap;
+  text-align: right;
+  line-height: 25px;
 }
 
 .countries-list .countries-table {
@@ -1408,8 +1458,8 @@ body {
   color: #d7ecf4;
   text-transform: uppercase;
   text-align: center;
-  margin-block-end: 0.15em;
-  margin-block-start: 0.3em;
+  margin-block-end: 5px;
+  margin-block-start: 10px;
 }
 
 .grid-wrapper .header .your-location {
@@ -1419,10 +1469,15 @@ body {
   color: white;
 }
 
+.grid-wrapper .header .your-location .material-icons {
+  margin-block-end: 1px;
+}
+
 .grid-wrapper .header .your-location .location-country {
   margin: 0 5px;
   font-weight: 600;
   font-size: 18px;
+  margin-block-end: 3px;
 }
 
 .grid-wrapper .header .your-location .location-confirmed {
