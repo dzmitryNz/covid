@@ -397,6 +397,8 @@
 
 .countries-list .search .table-location .total {
   line-height: 25px;
+  min-width: 80px;
+  text-align: right;
 }
 
 .countries-list .search .table-location .total-deaths {
@@ -404,6 +406,8 @@
   white-space: nowrap;
   text-align: right;
   line-height: 25px;
+  min-width: 80px;
+  text-align: right;
 }
 
 .countries-list .search .table-location .total-recovered {
@@ -411,6 +415,8 @@
   white-space: nowrap;
   text-align: right;
   line-height: 25px;
+  min-width: 80px;
+  text-align: right;
 }
 
 .countries-list .countries-table {

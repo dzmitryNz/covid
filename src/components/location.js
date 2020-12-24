@@ -9,7 +9,7 @@ function setHeaderLocation(country, summaryData) {
   // console.log(countryData);
   const headerYourLocation = document.querySelector(".your-location");
   const locationIcon = create("i", "material-icons location", "my_location", headerYourLocation);
-  if (country === "Belarus") flagImgLoc = create("img", `country-flag ${countryData.Slug}`, null, null, ["src", "../images/belarus.png"], ["alt", `${countryData.Slug} flag`]);
+  if (country === "Belarus") flagImgLoc = create("img", `country-flag ${countryData.Slug}`, null, null, ["src", "./images/belarus.png"], ["alt", `${countryData.Slug} flag`]);
   else { flagImgLoc = create("img", `country-flag ${countryData.Slug}`, null, null, ["src", `https://www.countryflags.io/${countryData.CountryCode}/flat/24.png`], ["alt", `${countryData.Slug} flag`]); }
   const flag = create("div", `flag ${countryData.Slug}`, [flagImgLoc], headerYourLocation);
   const locationCountry = create("div", "location-country", `${country}`, headerYourLocation);

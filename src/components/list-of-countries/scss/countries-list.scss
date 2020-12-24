@@ -399,18 +399,24 @@ margin: 0 2px;
 }
 .total {
 line-height: 25px;
+min-width: 80px;
+text-align: right;
 }
 .total-deaths {
     color: #D2374A;
     white-space: nowrap;
     text-align: right;
     line-height: 25px;
+    min-width: 80px;
+    text-align: right;
 }
 .total-recovered {
     color: #5D9700;
     white-space: nowrap;
     text-align: right;
     line-height: 25px;
+    min-width: 80px;
+    text-align: right;
 }
 }
 
