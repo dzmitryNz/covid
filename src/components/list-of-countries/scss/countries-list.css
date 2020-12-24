@@ -359,7 +359,7 @@
 .full-screen-block .full-screen-header .keyboard:hover,
 .full-screen-block .full-screen-header .close-full-screen:hover,
 .countries-list .search .keyboard:hover,
-.countries-list .search .fullscreen:hover {
+.countries-list .search .fullscreen-button:hover {
   color: silver;
   cursor: pointer;
   font-size: 28px;
@@ -595,6 +595,12 @@
     max-width: 105px;
     min-width: 105px;
     line-height: 60px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .grid-wrapper .keyboard-wrapper {
+    top: 400px;
   }
 }
 

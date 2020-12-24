@@ -32,11 +32,11 @@ async function getApi(category, country) {
     Page.set(result, category, country);
     Properties.data[categorySave] = result;
   } else {
-     console.log(result.Message);
+    console.log(result.Message);
     document.querySelector(".last-update").innerText = `${result.Message} try later`;
     document.querySelector(".total-cases").innerText = `${result.Message}  try later`;
     document.querySelector(".countries-table").innerText = `${result.Message}/napi not response`;
-    }
+  }
 }
 
 export default async function getData(category, country) {

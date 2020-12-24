@@ -800,7 +800,7 @@ template {
 .full-screen-block .full-screen-header .keyboard:hover,
 .full-screen-block .full-screen-header .close-full-screen:hover,
 .countries-list .search .keyboard:hover,
-.countries-list .search .fullscreen:hover {
+.countries-list .search .fullscreen-button:hover {
   color: silver;
   cursor: pointer;
   font-size: 28px;
@@ -1036,6 +1036,12 @@ template {
     max-width: 105px;
     min-width: 105px;
     line-height: 60px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .grid-wrapper .keyboard-wrapper {
+    top: 400px;
   }
 }
 
@@ -1448,6 +1454,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  cursor: default;
   border: 1px #d7ecf4 solid;
 }
 
@@ -1467,6 +1474,10 @@ body {
   align-items: center;
   justify-content: center;
   color: white;
+}
+
+.grid-wrapper .header .your-location i {
+  margin-right: 3px;
 }
 
 .grid-wrapper .header .your-location .material-icons {

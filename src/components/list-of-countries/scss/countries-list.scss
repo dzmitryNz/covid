@@ -365,7 +365,7 @@ display: none;
 .full-screen-block .full-screen-header .keyboard:hover,
 .full-screen-block .full-screen-header .close-full-screen:hover,
 .countries-list .search .keyboard:hover,
-.countries-list .search .fullscreen:hover {
+.countries-list .search .fullscreen-button:hover {
     color: silver;
     cursor: pointer;
     font-size: 28px;
@@ -596,7 +596,6 @@ line-height: 25px;
         min-width: 83px;
     }
 
-
     .full-screen-block .country {    
         max-width: 105px;
         min-width: 105px;
@@ -604,6 +603,12 @@ line-height: 25px;
     }
 
 } 
+
+@media screen and (max-width: 700px) {
+    .grid-wrapper .keyboard-wrapper {
+        top: 400px;
+    }
+}
 
 @media screen and (max-width: 700px) {
  
@@ -645,4 +650,3 @@ line-height: 25px;
     }
 
 } 
-

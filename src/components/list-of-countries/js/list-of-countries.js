@@ -26,7 +26,7 @@ const recoverButton = create("div", "recovered-button", "Recovered", totalCases)
 const totalButton = create("div", "hidden-button", "Confirmed", totalCases);
 const keyboardButton = create("i", "material-icons keyboard", "keyboard", search);
 const searchInput = create("input", "search-input", null, search, ["type", "text"], ["id", "search-counrty"], ["placeholder", "Search for a Country"]);
-const fullScreenButton = create("i", "material-icons fullscreen", "fullscreen", search);
+const fullScreenButton = create("i", "material-icons fullscreen-button", "fullscreen", search);
 const locationCountry = create("div", "table-location", null, search);
 const total = create("div", "total", null, totalCases);
 const totalCaseSwitch = create("div", "switch-total", "Total");
@@ -97,11 +97,13 @@ export default function listOfCountries(summaryData) {
   lastUpdate.innerText = `Last Update: ${lastUpdateDate.toLocaleString().slice(0, 17)}`;
   let tr = {};
   let td = {};
+  let flagImgLoc = {};
   if (location) {
     const locationLower = location.toLowerCase();
     let countryData = dataSummary.Countries.filter(a => a.Slug.includes(locationLower))[0];
     const locationIcon = create("i", "material-icons location", "my_location", locationCountry);
-    const flagImgLoc = create("img", `country-flag ${countryData.Slug}`, null, null, ["src", `https://www.countryflags.io/${countryData.CountryCode}/flat/24.png`], ["alt", `${countryData.Slug} flag`]);
+    if (location === "Belarus") flagImgLoc = create("img", `country-flag ${countryData.Slug}`, null, null, ["src", "../images/belarus.png"], ["alt", `${countryData.Slug} flag`]);
+    else { flagImgLoc = create("img", `country-flag ${countryData.Slug}`, null, null, ["src", `https://www.countryflags.io/${countryData.CountryCode}/flat/24.png`], ["alt", `${countryData.Slug} flag`]); }
     td.Flag = create("div", `flag ${countryData.Slug}`, [flagImgLoc], locationCountry);
     td.Country = create("div", `country ${countryData.Slug}`, countryData.Country, locationCountry);
     td.Total = create("div", `${totalClass[Properties.cases]}`, `${countryData[Properties.cases]}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), locationCountry);
@@ -111,8 +113,9 @@ export default function listOfCountries(summaryData) {
   dataSummary.Countries.filter(a => a.Slug.includes(searchExp.toLowerCase()))
     .sort((a, b) => b[Properties.cases] - a[Properties.cases]).forEach((country, i) => {
       tr[i] = create("tr", `country-row ${country.Slug}`, null, tableBlock);
-      const flagImg = create("img", `country-flag ${country.Slug}`, null, null, ["src", `https://www.countryflags.io/${country.CountryCode}/flat/24.png`], ["alt", `${country.Slug} flag`]);
-      td.Flag = create("td", `flag ${country.Slug}`, [flagImg], tr[i]);
+      if (country.Country === "Belarus") flagImgLoc = create("img", `country-flag ${country.Slug}`, null, null, ["src", "../images/belarus.png"], ["alt", `${country.Slug} flag`]);
+      else { flagImgLoc = create("img", `country-flag ${country.Slug}`, null, null, ["src", `https://www.countryflags.io/${country.CountryCode}/flat/24.png`], ["alt", `${country.Slug} flag`]); }
+      td.Flag = create("td", `flag ${country.Slug}`, [flagImgLoc], tr[i]);
       td.Country = create("td", `country ${country.Slug}`, country.Country, tr[i]);
       td.Total = create("td", `${totalClass[Properties.cases]}`, `${country[Properties.cases]}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), tr[i]);
       tr[i].addEventListener("click", (e) => {
@@ -185,12 +188,14 @@ function fullScreen() {
   const td6 = create("td", "deaths", "New deaths", thf);
   const td7 = create("td", "recovered", "New recovered", thf);
   let fullScreentableBlock = create("table", "full-screen-table", null, fullScreenBlock);
+  let flagImgLoc = {}
 
   dataSummary.Countries.filter(a => a.Slug.includes(searchExp.toLowerCase()))
     .sort((a, b) => b[Properties.cases] - a[Properties.cases]).forEach((country, i) => {
       tr[i] = create("tr", `country-row ${country.Slug}`, null, fullScreentableBlock);
-      const flagImg = create("img", `country-flag ${country.Slug}`, null, null, ["src", `https://www.countryflags.io/${country.CountryCode}/flat/32.png`], ["alt", `${country.Slug} flag`]);
-      td.Flag = create("td", `flag ${country.Slug}`, [flagImg], tr[i]);
+      if (country.Country === "Belarus") flagImgLoc = create("img", `country-flag ${country.Slug}`, null, null, ["src", "../images/belarus.png"], ["alt", `${country.Slug} flag`]);
+      else { flagImgLoc = create("img", `country-flag ${country.Slug}`, null, null, ["src", `https://www.countryflags.io/${country.CountryCode}/flat/24.png`], ["alt", `${country.Slug} flag`]); }
+      td.Flag = create("td", `flag ${country.Slug}`, [flagImgLoc], tr[i]);
       td.Country = create("td", `country ${country.Slug}`, country.Country, tr[i]);
       td.Total = create("td", "confirmed", `${country.TotalConfirmed}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), tr[i]);
       td.Deaths = create("td", "deaths", `${country.TotalDeaths}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), tr[i]);
@@ -205,7 +210,9 @@ function fullScreen() {
 function closeFullScreen() {
   fullScreenOn = false;
   fullScreenBlock.className = "full-screen-hidden";
-  search = create("div", "search", [keyboardButton, searchInput, fullScreenButton], countriesList);
+  search.innerHTML = "";
+  search = create("div", "search", [keyboardButton, searchInput, fullScreenButton, locationCountry], countriesList);
+
   fullScreenBlock.innerHTML = "";
   // chart("world", "Confirmed");
 }
