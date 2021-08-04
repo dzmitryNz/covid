@@ -124,13 +124,13 @@ export function locationUpd() {
     locationCountry.innerHTML = "";
     const locationLower = location.toLowerCase();
     let countryData = dataSummary.Countries.filter(a => a.Slug.includes(locationLower))[0];
-    const locationIcon = create("i", "material-icons location", "my_location", locationCountry);
+    create("i", "material-icons location", "my_location", locationCountry);
     if (location === "Belarus") flagImgLoc = create("img", `country-flag ${countryData.Slug}`, null, null, ["src", "./images/belarus.png"], ["alt", `${countryData.Slug} flag`]);
     else { flagImgLoc = create("img", `country-flag ${countryData.Slug}`, null, null, ["src", `https://www.countryflags.io/${countryData.CountryCode}/flat/24.png`], ["alt", `${countryData.Slug} flag`]); }
     td.Flag = create("div", `flag ${countryData.Slug}`, [flagImgLoc], locationCountry);
     td.Country = create("div", `country ${countryData.Slug}`, countryData.Country, locationCountry);
     td.Total = create("div", `${totalClass[Properties.cases]}`, `${countryData[Properties.cases]}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "), locationCountry);
-  } else { const noLocal = create("div", "no-location", "Here data your location country", locationCountry); }
+  } else { create("div", "no-location", "Here data your location country", locationCountry); }
 }
 
 recoverButton.addEventListener("click", (e) => { changeCases(e); });

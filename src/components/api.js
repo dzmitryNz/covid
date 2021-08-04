@@ -27,6 +27,7 @@ async function getApi(category, country) {
   const response = await fetch(url);
   if (response.status !== 200) { console.log(response.status); return; }
   const result = await response.json();
+  console.log(result)
   if (result.Message !== "Caching in progress") {
     localStorage.setItem(categorySave, JSON.stringify(result));
     Page.set(result, category, country);
@@ -35,7 +36,7 @@ async function getApi(category, country) {
     console.log(result.Message);
     document.querySelector(".last-update").innerText = `${result.Message} try later`;
     document.querySelector(".total-cases").innerText = `${result.Message}  try later`;
-    document.querySelector(".countries-table").innerText = `${result.Message}/napi not response`;
+    document.querySelector(".countries-table").innerText = `${result.Message} api not response`;
   }
 }
 
